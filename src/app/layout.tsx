@@ -1,4 +1,4 @@
-import SilderBar from "@/pages/layout/App";
+import SilderBar from "@/page/layout/App";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";

@@ -1,17 +1,24 @@
 "use client";
 import { Table } from "antd";
-import React from "react";
-import { useAntdTable } from "ahooks";
+import React, { use, useEffect, useState } from "react";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useRouter, usePathname } from "next/navigation";
 
 interface Props {
   columns: any[];
-  getTableData: any;
   rowSelection?: RowSelectionType;
   onEdit?: boolean;
   onDelete?: any;
+  data: any[];
   rowKey?: string;
+  searchParams: any;
+  meta: Meta;
+}
+
+interface Meta {
+  current: number;
+  pageSize: number;
+  total: number;
 }
 
 interface RowSelectionType {
@@ -19,17 +26,35 @@ interface RowSelectionType {
   onChange?: (selectedRowKeys: React.Key[], selectedRows: any[]) => void;
   selectedRowKeys?: React.Key[];
 }
-export default ({
+const FeTable = ({
   columns,
-  getTableData,
   rowSelection,
   onEdit,
   onDelete,
+  data,
   rowKey,
+  searchParams,
+  meta,
 }: Props) => {
   const router = useRouter();
-  const path = usePathname();
-  const { tableProps } = useAntdTable(getTableData);
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const [isFetching, setIsFetching] = useState<boolean>(false);
+
+  const onChange = (pagination: any, filters: any, sorter: any, extra: any) => {
+    if (pagination && pagination.current) {
+      const params = new URLSearchParams(searchParams);
+      params.set("page", pagination.current);
+      replace(`${pathname}?${params.toString()}`);
+      setIsFetching(true);
+    }
+  };
+  useEffect(() => {
+    if (data) {
+      setIsFetching(false);
+    }
+  }, [data]);
+
   let updatedColumns = [...columns];
   if (onDelete) {
     updatedColumns = [
@@ -43,31 +68,43 @@ export default ({
       },
     ];
   }
-  console.log("onEdit", onEdit);
   if (onEdit) {
-    console.log("onEdit", "ccccc");
     updatedColumns = [
       ...updatedColumns,
       {
         dataIndex: "edit",
         fixed: "right",
         render: (_: any, record: any) => (
-          <a onClick={() => router.push(path!.concat(`/${record[rowKey!]}`))}>
+          <a
+            onClick={() => router.push(pathname!.concat(`/${record[rowKey!]}`))}
+          >
             <EditOutlined style={{ fontSize: "32px" }} />,
           </a>
         ),
       },
     ];
-  } else {
-    console.log("onEdit", "ddddd");
   }
   return (
     <Table
+      loading={isFetching}
       rowSelection={rowSelection ? { ...rowSelection } : undefined}
+      rowKey={rowKey}
+      bordered
+      dataSource={data}
       columns={updatedColumns}
-      rowKey="name"
-      style={{ overflow: "auto" }}
-      {...tableProps}
+      onChange={onChange}
+      pagination={{
+        ...meta,
+        showTotal: (total, range) => {
+          return (
+            <div>
+              {" "}
+              {range[0]}-{range[1]} trên {total} rows
+            </div>
+          );
+        },
+      }}
     />
   );
 };
+export default FeTable;

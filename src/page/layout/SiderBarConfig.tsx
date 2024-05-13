@@ -1,4 +1,4 @@
-import PATHS from "@/routes/paths";
+import PATHS from "@/route/paths";
 import {
   PieChartOutlined,
   DesktopOutlined,
@@ -7,6 +7,7 @@ import {
   FileOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 const { PATH_DASHBOARD } = PATHS;
 
 const customLink = (path: string, name: string) => {

@@ -1,8 +1,5 @@
 import React from "react";
 
-const DetailUser = async (props: any) => {
-  console.log("ceck props", props);
-  return <div>Detail User</div>;
-};
-
-export default DetailUser;
+export default function UserDetail() {
+  return <div>pagedetail u</div>;
+}
