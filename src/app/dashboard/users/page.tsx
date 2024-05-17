@@ -9,7 +9,6 @@ const Users = async (props: any) => {
       cache: "no-store",
     }
   );
-
-  return <UserPage props={props} res={res} />;
+  return <UserPage props={props} />;
 };
 export default Users;
