@@ -9,9 +9,9 @@ interface UserData {
 }
 interface Props {
   props: any;
-  res: any;
+  // res: any;
 }
-export default function UserPage({ props, res }: Props) {
+export default function UserPage({ props }: Props) {
   const columns: TableColumnsType<UserData> = [
     {
       title: "id",
@@ -30,14 +30,16 @@ export default function UserPage({ props, res }: Props) {
       dataIndex: "role",
     },
   ];
+  const apiUrl =
+    "https://660bbdb3ccda4cbc75dd950a.mockapi.io/api/student/users";
   return (
     <CustomTable
       onDelete
       onEdit
-      res={res}
       columns={columns}
       props={props}
       rowKey="id"
+      apiUrl={apiUrl}
     />
   );
 }

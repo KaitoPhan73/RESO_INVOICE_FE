@@ -2,6 +2,7 @@ import SilderBar from "@/page/layout/App";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Providers from "@/redux/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SilderBar>{children}</SilderBar>
+        <Providers>
+          <SilderBar>{children}</SilderBar>
+        </Providers>
       </body>
     </html>
   );
