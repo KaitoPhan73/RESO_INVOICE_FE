@@ -1,18 +1,13 @@
+import { getUsers } from "@/actions/users";
 import CustomTable from "@/components/FeTable/CustomTable";
+import { TUserBase } from "@/types/User";
 import { TableColumnsType } from "antd";
 import React from "react";
-interface UserData {
-  id: string;
-  name: string;
-  avatar: string;
-  role: string;
-}
 interface Props {
   props: any;
-  // res: any;
 }
 export default function UserPage({ props }: Props) {
-  const columns: TableColumnsType<UserData> = [
+  const columns: TableColumnsType<TUserBase> = [
     {
       title: "id",
       dataIndex: "id",
@@ -30,8 +25,40 @@ export default function UserPage({ props }: Props) {
       dataIndex: "role",
     },
   ];
-  const apiUrl =
-    "https://660bbdb3ccda4cbc75dd950a.mockapi.io/api/student/users";
+
+  // const arr = [
+  //   {
+  //     id: "1",
+  //     name: "John Doe",
+  //     avatar: "https://example.com/avatar1.png",
+  //     role: "admin",
+  //   },
+  //   {
+  //     id: "2",
+  //     name: "Jane Smith",
+  //     avatar: "https://example.com/avatar2.png",
+  //     role: "user",
+  //   },
+  //   {
+  //     id: "3",
+  //     name: "Alice Johnson",
+  //     avatar: "https://example.com/avatar3.png",
+  //     role: "moderator",
+  //   },
+  //   {
+  //     id: "4",
+  //     name: "Bob Brown",
+  //     avatar: "https://example.com/avatar4.png",
+  //     role: "user",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Emily Davis",
+  //     avatar: "https://example.com/avatar5.png",
+  //     role: "user",
+  //   },
+  // ];
+  // console.log("getData", getUsers);
   return (
     <CustomTable
       onDelete
@@ -39,7 +66,8 @@ export default function UserPage({ props }: Props) {
       columns={columns}
       props={props}
       rowKey="id"
-      apiUrl={apiUrl}
+      // dataSource={arr}
+      getData={getUsers}
     />
   );
 }
