@@ -5,6 +5,7 @@ import { useAntdTable } from "ahooks";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 import getDataTable from "./GetDataTable";
+import propsTable from "./GetDataTable";
 
 interface Props {
   columns: any[];
@@ -13,7 +14,8 @@ interface Props {
   onEdit?: boolean;
   onDelete?: any;
   rowKey?: string;
-  apiUrl: string;
+  dataSource?: any[];
+  getData?: () => Promise<any>;
 }
 interface Result {
   total: number;
@@ -36,16 +38,41 @@ export default ({
   onEdit,
   onDelete,
   rowKey,
-  apiUrl,
+  dataSource,
+  getData,
 }: Props) => {
   const [form] = Form.useForm();
-  const getData = async (
+  const getDataTable = async (
     { current, pageSize }: Params,
-    formData: { name: string; email: string; gender: string }
+    formData: Object
   ): Promise<Result> => {
-    return getDataTable(apiUrl, { current, pageSize }, formData);
+    let query = `?page=${current}&limit=${pageSize}`;
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value) {
+        query += `&${key}=${value}`;
+      }
+    });
+    if (dataSource) {
+      // const paginatedData = dataSource.slice(
+      //   (current - 1) * pageSize,
+      //   current * pageSize
+      // );
+      return {
+        total: dataSource.length,
+        list: dataSource,
+      };
+    } else if (getData) {
+      const data = await getData();
+      return {
+        total: data.length,
+        list: data,
+      };
+    } else {
+      throw new Error("Either dataSource or getData must be provided.");
+    }
   };
-  const { tableProps } = useAntdTable(getData, {
+
+  const { tableProps } = useAntdTable(getDataTable, {
     form,
     defaultParams: [
       { current: 1, pageSize: 2 },
@@ -53,6 +80,7 @@ export default ({
     ],
     defaultType: "advance",
   });
+  console.log("tableProps", tableProps);
   const router = useRouter();
   const pathname = usePathname();
   const { replace } = useRouter();
