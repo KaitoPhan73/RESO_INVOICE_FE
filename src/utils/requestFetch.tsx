@@ -16,7 +16,9 @@ const baseFetch = (baseUrl?: string) => {
     },
   };
 };
-export const request = baseFetch("http://localhost:8080");
+export const requestInvoice = baseFetch(
+  "https://reso-invoice.onrender.com/api/v1"
+);
 export const requestMock = baseFetch(
   "https://660bbdb3ccda4cbc75dd950a.mockapi.io/api"
 );
