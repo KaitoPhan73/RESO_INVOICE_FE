@@ -12,7 +12,6 @@ export const customFetch = {
     // Thêm generic type T
     const queryString = buildQueryString(params);
     const fullUrl = queryString ? `${url}?${queryString}` : url;
-    console.log("fullUrl", fullUrl);
     try {
       const response = await fetch(fullUrl, {
         method: "GET",
@@ -22,7 +21,7 @@ export const customFetch = {
         cache: "no-store",
       });
 
-      const data = await response.json();
+      const data: T = await response.json();
       return data;
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -34,7 +33,8 @@ export const customFetch = {
     // Thêm generic type T
     const queryString = buildQueryString(params);
     const fullUrl = queryString ? `${url}?${queryString}` : url;
-
+    console.log("post", fullUrl);
+    console.log("body", body);
     try {
       const response = await fetch(fullUrl, {
         method: "POST",
