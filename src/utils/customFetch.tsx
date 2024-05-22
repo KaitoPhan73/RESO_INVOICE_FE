@@ -20,7 +20,7 @@ export const customFetch = {
         },
         cache: "no-store",
       });
-
+      console.log("status", response.status);
       const data: T = await response.json();
       return data;
     } catch (error) {
@@ -29,8 +29,11 @@ export const customFetch = {
     }
   },
 
-  async post<T>(url: string, body: any, params = {}): Promise<T> {
-    // Thêm generic type T
+  async post<T>(
+    url: string,
+    body: any,
+    params = {}
+  ): Promise<{ data: T; status: number }> {
     const queryString = buildQueryString(params);
     const fullUrl = queryString ? `${url}?${queryString}` : url;
     console.log("post", fullUrl);
@@ -44,20 +47,25 @@ export const customFetch = {
         body: JSON.stringify(body),
         cache: "no-store",
       });
-
+      console.log("status", response.status);
       const data = await response.json();
-      return data;
+      return { data, status: response.status };
     } catch (error) {
       console.error("Error posting data:", error);
       throw new Error("Failed to post data");
     }
   },
 
-  async patch<T>(url: string, body: any, params = {}): Promise<T> {
+  async patch<T>(
+    url: string,
+    body: any,
+    params = {}
+  ): Promise<{ data: T; status: number }> {
     // Thêm generic type T
     const queryString = buildQueryString(params);
     const fullUrl = queryString ? `${url}?${queryString}` : url;
-
+    console.log("post", fullUrl);
+    console.log("body", body);
     try {
       const response = await fetch(fullUrl, {
         method: "PATCH",
@@ -67,9 +75,9 @@ export const customFetch = {
         body: JSON.stringify(body),
         cache: "no-store",
       });
-
+      console.log("status", response.status);
       const data = await response.json();
-      return data;
+      return { data, status: response.status };
     } catch (error) {
       console.error("Error patching data:", error);
       throw new Error("Failed to patch data");

@@ -15,7 +15,7 @@ interface Props {
   onDelete?: any;
   rowKey?: string;
   dataSource?: any[];
-  getData?: () => Promise<any>;
+  getData?: (params?: any) => Promise<any>;
 }
 interface Result {
   total: number;
@@ -62,7 +62,7 @@ export default ({
         list: dataSource,
       };
     } else if (getData) {
-      const data = await getData();
+      const data = await getData(formData);
       return {
         total: data.length,
         list: data,

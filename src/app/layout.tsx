@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/redux/Providers";
+import SnackbarProviders from "@/utils/SnackBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <SnackbarProviders>
+          <Providers>{children}</Providers>
+        </SnackbarProviders>
       </body>
     </html>
   );
