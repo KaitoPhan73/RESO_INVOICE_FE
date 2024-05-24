@@ -64,8 +64,8 @@ export default ({
     } else if (getData) {
       const data = await getData(formData);
       return {
-        total: data.data.length,
-        list: data.data,
+        total: data.payload.length,
+        list: data.payload,
       };
     } else {
       throw new Error("Either dataSource or getData must be provided.");
