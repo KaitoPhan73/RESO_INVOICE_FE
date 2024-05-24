@@ -37,9 +37,13 @@ export default function LoginPage() {
   const onSubmit = async (values: TLogin) => {
     console.log(values);
     const response = await checkLogin(values);
-    const parseString = JSON.stringify(response.payload);
-    localStorage.setItem("user", parseString);
-    console.log("response", response);
+    // const parseString = JSON.stringify(response.payload);
+    // localStorage.setItem("user", parseString);
+    // console.log("response", response);
+    if (response.status === 200) {
+      enqueueSnackbar("Login successfully", { variant: "success" });
+      router.push("/dashboard/users");
+    }
   };
 
   // console.log("watch", watch);
