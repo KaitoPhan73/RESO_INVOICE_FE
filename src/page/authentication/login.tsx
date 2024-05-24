@@ -74,13 +74,6 @@ export default function LoginPage() {
               Welcome you come back !!!
             </h2>
             <Typography
-              variant="body2"
-              sx={{ textAlign: "center", marginTop: "16px" }}
-            >
-              Don't have an account? <a href="#">Sign up here</a>
-            </Typography>
-
-            <Typography
               variant="subtitle2"
               sx={{ textAlign: "center", marginTop: "16px" }}
             >
@@ -96,57 +89,9 @@ export default function LoginPage() {
             </Typography>
 
             {/* Form */}
-            <TextField
-              label="Username"
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              required
-              size="small"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Email />
-                  </InputAdornment>
-                ),
-              }}
-              {...methods.register("username")}
-            />
+            <InputField name="username" label="UserName" fullWidth />
 
-            <TextField
-              label="Password"
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              type={showPassword ? "text" : "password"}
-              required
-              size="small"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Lock />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)}>
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              {...methods.register("password")}
-            />
-            <Button
-              color="primary"
-              size="medium"
-              sx={{
-                alignSelf: "flex-start",
-                fontSize: "smaller",
-              }}
-            >
-              Forgot Password?
-            </Button>
+            <InputField name="password" label="Password" fullWidth />
 
             <Button
               type="submit"

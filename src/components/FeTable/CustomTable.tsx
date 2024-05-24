@@ -4,8 +4,6 @@ import React from "react";
 import { useAntdTable } from "ahooks";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
-import getDataTable from "./GetDataTable";
-import propsTable from "./GetDataTable";
 
 interface Props {
   columns: any[];
@@ -31,7 +29,7 @@ interface RowSelectionType {
   selectedRowKeys?: React.Key[];
 }
 
-export default ({
+const CustomTable = ({
   columns,
   props,
   rowSelection,
@@ -133,3 +131,4 @@ export default ({
     />
   );
 };
+export default CustomTable;

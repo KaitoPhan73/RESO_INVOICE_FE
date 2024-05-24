@@ -1,35 +1,43 @@
-import { Button, Chip, FormControl, FormHelperText, Grid, Stack, TextField } from '@mui/material';
-import { styled } from '@mui/system';
-import { useSnackbar } from 'notistack';
-import React, { useState, useEffect } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import {
+  Button,
+  Chip,
+  FormControl,
+  FormHelperText,
+  Grid,
+  Stack,
+  TextField,
+} from "@mui/material";
+import { styled } from "@mui/system";
+import { useSnackbar } from "notistack";
+import React, { useState, useEffect } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 
 const TagField = ({
   dataArray = [],
-  data = '',
-  punctuation = '',
+  data = "",
+  punctuation = "",
   isInput = false,
-  name = '',
-  label = '',
+  name = "",
+  label = "",
   rules = null,
-  defaultValue = '',
+  defaultValue = "",
   disabled = false,
-  placeholder = '',
+  placeholder = "",
   fullWidth = false,
   className = null,
-  size = 'small',
+  size = "small",
   isHidden = false,
   ...props
 }) => {
   const { control, setValue, getValues } = useFormContext();
   const [listArray, setListArray] = useState(dataArray);
   const [listValue, setListValue] = useState([]);
-  const [newValue, setNewValue] = useState('');
+  const [newValue, setNewValue] = useState("");
   const rawString = data ? data : getValues(name);
   const { enqueueSnackbar } = useSnackbar();
 
   const ScrollableGridItem = styled(Grid)(({ theme }) => ({
-    overflowY: 'auto'
+    overflowY: "auto",
   }));
 
   const parseStringToList = (data, punctuation) => {
@@ -43,27 +51,24 @@ const TagField = ({
     dataArray.length > 0 && setListArray(dataArray);
   }, [dataArray]);
 
-  console.log(dataArray);
   useEffect(() => {
     if (rawString) {
       const parsedList = parseStringToList(rawString, punctuation);
       setListValue(parsedList);
     }
-  }, [data, punctuation]);
+  }, [rawString, punctuation]);
 
   useEffect(() => {
     if (isInput) {
-      // không có này sẽ bị add vô url nh
       const convertListToString = listValue.join(punctuation);
       setValue(name, convertListToString);
     }
   }, [listValue, punctuation, name, setValue, isInput]);
 
-  console.log(newValue);
   const addValue = () => {
-    if (newValue != '') {
+    if (newValue != "") {
       setListValue([...listValue, newValue]);
-      setNewValue('');
+      setNewValue("");
     }
   };
 
@@ -95,7 +100,11 @@ const TagField = ({
                     id={field.name}
                     disabled={disabled}
                     error={Boolean(fieldState.error)}
-                    helpertext={fieldState.invalid ? fieldState.error.message : props.helperText}
+                    helpertext={
+                      fieldState.invalid
+                        ? fieldState.error.message
+                        : props.helperText
+                    }
                     label={label}
                     placeholder={placeholder}
                     defaultValue={defaultValue}
@@ -106,7 +115,11 @@ const TagField = ({
                   />
                 </Grid>
                 <Grid item xs={3}>
-                  <Button variant="outlined" onClick={addValue} style={{ height: '100%' }}>
+                  <Button
+                    variant="outlined"
+                    onClick={addValue}
+                    style={{ height: "100%" }}
+                  >
                     Thêm
                   </Button>
                 </Grid>
