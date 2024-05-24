@@ -6,11 +6,19 @@ const baseFetch = (baseUrl?: string) => {
       const url = `${baseUrl}/${path}`;
       return customFetch.get<T>(url, params);
     },
-    async post<T>(path: string, body: any, params = {}): Promise<T> {
+    async post<T>(
+      path: string,
+      body: any,
+      params = {}
+    ): Promise<{ data: T; status: number }> {
       const url = `${baseUrl}/${path}`;
       return customFetch.post<T>(url, body, params);
     },
-    async patch<T>(path: string, body: any, params = {}): Promise<T> {
+    async patch<T>(
+      path: string,
+      body: any,
+      params = {}
+    ): Promise<{ data: T; status: number }> {
       const url = `${baseUrl}/${path}`;
       return customFetch.patch<T>(url, body, params);
     },

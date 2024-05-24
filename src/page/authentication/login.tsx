@@ -17,9 +17,14 @@ import InputField from "@/components/form/InputField";
 import { useRouter } from "next/navigation";
 import { Email, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 import { checkLogin } from "@/actions/auth";
+import { useSnackbar } from "notistack";
 
+type Props = {
+  postData: any;
+};
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TLogin>({
     defaultValues: {
@@ -27,24 +32,14 @@ export default function LoginPage() {
       password: "",
     },
   });
-  const checkUser = {
-    username: "khai",
-    password: "12345",
-  };
   const { handleSubmit } = methods;
 
   const onSubmit = async (values: TLogin) => {
     console.log(values);
-    const checkUser = await checkLogin(values);
-    // console.log(checkUser.);
-    // if (
-    //   checkUser.username === values.username &&
-    //   checkUser.password === values.password
-    // ) {
-    //   router.push("/dashboard/users");
-    // } else {
-    //   console.log("Tên người dùng hoặc mật khẩu không đúng");
-    // }
+    const response = await checkLogin(values);
+    const parseString = JSON.stringify(response.payload);
+    localStorage.setItem("user", parseString);
+    console.log("response", response);
   };
 
   // console.log("watch", watch);

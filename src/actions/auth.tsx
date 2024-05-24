@@ -1,7 +1,10 @@
 "use server";
 
+import { httpInvoice } from "@/lib/http";
 import { TLogin, TResponseLogin } from "@/types/User";
-import { requestInvoice } from "@/utils/requestFetch";
 
-export const checkLogin = (body: TLogin) =>
-  requestInvoice.post<TResponseLogin>("auth/login", body);
+export const checkLogin = async (body: TLogin) => {
+  const res = await httpInvoice.post<any>("auth/login", body);
+  console.log(res);
+  return res;
+};
