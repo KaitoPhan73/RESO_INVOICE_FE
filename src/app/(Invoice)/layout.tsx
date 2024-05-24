@@ -17,9 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
-          <SilderBar>{children}</SilderBar>
-        </Providers>
+        <SilderBar>{children}</SilderBar>
       </body>
     </html>
   );
