@@ -147,7 +147,7 @@ export default function LoginPage() {
 
             <Box sx={{ textAlign: "center", marginBottom: "16px" }}>
               <Typography variant="body2" sx={{ display: "inline" }}>
-                Don't have an account?{" "}
+                Dont have an account?{" "}
                 <Link href="/register" color="primary">
                   Register
                 </Link>
