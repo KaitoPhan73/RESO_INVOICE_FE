@@ -32,11 +32,16 @@ export default function LoginPage() {
     password: "12345",
   };
   const { handleSubmit } = methods;
-
   const onSubmit = async (values: TLogin) => {
+    // router.push("/dashboard/users");
     console.log(values);
     const checkUser = await checkLogin(values);
-    // console.log(checkUser.);
+    if (checkUser) {
+      router.push("/dashboard/users");
+    } else {
+      router.push("/login");
+    }
+    console.log(checkUser);
     // if (
     //   checkUser.username === values.username &&
     //   checkUser.password === values.password
