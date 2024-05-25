@@ -81,7 +81,7 @@ export default function LoginPage() {
             }}
           >
             <h2 style={{ textAlign: "center", fontWeight: "bold" }}>
-              Welcome you come back !
+              Welcome you come back !!!
             </h2>
             <Typography
               variant="subtitle2"
@@ -147,7 +147,7 @@ export default function LoginPage() {
 
             <Box sx={{ textAlign: "center", marginBottom: "16px" }}>
               <Typography variant="body2" sx={{ display: "inline" }}>
-                Don't have an account?{" "}
+                Dont have an account?{" "}
                 <Link href="/register" color="primary">
                   Register
                 </Link>
