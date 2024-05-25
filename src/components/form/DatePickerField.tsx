@@ -1,9 +1,15 @@
 /* eslint-disable react/prop-types */
-import { DatePicker } from '@mui/lab';
-import { TextField } from '@mui/material';
-import { Controller, useFormContext } from 'react-hook-form';
+import { DatePicker } from "@mui/lab";
+import { TextField } from "@mui/material";
+import { Controller, useFormContext } from "react-hook-form";
 
-const DatePickerField = ({ name, label, defaultValue = '', transform, ...props }: any) => {
+const DatePickerField = ({
+  name,
+  label,
+  defaultValue = "",
+  transform,
+  ...props
+}: any) => {
   const { control } = useFormContext();
   return (
     <Controller
@@ -12,9 +18,13 @@ const DatePickerField = ({ name, label, defaultValue = '', transform, ...props }
       render={({ field, fieldState }) => (
         <DatePicker
           label={label}
-          renderInput={(params) => <TextField {...params} {...props} error={false} />}
+          renderInput={(params: any) => (
+            <TextField {...params} {...props} error={false} />
+          )}
           {...field}
-          onChange={(e) => field.onChange(transform ? transform.output(e) : e)}
+          onChange={(e: any) =>
+            field.onChange(transform ? transform.output(e) : e)
+          }
         />
       )}
       name={name}

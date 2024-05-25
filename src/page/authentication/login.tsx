@@ -17,9 +17,14 @@ import InputField from "@/components/form/InputField";
 import { useRouter } from "next/navigation";
 import { Email, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 import { checkLogin } from "@/actions/auth";
+import { useSnackbar } from "notistack";
 
+type Props = {
+  postData: any;
+};
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TLogin>({
     defaultValues: {
@@ -27,21 +32,12 @@ export default function LoginPage() {
       password: "",
     },
   });
-  const checkUser = {
-    username: "khai",
-    password: "12345",
-  };
   const { handleSubmit } = methods;
   const onSubmit = async (values: TLogin) => {
     // router.push("/dashboard/users");
     console.log(values);
     const checkUser = await checkLogin(values);
-    if (checkUser) {
-      router.push("/dashboard/users");
-    } else {
-      router.push("/login");
-    }
-    console.log(checkUser);
+    // console.log(checkUser.);
     // if (
     //   checkUser.username === values.username &&
     //   checkUser.password === values.password
@@ -84,13 +80,6 @@ export default function LoginPage() {
               Welcome you come back !!!
             </h2>
             <Typography
-              variant="body2"
-              sx={{ textAlign: "center", marginTop: "16px" }}
-            >
-              Don't have an account? <a href="#">Sign up here</a>
-            </Typography>
-
-            <Typography
               variant="subtitle2"
               sx={{ textAlign: "center", marginTop: "16px" }}
             >
@@ -106,57 +95,9 @@ export default function LoginPage() {
             </Typography>
 
             {/* Form */}
-            <TextField
-              label="Username"
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              required
-              size="small"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Email />
-                  </InputAdornment>
-                ),
-              }}
-              {...methods.register("username")}
-            />
+            <InputField name="username" label="UserName" fullWidth />
 
-            <TextField
-              label="Password"
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              type={showPassword ? "text" : "password"}
-              required
-              size="small"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Lock />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)}>
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              {...methods.register("password")}
-            />
-            <Button
-              color="primary"
-              size="medium"
-              sx={{
-                alignSelf: "flex-start",
-                fontSize: "smaller",
-              }}
-            >
-              Forgot Password?
-            </Button>
+            <InputField name="password" label="Password" fullWidth />
 
             <Button
               type="submit"

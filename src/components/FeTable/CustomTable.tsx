@@ -4,8 +4,6 @@ import React from "react";
 import { useAntdTable } from "ahooks";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
-import getDataTable from "./GetDataTable";
-import propsTable from "./GetDataTable";
 
 interface Props {
   columns: any[];
@@ -15,7 +13,7 @@ interface Props {
   onDelete?: any;
   rowKey?: string;
   dataSource?: any[];
-  getData?: () => Promise<any>;
+  getData?: (params?: any) => Promise<any>;
 }
 interface Result {
   total: number;
@@ -31,7 +29,7 @@ interface RowSelectionType {
   selectedRowKeys?: React.Key[];
 }
 
-export default ({
+const CustomTable = ({
   columns,
   props,
   rowSelection,
@@ -62,10 +60,10 @@ export default ({
         list: dataSource,
       };
     } else if (getData) {
-      const data = await getData();
+      const data = await getData(formData);
       return {
-        total: data.length,
-        list: data,
+        total: data.payload.length,
+        list: data.payload,
       };
     } else {
       throw new Error("Either dataSource or getData must be provided.");
@@ -133,3 +131,4 @@ export default ({
     />
   );
 };
+export default CustomTable;
