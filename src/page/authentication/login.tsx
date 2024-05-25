@@ -3,50 +3,56 @@ import React, { useState } from "react";
 import {
   Grid,
   Paper,
-  TextField,
   Button,
   Box,
   Typography,
-  Divider,
   IconButton,
   InputAdornment,
+  Link,
 } from "@mui/material";
-import { FormProvider, useForm } from "react-hook-form"; // Import FormProvider if using React Hook Form
+import { FormProvider, useForm, Controller } from "react-hook-form";
 import { TLogin } from "@/types/User";
-import InputField from "@/components/form/InputField";
 import { useRouter } from "next/navigation";
-import { Email, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  VisibilityOff,
+  Visibility,
+  AccountCircle,
+  Lock,
+} from "@mui/icons-material";
+import { Input } from "antd";
 import { checkLogin } from "@/actions/auth";
 import { useSnackbar } from "notistack";
+import InputField from "@/components/form/InputField";
 
 type Props = {
   postData: any;
 };
+
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
   const methods = useForm<TLogin>({
     defaultValues: {
       username: "",
       password: "",
     },
   });
-  const { handleSubmit } = methods;
+  const { handleSubmit, control } = methods;
 
   const onSubmit = async (values: TLogin) => {
     console.log(values);
-    const response = await checkLogin(values);
-    // const parseString = JSON.stringify(response.payload);
-    // localStorage.setItem("user", parseString);
-    // console.log("response", response);
-    if (response.status === 200) {
+    const checkUser = await checkLogin(values);
+    if (checkUser.status === 200) {
       enqueueSnackbar("Login successfully", { variant: "success" });
       router.push("/dashboard/users");
     }
   };
 
-  // console.log("watch", watch);
   return (
     <FormProvider {...methods}>
       <Grid container spacing={2} sx={{ height: "100vh" }}>
@@ -58,7 +64,7 @@ export default function LoginPage() {
               width: "100%",
               objectFit: "cover",
             }}
-            alt="The house from the offer."
+            alt="Background image"
             src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
           />
         </Grid>
@@ -67,7 +73,7 @@ export default function LoginPage() {
             className="form"
             sx={{
               padding: "40px",
-              maxWidth: "450px", // Tăng giá trị maxWidth lên
+              maxWidth: "450px",
               margin: "auto",
               borderRadius: "16px",
               boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
@@ -92,10 +98,41 @@ export default function LoginPage() {
               </Box>
             </Typography>
 
-            {/* Form */}
-            <InputField name="username" label="UserName" fullWidth />
+            <InputField
+              name="username"
+              label="UserName"
+              fullWidth
+              sx={{ width: "100%", mb: 2 }} // Adjust the width and margin bottom
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
+            />
 
-            <InputField name="password" label="Password" fullWidth />
+            <InputField
+              name="password"
+              label="Password"
+              fullWidth
+              sx={{ width: "100%", mb: 2 }} // Adjust the width and margin bottom
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Lock />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={togglePasswordVisibility} edge="end">
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              type={showPassword ? "text" : "password"}
+            />
 
             <Button
               type="submit"
@@ -107,6 +144,22 @@ export default function LoginPage() {
             >
               Login
             </Button>
+
+            <Box sx={{ textAlign: "center", marginBottom: "16px" }}>
+              <Typography variant="body2" sx={{ display: "inline" }}>
+                Don't have an account?{" "}
+                <Link href="/register" color="primary">
+                  Register
+                </Link>
+              </Typography>{" "}
+              |
+              <Typography variant="body2" sx={{ display: "inline" }}>
+                {" "}
+                <Link href="/forgot-password" color="primary">
+                  Forgot Password?
+                </Link>
+              </Typography>
+            </Box>
           </Paper>
         </Grid>
       </Grid>

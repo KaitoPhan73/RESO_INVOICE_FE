@@ -16,7 +16,7 @@ const customLink = (path: string, name: string) => {
 
 const AdminSiderBarConfig = [
   {
-    label: <Link href={"/"}>Home</Link>,
+    label: <Link href={"/"}>Hom e</Link>,
     key: "1",
     icon: <PieChartOutlined />,
   },
