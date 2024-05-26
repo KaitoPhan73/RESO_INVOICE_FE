@@ -7,16 +7,17 @@ import {
   FileOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 const { PATH_DASHBOARD } = PATHS;
 
-const customLink = (path: string, name: string) => {
-  return <Link href={path}>{name}</Link>;
+const customMenuItem = (path: string, name: string) => {
+  return {
+    label: <Link href={path}>{name}</Link>,
+    key: path,
+  };
 };
-
 const AdminSiderBarConfig = [
   {
-    label: <Link href={"/"}>Hom e</Link>,
+    label: "Home",
     key: "1",
     icon: <PieChartOutlined />,
   },
@@ -26,18 +27,12 @@ const AdminSiderBarConfig = [
   //   icon: <DesktopOutlined />,
   // },
   {
-    label: "Home",
+    label: "Dashboard",
     key: "sub1",
     icon: <UserOutlined />,
     children: [
-      {
-        label: customLink(PATH_DASHBOARD.about, "About"),
-        key: "3",
-      },
-      {
-        label: customLink(PATH_DASHBOARD.user, "User Manager"),
-        key: "4",
-      },
+      customMenuItem(PATH_DASHBOARD.about, "About"),
+      customMenuItem(PATH_DASHBOARD.user, "User Manager"),
     ],
   },
 ];

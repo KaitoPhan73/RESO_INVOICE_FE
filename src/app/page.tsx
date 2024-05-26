@@ -1,4 +1,3 @@
-import { getUsers } from "@/actions/users";
 import { TableColumnsType } from "antd";
 import Image from "next/image";
 interface UserData {

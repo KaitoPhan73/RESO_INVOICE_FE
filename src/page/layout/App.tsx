@@ -1,18 +1,46 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import items from "./SiderBar";
 import FooterCustom from "./Footer";
 import HeaderCustom from "./Header";
-
+import { usePathname } from "next/navigation";
 const { Content, Sider } = Layout;
 
 const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+  const pathname = usePathname();
+  useEffect(() => {
+    setSelectedKeys([pathname]);
+
+    const findOpenKeys: any = (items: any, path: any) => {
+      for (let item of items) {
+        if (item.children) {
+          for (let child of item.children) {
+            if (child.key === path) {
+              return [item.key];
+            }
+          }
+          const openKey = findOpenKeys(item.children, path);
+          if (openKey.length) {
+            return [item.key, ...openKey];
+          }
+        }
+      }
+      return [];
+    };
+
+    setOpenKeys(findOpenKeys(items, pathname));
+  }, [pathname]);
+
+  const onOpenChange = (keys: any) => {
+    setOpenKeys(keys);
+  };
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  const menuSiderBar = items;
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
@@ -23,9 +51,11 @@ const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
-          defaultSelectedKeys={["1"]}
           mode="inline"
-          items={menuSiderBar}
+          items={items}
+          selectedKeys={selectedKeys}
+          openKeys={openKeys}
+          onOpenChange={onOpenChange}
         />
       </Sider>
       <Layout>

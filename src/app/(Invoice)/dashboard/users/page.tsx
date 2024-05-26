@@ -1,3 +1,4 @@
+"use server";
 import UserPage from "@/page/users";
 import React from "react";
 
