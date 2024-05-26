@@ -48,7 +48,7 @@ export class EntityError extends HttpError {
 const buildQueryString = (params: Record<string, any>): string => {
   return Object.entries(params)
     .filter(([_, value]) => value !== undefined)
-    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+    .map(([key, value]) => `${key}=${encodeURI(value)}`)
     .join("&");
 };
 

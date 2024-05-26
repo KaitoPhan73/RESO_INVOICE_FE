@@ -1,10 +1,10 @@
 "use client";
-import { Form, Table } from "antd";
+import { Form, Input, Select, Table } from "antd";
 import React from "react";
 import { useAntdTable } from "ahooks";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
-
+const { Option } = Select;
 interface Props {
   columns: any[];
   props: any;
@@ -44,12 +44,15 @@ const CustomTable = ({
     { current, pageSize }: Params,
     formData: Object
   ): Promise<Result> => {
-    let query = `?page=${current}&limit=${pageSize}`;
-    Object.entries(formData).forEach(([key, value]) => {
-      if (value) {
-        query += `&${key}=${value}`;
-      }
-    });
+    console.log("formData", formData);
+    let params = {
+      page: current,
+      limit: pageSize,
+    };
+    if (formData) {
+      Object.assign(params, formData);
+    }
+
     if (dataSource) {
       // const paginatedData = dataSource.slice(
       //   (current - 1) * pageSize,
@@ -60,9 +63,9 @@ const CustomTable = ({
         list: dataSource,
       };
     } else if (getData) {
-      const data = await getData(formData);
+      const data = await getData(params);
       return {
-        total: data.payload.length,
+        total: 30,
         list: data.payload,
       };
     } else {
@@ -70,15 +73,14 @@ const CustomTable = ({
     }
   };
 
-  const { tableProps } = useAntdTable(getDataTable, {
+  const { loading, tableProps, search, params } = useAntdTable(getDataTable, {
     form,
-    defaultParams: [
-      { current: 1, pageSize: 2 },
-      { name: "hello", email: "abc@gmail.com", gender: "female" },
-    ],
+    defaultParams: [{ current: 1, pageSize: 5 }, { name: "a" }],
     defaultType: "advance",
   });
   console.log("tableProps", tableProps);
+  const { type, changeType, submit, reset } = search;
+
   const router = useRouter();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -121,14 +123,37 @@ const CustomTable = ({
   }
 
   return (
-    <Table
-      columns={updatedColumns}
-      rowSelection={rowSelection ? { ...rowSelection } : undefined}
-      rowKey={rowKey}
-      style={{ overflow: "auto" }}
-      {...tableProps}
-      onChange={onChange}
-    />
+    <>
+      <div style={{ marginBottom: 16 }}>
+        <Form
+          form={form}
+          style={{ display: "flex", justifyContent: "flex-end" }}
+        >
+          {/* <Form.Item name="gender" initialValue="male">
+            <Select style={{ width: 120, marginRight: 16 }} onChange={submit}>
+              <Option value="">all</Option>
+              <Option value="male">male</Option>
+              <Option value="female">female</Option>
+            </Select>
+          </Form.Item> */}
+          <Form.Item name="name">
+            <Input.Search
+              placeholder="enter name"
+              style={{ width: 240 }}
+              onSearch={submit}
+            />
+          </Form.Item>
+        </Form>
+      </div>
+      <Table
+        columns={updatedColumns}
+        rowSelection={rowSelection ? { ...rowSelection } : undefined}
+        rowKey={rowKey}
+        style={{ overflow: "auto" }}
+        {...tableProps}
+        onChange={onChange}
+      />
+    </>
   );
 };
 export default CustomTable;
