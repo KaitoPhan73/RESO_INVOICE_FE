@@ -1,10 +1,3 @@
-import {
-  PieChartOutlined,
-  DesktopOutlined,
-  UserOutlined,
-  TeamOutlined,
-  FileOutlined,
-} from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import SiderBarConfig from "./SiderBarConfig";
 type MenuItem = Required<MenuProps>["items"][number];
