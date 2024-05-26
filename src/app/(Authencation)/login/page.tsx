@@ -1,4 +1,3 @@
-import { checkLogin } from "@/app/actions/auth";
 import LoginPage from "@/page/authentication/login";
 import React from "react";
 
