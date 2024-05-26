@@ -196,7 +196,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
   };
 };
 
-// Create different HTTP clients with different base URLs
+const httpServer = createHttpClient("");
 const httpMock = createHttpClient(
   "https://660bbdb3ccda4cbc75dd950a.mockapi.io/api"
 );
@@ -204,4 +204,4 @@ const httpInvoice = createHttpClient(
   "https://reso-invoice.onrender.com/api/v1"
 );
 
-export { httpMock, httpInvoice };
+export { httpServer, httpMock, httpInvoice };

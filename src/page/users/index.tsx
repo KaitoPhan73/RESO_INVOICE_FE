@@ -1,4 +1,4 @@
-import { getUsers } from "@/actions/users";
+import { getUsers } from "@/app/actions/users";
 import CustomTable from "@/components/FeTable/CustomTable";
 import { TUserBase } from "@/types/User";
 import { TableColumnsType } from "antd";

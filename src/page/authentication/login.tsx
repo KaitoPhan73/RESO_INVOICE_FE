@@ -15,15 +15,14 @@ import { FormProvider, useForm } from "react-hook-form"; // Import FormProvider 
 import { TLogin } from "@/types/User";
 import InputField from "@/components/form/InputField";
 import { useRouter } from "next/navigation";
-import { Email, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
-import { checkLogin } from "@/actions/auth";
 import { useSnackbar } from "notistack";
+import authApi from "@/app/actions/auth";
 
 type Props = {
   postData: any;
 };
 export default function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TLogin>({
@@ -35,18 +34,25 @@ export default function LoginPage() {
   const { handleSubmit } = methods;
 
   const onSubmit = async (values: TLogin) => {
-    console.log(values);
-    const response = await checkLogin(values);
-    // const parseString = JSON.stringify(response.payload);
-    // localStorage.setItem("user", parseString);
-    // console.log("response", response);
-    if (response.status === 200) {
-      enqueueSnackbar("Login successfully", { variant: "success" });
-      router.push("/dashboard/users");
+    if (loading) return;
+    setLoading(true);
+    try {
+      const response = await authApi.checkLogin(values);
+
+      await authApi.auth({
+        sessionToken: response.payload.accessToken,
+        // expiresAt: response.payload.,
+      });
+      if (response.status === 200) {
+        enqueueSnackbar("Login successfully", { variant: "success" });
+        router.push("/dashboard/users");
+      }
+    } catch (error: any) {
+      console.log("error", error);
+    } finally {
+      setLoading(false);
     }
   };
-
-  // console.log("watch", watch);
   return (
     <FormProvider {...methods}>
       <Grid container spacing={2} sx={{ height: "100vh" }}>
