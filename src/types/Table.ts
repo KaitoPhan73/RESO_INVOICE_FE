@@ -3,4 +3,5 @@ export type TTableResponse<T> = {
   page: number;
   pageSize: number;
   total: number;
+  totalPages: number;
 };
