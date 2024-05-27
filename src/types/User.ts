@@ -15,6 +15,10 @@ export type TResponseLogin = {
 export type TUserBase = {
   id: string;
   name: string;
-  avatar: string;
+  code: string;
   role: string;
+  taxcode: string;
+  descriptions: string;
+  status: boolean;
+  secretKey: string;
 };
