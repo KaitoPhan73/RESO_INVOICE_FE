@@ -6,7 +6,7 @@ const ROOT_USER = "/users";
 
 const PATH_DASHBOARD = {
   root: ROOT_DASHBOARD,
-  about: path(ROOT_DASHBOARD, "/about"),
+  brand: path(ROOT_DASHBOARD, "/brand"),
   user: path(ROOT_DASHBOARD, "/users"),
 };
 
