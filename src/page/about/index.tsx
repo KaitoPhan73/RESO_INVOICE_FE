@@ -33,7 +33,6 @@
 
 "use client";
 
-import { getBrands } from "@/app/actions/brands";
 import CustomTable from "@/components/FeTable/CustomTable";
 import { TBrandBase } from "@/types/Brand";
 import { TableColumnsType } from "antd";
