@@ -1,5 +1,3 @@
-import userApi from "@/actions/users";
-import CustomTable from "@/components/FeTable/CustomTable";
 import TableRender from "@/components/FeTable/TableRender";
 import { TUserBase } from "@/types/User";
 import { TableColumnsType } from "antd";
