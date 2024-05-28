@@ -1,3 +1,5 @@
+import { getUsers } from "@/app/actions/users";
+import CustomTable from "@/components/FeTable/CustomTable";
 import TableRender from "@/components/FeTable/TableRender";
 import { TUserBase } from "@/types/User";
 import { TableColumnsType } from "antd";
@@ -13,25 +15,32 @@ export default function UserPage({ props, data }: Props) {
       dataIndex: "id",
     },
     {
+      title: "username",
+      dataIndex: "username",
+    },
+    {
       title: "name",
       dataIndex: "name",
     },
     {
-      title: "code",
-      dataIndex: "code",
-    },
-    {
-      title: "taxcode",
-      dataIndex: "taxcode",
-    },
-    {
-      title: "descriptions",
-      dataIndex: "descriptions",
+      title: "role",
+      dataIndex: "role",
     },
     {
       title: "status",
       dataIndex: "status",
     },
   ];
-  return <TableRender columns={columns} data={data} />;
+
+  return (
+    <CustomTable
+      onDelete
+      onEdit
+      columns={columns}
+      props={props}
+      rowKey="id"
+      // dataSource={arr}
+      getData={getUsers}
+    />
+  );
 }
