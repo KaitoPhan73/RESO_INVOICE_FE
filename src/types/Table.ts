@@ -1,7 +1,7 @@
 export type TTableResponse<T> = {
   items: T[];
   page: number;
-  pageSize: number;
+  size: number;
   total: number;
   totalPages: number;
 };

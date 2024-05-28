@@ -1,13 +1,13 @@
 import TableRender from "@/components/FeTable/TableRender";
-import { TUserBase } from "@/types/User";
+import { TBrandBase } from "@/types/Brand";
 import { TableColumnsType } from "antd";
 import React from "react";
 interface Props {
   props: any;
   data: any;
 }
-export default function UserPage({ props, data }: Props) {
-  const columns: TableColumnsType<TUserBase> = [
+export default function BrandPage({ props, data }: Props) {
+  const columns: TableColumnsType<TBrandBase> = [
     {
       title: "id",
       dataIndex: "id",
@@ -33,5 +33,5 @@ export default function UserPage({ props, data }: Props) {
       dataIndex: "status",
     },
   ];
-  return <TableRender columns={columns} data={data} />;
+  return <TableRender columns={columns} data={data} onDelete onEdit onCreate />;
 }
