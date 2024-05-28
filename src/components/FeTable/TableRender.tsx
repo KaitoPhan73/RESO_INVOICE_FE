@@ -63,6 +63,7 @@ const TableRender = (props: IProps) => {
     updatedColumns.push({
       dataIndex: "delete",
       fixed: "right",
+      width: 100,
       render: (_: any, record: any) => (
         <DeleteOutlined
           style={{ fontSize: "32px", color: "red" }}
@@ -76,6 +77,7 @@ const TableRender = (props: IProps) => {
     updatedColumns.push({
       dataIndex: "edit",
       fixed: "right",
+      width: 100,
       render: (_: any, record: any) => (
         <a onClick={() => router.push(pathname!.concat(`/${record[rowKey!]}`))}>
           <EditOutlined style={{ fontSize: "32px" }} />
@@ -106,10 +108,10 @@ const TableRender = (props: IProps) => {
         rowSelection={rowSelection ? { ...rowSelection } : undefined}
         loading={isFetching}
         rowKey={rowKey}
-        bordered
         dataSource={data.items}
         columns={updatedColumns}
         onChange={onChange}
+        scroll={{ x: 1500 }}
         pagination={{
           ...meta,
           showTotal: (total, range) => {
