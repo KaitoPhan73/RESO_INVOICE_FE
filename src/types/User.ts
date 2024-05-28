@@ -23,3 +23,12 @@ export type TUserBase = {
   brandId: string;
   brandCode: string;
 };
+
+export type TUser = {
+  id: string;
+  name: string;
+  username: string;
+  role: string;
+  status: string;
+  brandName: string;
+};

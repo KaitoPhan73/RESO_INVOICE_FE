@@ -1,12 +1,12 @@
-import { getUsers } from "@/app/actions/users";
-import CustomTable from "@/components/FeTable/CustomTable";
+import TableRender from "@/components/FeTable/TableRender";
 import { TUserBase } from "@/types/User";
 import { TableColumnsType } from "antd";
 import React from "react";
 interface Props {
   props: any;
+  data: any;
 }
-export default function UserPage({ props }: Props) {
+export default function UserPage({ props, data }: Props) {
   const columns: TableColumnsType<TUserBase> = [
     {
       title: "id",
@@ -28,15 +28,41 @@ export default function UserPage({ props }: Props) {
       title: "status",
       dataIndex: "status",
     },
-    {
-      title: "storeCode",
-      dataIndex: "storeCode",
-    },
-    {
-      title: "brandCode",
-      dataIndex: "brandCode",
-    },
   ];
+
+  // const arr = [
+  //   {
+  //     id: "1",
+  //     name: "John Doe",
+  //     avatar: "https://example.com/avatar1.png",
+  //     role: "admin",
+  //   },
+  //   {
+  //     id: "2",
+  //     name: "Jane Smith",
+  //     avatar: "https://example.com/avatar2.png",
+  //     role: "user",
+  //   },
+  //   {
+  //     id: "3",
+  //     name: "Alice Johnson",
+  //     avatar: "https://example.com/avatar3.png",
+  //     role: "moderator",
+  //   },
+  //   {
+  //     id: "4",
+  //     name: "Bob Brown",
+  //     avatar: "https://example.com/avatar4.png",
+  //     role: "user",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Emily Davis",
+  //     avatar: "https://example.com/avatar5.png",
+  //     role: "user",
+  //   },
+  // ];
+  // console.log("getData", getUsers);
   return (
     <CustomTable
       onDelete

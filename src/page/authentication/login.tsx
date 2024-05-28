@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Grid,
   Paper,
@@ -10,8 +11,7 @@ import {
   InputAdornment,
   Link,
 } from "@mui/material";
-import { FormProvider, useForm, Controller } from "react-hook-form";
-import { TLogin } from "@/types/User";
+import { FormProvider, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import {
   VisibilityOff,
@@ -21,22 +21,29 @@ import {
 } from "@mui/icons-material";
 import { useSnackbar } from "notistack";
 import InputField from "@/components/form/InputField";
-import authApi from "@/app/actions/auth";
+import authApi from "@/actions/auth";
+import { LoginBody, TLoginBody } from "@/schemaValidations/auth.schema";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/User/userSlice";
+import PATHS from "@/route/paths";
 
 type Props = {
   postData: any;
 };
 
 export default function LoginPage() {
+  const { PATH_DASHBOARD } = PATHS;
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const methods = useForm<TLogin>({
+  const methods = useForm<TLoginBody>({
+    resolver: zodResolver(LoginBody),
     defaultValues: {
       username: "",
       password: "",
@@ -44,19 +51,21 @@ export default function LoginPage() {
   });
   const { handleSubmit, control } = methods;
 
-  const onSubmit = async (values: TLogin) => {
+  const onSubmit = async (values: TLoginBody) => {
     if (loading) return;
     setLoading(true);
     try {
       const response = await authApi.checkLogin(values);
-
+      console.log("response", response.status);
       await authApi.auth({
-        sessionToken: response.payload.accessToken,
+        accessToken: response.payload.accessToken,
         // expiresAt: response.payload.,
       });
       if (response.status === 200) {
+        router.push(PATH_DASHBOARD.brand);
+        const { accessToken, ...user } = response.payload;
+        dispatch(setUser(user));
         enqueueSnackbar("Login successfully", { variant: "success" });
-        router.push("/dashboard/users");
       }
     } catch (error: any) {
       console.log("error", error);
