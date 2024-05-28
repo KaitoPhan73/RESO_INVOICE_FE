@@ -31,8 +31,9 @@ const AdminSiderBarConfig = [
     key: "sub1",
     icon: <UserOutlined />,
     children: [
-      customMenuItem(PATH_DASHBOARD.about, "About"),
-      customMenuItem(PATH_DASHBOARD.user, "User Manager"),
+      customMenuItem(PATH_DASHBOARD.brand, "Brand"),
+      customMenuItem(PATH_DASHBOARD.user, "User"),
+      customMenuItem(PATH_DASHBOARD.invoicetemplate, "Invoice Template"),
     ],
   },
 ];

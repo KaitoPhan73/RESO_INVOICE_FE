@@ -1,6 +1,7 @@
 import userApi from "@/actions/users";
 import UserPage from "@/page/users";
 import React from "react";
+import { any } from "zod";
 
 const Users = async (props: any) => {
   // const res = await fetch(
@@ -10,6 +11,6 @@ const Users = async (props: any) => {
   //     cache: "no-store",
   //   }
   // );
-  return <UserPage props={props} />;
+  return <UserPage props={props} data={any} />;
 };
 export default Users;
