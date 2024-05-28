@@ -47,8 +47,8 @@ const AdminSiderBarConfig = [
     icon: <CoffeeOutlined />,
     children: [
       customMenuItem(PATH_COMPANY.organizations, "Organizations"),
-      customMenuItem(PATH_COMPANY.partner, "Partner"),
-      customMenuItem(PATH_COMPANY.store, "Store"),
+      customMenuItem(PATH_COMPANY.partners, "Partners"),
+      customMenuItem(PATH_COMPANY.stores, "Stores"),
     ],
   },
 ];
