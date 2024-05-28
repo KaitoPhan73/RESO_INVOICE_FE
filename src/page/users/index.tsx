@@ -17,12 +17,20 @@ export default function UserPage({ props, data }: Props) {
       dataIndex: "name",
     },
     {
-      title: "avatar",
-      dataIndex: "avatar",
+      title: "code",
+      dataIndex: "code",
     },
     {
-      title: "role",
-      dataIndex: "role",
+      title: "taxcode",
+      dataIndex: "taxcode",
+    },
+    {
+      title: "descriptions",
+      dataIndex: "descriptions",
+    },
+    {
+      title: "status",
+      dataIndex: "status",
     },
   ];
   return <TableRender columns={columns} data={data} />;
