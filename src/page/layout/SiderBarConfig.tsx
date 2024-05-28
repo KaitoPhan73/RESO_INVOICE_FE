@@ -33,6 +33,7 @@ const AdminSiderBarConfig = [
     children: [
       customMenuItem(PATH_DASHBOARD.brand, "Brand"),
       customMenuItem(PATH_DASHBOARD.user, "User Manager"),
+      customMenuItem(PATH_DASHBOARD.invoice, "Invoice Manager"),
     ],
   },
 ];

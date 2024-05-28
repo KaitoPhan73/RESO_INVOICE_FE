@@ -8,6 +8,7 @@ const PATH_DASHBOARD = {
   root: ROOT_DASHBOARD,
   brand: path(ROOT_DASHBOARD, "/brand"),
   user: path(ROOT_DASHBOARD, "/users"),
+  invoice: path(ROOT_DASHBOARD, "/invoice"),
 };
 
 const PATH_USER = {
