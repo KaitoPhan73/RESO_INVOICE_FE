@@ -22,8 +22,8 @@ const PATH_USER = {
 const PATH_COMPANY = {
   root: ROOT_COMPANY,
   organizations: path(ROOT_COMPANY, "/organizations"),
-  partner: path(ROOT_COMPANY, "/partner"),
-  store: path(ROOT_COMPANY, "/store"),
+  partners: path(ROOT_COMPANY, "/partners"),
+  stores: path(ROOT_COMPANY, "/stores"),
 };
 
 const PATHS = {
