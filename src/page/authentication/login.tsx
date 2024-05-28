@@ -25,12 +25,14 @@ import authApi from "@/actions/auth";
 import { LoginBody, TLoginBody } from "@/schemaValidations/auth.schema";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/User/userSlice";
+import PATHS from "@/route/paths";
 
 type Props = {
   postData: any;
 };
 
 export default function LoginPage() {
+  const { PATH_DASHBOARD } = PATHS;
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
@@ -60,7 +62,7 @@ export default function LoginPage() {
         // expiresAt: response.payload.,
       });
       if (response.status === 200) {
-        console.log("response");
+        router.push(PATH_DASHBOARD.brand);
         const { accessToken, ...user } = response.payload;
         dispatch(setUser(user));
         enqueueSnackbar("Login successfully", { variant: "success" });
