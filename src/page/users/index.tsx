@@ -1,12 +1,14 @@
-import userApi from "@/app/actions/users";
+import userApi from "@/actions/users";
 import CustomTable from "@/components/FeTable/CustomTable";
+import TableRender from "@/components/FeTable/TableRender";
 import { TUserBase } from "@/types/User";
 import { TableColumnsType } from "antd";
 import React from "react";
 interface Props {
   props: any;
+  data: any;
 }
-export default function UserPage({ props }: Props) {
+export default function UserPage({ props, data }: Props) {
   const columns: TableColumnsType<TUserBase> = [
     {
       title: "id",
@@ -25,16 +27,5 @@ export default function UserPage({ props }: Props) {
       dataIndex: "role",
     },
   ];
-
-  return (
-    <CustomTable
-      onDelete
-      onEdit
-      columns={columns}
-      props={props}
-      rowKey="id"
-      // dataSource={arr}
-      getData={userApi.getUsers}
-    />
-  );
+  return <TableRender columns={columns} data={data} />;
 }

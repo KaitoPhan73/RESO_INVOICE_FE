@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
-
+import { normalizePath } from "./utils";
+import { TLoginResponse } from "@/schemaValidations/auth.schema";
 type CustomOptions = Omit<RequestInit, "method"> & {
   baseUrl?: string | undefined;
   params?: Record<string, any>;
@@ -54,7 +55,6 @@ const buildQueryString = (params: Record<string, any>): string => {
 
 let clientLogoutRequest: null | Promise<any> = null;
 export const isClient = () => typeof window !== "undefined";
-
 const createHttpClient = (defaultBaseUrl: string) => {
   const request = async <Response>(
     method: "GET" | "POST" | "PUT" | "DELETE",
@@ -76,9 +76,9 @@ const createHttpClient = (defaultBaseUrl: string) => {
             "Content-Type": "application/json",
           };
     if (isClient()) {
-      const sessionToken = localStorage.getItem("sessionToken");
-      if (sessionToken) {
-        baseHeaders.Authorization = `Bearer ${sessionToken}`;
+      const accessToken = localStorage.getItem("accessToken");
+      if (accessToken) {
+        baseHeaders.Authorization = `Bearer ${accessToken}`;
       }
     }
 
@@ -109,7 +109,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
       status: res.status,
       payload,
     };
-
+    console.log("data", data);
     if (!res.ok) {
       if (res.status === ENTITY_ERROR_STATUS) {
         throw new EntityError(
@@ -132,37 +132,34 @@ const createHttpClient = (defaultBaseUrl: string) => {
               await clientLogoutRequest;
             } catch (error) {
             } finally {
-              localStorage.removeItem("sessionToken");
-              localStorage.removeItem("sessionTokenExpiresAt");
+              localStorage.removeItem("accessToken");
               clientLogoutRequest = null;
               location.href = "/login";
             }
           }
         } else {
-          const sessionToken = (options?.headers as any)?.Authorization.split(
+          const accessToken = (options?.headers as any)?.Authorization.split(
             "Bearer "
           )[1];
-          redirect(`/logout?sessionToken=${sessionToken}`);
+          redirect(`/logout?accessToken=${accessToken}`);
         }
       } else {
         throw new HttpError(data);
       }
     }
 
-    // if (isClient()) {
-    //   if (
-    //     ["auth/login", "auth/register"].some(
-    //       (item) => item === normalizePath(url)
-    //     )
-    //   ) {
-    //     const { token, expiresAt } = (payload as LoginResType).data;
-    //     localStorage.setItem("sessionToken", token);
-    //     localStorage.setItem("sessionTokenExpiresAt", expiresAt);
-    //   } else if ("auth/logout" === normalizePath(url)) {
-    //     localStorage.removeItem("sessionToken");
-    //     localStorage.removeItem("sessionTokenExpiresAt");
-    //   }
-    // }
+    if (isClient()) {
+      if (
+        ["auth/login", "auth/register"].some(
+          (item) => item === normalizePath(url)
+        )
+      ) {
+        const token = (payload as TLoginResponse).accessToken;
+        localStorage.setItem("accessToken", token);
+      } else if ("auth/logout" === normalizePath(url)) {
+        localStorage.removeItem("accessToken");
+      }
+    }
     return data;
   };
 

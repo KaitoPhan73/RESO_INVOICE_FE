@@ -1,4 +1,4 @@
-import authApiRequest from "@/app/actions/auth";
+import authApi from "@/actions/auth";
 import { HttpError } from "@/lib/http";
 import { cookies } from "next/headers";
 
@@ -13,15 +13,15 @@ export async function POST(request: Request) {
       {
         status: 200,
         headers: {
-          // Xóa cookie sessionToken
-          "Set-Cookie": `sessionToken=; Path=/; HttpOnly; Max-Age=0`,
+          // Xóa cookie accessToken
+          "Set-Cookie": `accessToken=; Path=/; HttpOnly; Max-Age=0`,
         },
       }
     );
   }
   const cookieStore = cookies();
-  const sessionToken = cookieStore.get("sessionToken");
-  if (!sessionToken) {
+  const accessToken = cookieStore.get("accessToken");
+  if (!accessToken) {
     return Response.json(
       { message: "Không nhận được session token" },
       {
@@ -30,14 +30,14 @@ export async function POST(request: Request) {
     );
   }
   try {
-    const result = await authApiRequest.logoutFromNextServerToServer(
-      sessionToken.value
+    const result = await authApi.logoutFromNextServerToServer(
+      accessToken.value
     );
     return Response.json(result.payload, {
       status: 200,
       headers: {
-        // Xóa cookie sessionToken
-        "Set-Cookie": `sessionToken=; Path=/; HttpOnly; Max-Age=0`,
+        // Xóa cookie accessToken
+        "Set-Cookie": `accessToken=; Path=/; HttpOnly; Max-Age=0`,
       },
     });
   } catch (error) {

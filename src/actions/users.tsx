@@ -4,7 +4,7 @@ import { TUserBase } from "@/types/User";
 
 const getUsers = async (params?: any) => {
   "use server";
-  return httpMock.get<TTableResponse<TUserBase>>("student/users", { params });
+  return httpMock.get<any>("student/users", { params });
 };
 
 const userApi = {

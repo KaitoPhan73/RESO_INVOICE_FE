@@ -9,6 +9,8 @@ import {
 } from "@/redux/Counter/counterSilce";
 export default function AboutPage() {
   const count = useSelector((state: RootState) => state.counter.value);
+  const token = useSelector((state: RootState) => state.user.isAuthenticated);
+  console.log("token", token);
   const dispatch = useDispatch();
   return (
     <div>
