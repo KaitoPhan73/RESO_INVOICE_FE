@@ -7,6 +7,7 @@ const authPaths = ["/login", "/register"];
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const accessToken = request.cookies.get("accessToken")?.value;
+  console.log("accessToken", accessToken);
   // Chưa đăng nhập thì không cho vào private paths
   if (privatePaths.some((path) => pathname.startsWith(path)) && !accessToken) {
     return NextResponse.redirect(new URL("/login", request.url));
@@ -20,5 +21,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/me", "/login", "/register", "/dashboard/:path*"],
+  matcher: ["/login", "/register", "/dashboard/:path*"],
 };

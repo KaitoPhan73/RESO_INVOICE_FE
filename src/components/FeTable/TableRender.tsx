@@ -87,7 +87,7 @@ const TableRender = (props: IProps) => {
   const renderHeader = () => {
     return (
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <span>Table List Users</span>
+        <span></span>
         <Button
           icon={<PlusOutlined />}
           type="primary"
