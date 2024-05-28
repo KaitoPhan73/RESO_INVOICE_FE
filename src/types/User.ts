@@ -14,11 +14,12 @@ export type TResponseLogin = {
 
 export type TUserBase = {
   id: string;
+  username: string;
   name: string;
-  code: string;
-  role: string;
-  taxcode: string;
-  descriptions: string;
+  role: boolean;
   status: boolean;
-  secretKey: string;
+  storeId: string;
+  storeCode: string;
+  brandId: string;
+  brandCode: string;
 };

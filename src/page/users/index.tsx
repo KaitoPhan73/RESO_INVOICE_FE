@@ -13,60 +13,30 @@ export default function UserPage({ props }: Props) {
       dataIndex: "id",
     },
     {
+      title: "username",
+      dataIndex: "username",
+    },
+    {
       title: "name",
       dataIndex: "name",
     },
     {
-      title: "code",
-      dataIndex: "code",
-    },
-    {
-      title: "taxcode",
-      dataIndex: "taxcode",
-    },
-    {
-      title: "descriptions",
-      dataIndex: "descriptions",
+      title: "role",
+      dataIndex: "role",
     },
     {
       title: "status",
       dataIndex: "status",
     },
+    {
+      title: "storeCode",
+      dataIndex: "storeCode",
+    },
+    {
+      title: "brandCode",
+      dataIndex: "brandCode",
+    },
   ];
-
-  // const arr = [
-  //   {
-  //     id: "1",
-  //     name: "John Doe",
-  //     avatar: "https://example.com/avatar1.png",
-  //     role: "admin",
-  //   },
-  //   {
-  //     id: "2",
-  //     name: "Jane Smith",
-  //     avatar: "https://example.com/avatar2.png",
-  //     role: "user",
-  //   },
-  //   {
-  //     id: "3",
-  //     name: "Alice Johnson",
-  //     avatar: "https://example.com/avatar3.png",
-  //     role: "moderator",
-  //   },
-  //   {
-  //     id: "4",
-  //     name: "Bob Brown",
-  //     avatar: "https://example.com/avatar4.png",
-  //     role: "user",
-  //   },
-  //   {
-  //     id: "5",
-  //     name: "Emily Davis",
-  //     avatar: "https://example.com/avatar5.png",
-  //     role: "user",
-  //   },
-  // ];
-  // console.log("getData", getUsers);
   return (
     <CustomTable
       onDelete

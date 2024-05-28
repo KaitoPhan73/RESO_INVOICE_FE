@@ -62,8 +62,8 @@ const CustomTable = ({
     } else if (getData) {
       const data = await getData(formData);
       return {
-        total: data.payload.length,
-        list: data.payload,
+        total: data.payload.total,
+        list: data.payload.items,
       };
     } else {
       throw new Error("Either dataSource or getData must be provided.");
