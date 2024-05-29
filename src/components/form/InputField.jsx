@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
-import { FormControl, FormHelperText, TextField } from '@mui/material';
-import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { FormControl, FormHelperText, TextField } from "@mui/material";
+import React from "react";
+import { Controller, useFormContext } from "react-hook-form";
 
 const FormInput = ({
   name,
-  label = '',
+  label = "",
   rules = null,
-  defaultValue = '',
+  defaultValue = "",
   disabled = false,
-  placeholder = '',
+  placeholder = "",
   fullWidth = false,
   className = null,
-  size = 'small',
+  size = "small",
   isHidden = false,
   ...props
 }) => {
@@ -36,7 +36,9 @@ const FormInput = ({
             id={name}
             disabled={disabled}
             error={Boolean(fieldState.error)}
-            helpertext={fieldState.invalid ? fieldState.error.message : props.helperText}
+            helpertext={
+              fieldState.invalid ? fieldState.error.message : props.helperText
+            }
             label={label}
             placeholder={placeholder}
             defaultValue={defaultValue}
