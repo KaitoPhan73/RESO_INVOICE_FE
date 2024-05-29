@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
 import SnackbarProviders from "@/redux/SnackBar";
 import AppProvider from "@/redux/AppProvider";
 import { AuthProvider } from "@/context/userContext";
@@ -22,9 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SnackbarProviders>
           <AppProvider>
-            <AuthProvider>
-              <AntdRegistry>{children}</AntdRegistry>
-            </AuthProvider>
+            <AuthProvider>{children}</AuthProvider>
           </AppProvider>
         </SnackbarProviders>
       </body>

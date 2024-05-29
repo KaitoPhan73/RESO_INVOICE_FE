@@ -1,8 +1,12 @@
 "use client";
-import { Button, Layout } from "antd";
+import { Avatar, Button, Flex, Layout } from "antd";
 import React from "react";
 import { Col, Row } from "antd";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 const { Header } = Layout;
 type Props = {
   style?: any;
@@ -12,19 +16,22 @@ type Props = {
 const HeaderCustom = ({ style, setCollapsed, collapsed }: Props) => {
   return (
     <Header style={style}>
-      <Button
-        type="text"
-        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        onClick={() => setCollapsed(!collapsed)}
-        style={{
-          fontSize: "16px",
-          width: 64,
-          height: 64,
-        }}
-      />
-      <Row justify="end">
-        <Col xs={4}>Manage DashBoard</Col>
-        <Col xs={4}>Manage User</Col>
+      <Row justify="space-between">
+        <Col>
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              fontSize: "16px",
+              width: 64,
+              height: 64,
+            }}
+          />
+        </Col>
+        <Col>
+          <Avatar size={36} icon={<UserOutlined />} />
+        </Col>
       </Row>
     </Header>
   );
