@@ -1,9 +1,5 @@
-import getInvoiceTemplateApi from "@/actions/invoicetemplate";
-import { getUsers } from "@/app/actions/users";
-import CustomTable from "@/components/FeTable/CustomTable";
 import TableRender from "@/components/FeTable/TableRender";
 import { TInvoiceTemplateBase } from "@/types/InvoiceTemplate";
-import { TUserBase } from "@/types/User";
 import { TableColumnsType } from "antd";
 import React from "react";
 interface Props {
