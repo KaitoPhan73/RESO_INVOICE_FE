@@ -6,11 +6,12 @@ import {
   TeamOutlined,
   FileOutlined,
   CoffeeOutlined,
+  AppstoreAddOutlined,
 } from "@ant-design/icons";
-import { CoffeeMakerOutlined } from "@mui/icons-material";
 import Link from "next/link";
-const { PATH_DASHBOARD } = PATHS;
-const { PATH_COMPANY } = PATHS;
+import Image from "next/image";
+
+const { PATH_DASHBOARD, PATH_COMPANY } = PATHS;
 
 const customMenuItem = (path: string, name: string) => {
   return {
@@ -18,21 +19,36 @@ const customMenuItem = (path: string, name: string) => {
     key: path,
   };
 };
+
+const SidebarLogo = () => (
+  <div style={{ padding: "20px", textAlign: "center", borderRadius: "100%" }}>
+    <Image
+      src="/images/logo-deercoffee.jpg"
+      alt="Logo 3D"
+      width={100}
+      height={100}
+      style={{ borderRadius: "100%" }}
+    />
+  </div>
+);
+
 const AdminSiderBarConfig = [
   {
-    label: "Home",
+    label: <SidebarLogo />,
+    key: "logo",
+    icon: null,
+  },
+  {
+    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Home</span>,
     key: "1",
     icon: <PieChartOutlined />,
   },
-  // {
-  //   label: <Link href={"/dashboard"}>Dashboard</Link>,
-  //   key: "2",
-  //   icon: <DesktopOutlined />,
-  // },
   {
-    label: "Dashboard",
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Dashboard</span>
+    ),
     key: "sub1",
-    icon: <UserOutlined />,
+    icon: <DesktopOutlined />,
     children: [
       customMenuItem(PATH_DASHBOARD.brand, "Brand"),
       customMenuItem(PATH_DASHBOARD.user, "User Manager"),
@@ -42,7 +58,9 @@ const AdminSiderBarConfig = [
     ],
   },
   {
-    label: "Company",
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Company</span>
+    ),
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [
@@ -51,19 +69,30 @@ const AdminSiderBarConfig = [
       customMenuItem(PATH_COMPANY.stores, "Stores"),
     ],
   },
+  // {
+  //   label: (
+  //     <span style={{ fontSize: "16px", fontWeight: "bold" }}>Settings</span>
+  //   ),
+  //   key: "sub3",
+  //   icon: <AppstoreAddOutlined />,
+  //   children: [customMenuItem(PATH_COMPANY.settings, "Settings")],
+  // },
 ];
 
 const UserSiderBarConfig = [
   {
-    label: "Option 1",
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Option 1</span>
+    ),
     key: "1",
     icon: <PieChartOutlined />,
   },
   {
-    label: "Files",
+    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Files</span>,
     key: "9",
     icon: <FileOutlined />,
   },
 ];
+
 const SiderBarConfig = { AdminSiderBarConfig, UserSiderBarConfig };
 export default SiderBarConfig;
