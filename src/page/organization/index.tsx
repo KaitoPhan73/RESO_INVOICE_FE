@@ -9,6 +9,10 @@ interface Props {
 export default function OrganizationsPage({ props, data }: Props) {
   const columns: TableColumnsType<TOrganizationsBase> = [
     {
+      title: "Id",
+      dataIndex: "id",
+    },
+    {
       title: "Name",
       dataIndex: "name",
     },
