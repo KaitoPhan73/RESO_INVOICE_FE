@@ -73,7 +73,7 @@ function LineChartStoresPage() {
   return (
     <>
       <h1 className="w-[110px] mx-auto mt-10 text-s font-semibold capitalize ">
-        Line Chart
+        Line Chartt
       </h1>
       <div className="w-[1100px] h-screen flex mx-auto my-auto">
         <div className="border border-gray-400 pt-0 rounded-s w-full h-fit my-auto shadow-s">
