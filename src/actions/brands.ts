@@ -22,6 +22,48 @@ const brandApi = {
       headers: { Authorization: `Bearer ${sessionToken}` },
     });
   },
+  getBrandById: (brandId: string, sessionToken: string, params?: any) => {
+    return httpInvoice.get<TBrandBase>(`brands/${brandId}`, {
+      params,
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
+  },
+  getInventoryItemsByBrandId: (
+    brandId: string,
+    sessionToken: string,
+    params?: any
+  ) => {
+    return httpInvoice.get<TBrandBase>(`brands/${brandId}/inventory-items`, {
+      params,
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
+  },
+  getInvoiceByBrandId: (
+    brandId: string,
+    sessionToken: string,
+    params?: any
+  ) => {
+    return httpInvoice.get<TBrandBase>(`brands/${brandId}/invoices`, {
+      params,
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
+  },
+  getOrganizationByBrandId: (
+    brandId: string,
+    sessionToken: string,
+    params?: any
+  ) => {
+    return httpInvoice.get<TBrandBase>(`brands/${brandId}/organizations`, {
+      params,
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
+  },
+  getUserByBrandId: (brandId: string, sessionToken: string, params?: any) => {
+    return httpInvoice.get<TBrandBase>(`brands/${brandId}/users`, {
+      params,
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
+  },
   createBrand: (data: TBrandBody) => {
     return httpInvoice.post<TBrandBody>("brands", data);
   },

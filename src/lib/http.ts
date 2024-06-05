@@ -109,6 +109,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
       status: res.status,
       payload,
     };
+    console.log("data", data);
     if (!res.ok) {
       if (res.status === ENTITY_ERROR_STATUS) {
         throw new EntityError(

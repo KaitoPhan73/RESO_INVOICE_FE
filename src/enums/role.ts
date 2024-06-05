@@ -1,4 +1,5 @@
 export enum RoleEnum {
-  BrandAdmin = "BrandAdmin",
-  SysAdmin = "SysAdmin",
+  BrandAdmin = 0,
+  SystemAdmin = 1,
+  Organization = 2,
 }

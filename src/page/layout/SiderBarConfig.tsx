@@ -32,7 +32,7 @@ const SidebarLogo = () => (
   </div>
 );
 
-const AdminSiderBarConfig = [
+const SystemAdminSiderBarConfig = [
   {
     label: <SidebarLogo />,
     key: "logo",
@@ -69,30 +69,89 @@ const AdminSiderBarConfig = [
       customMenuItem(PATH_COMPANY.stores, "Stores"),
     ],
   },
-  // {
-  //   label: (
-  //     <span style={{ fontSize: "16px", fontWeight: "bold" }}>Settings</span>
-  //   ),
-  //   key: "sub3",
-  //   icon: <AppstoreAddOutlined />,
-  //   children: [customMenuItem(PATH_COMPANY.settings, "Settings")],
-  // },
 ];
 
-const UserSiderBarConfig = [
+const BrandAdminSiderBarConfig = [
   {
-    label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Option 1</span>
-    ),
+    label: <SidebarLogo />,
+    key: "logo",
+    icon: null,
+  },
+  {
+    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Home</span>,
     key: "1",
     icon: <PieChartOutlined />,
   },
   {
-    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Files</span>,
-    key: "9",
-    icon: <FileOutlined />,
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Dashboard</span>
+    ),
+    key: "sub1",
+    icon: <DesktopOutlined />,
+    children: [
+      customMenuItem(PATH_DASHBOARD.brand, "Brand"),
+      customMenuItem(PATH_DASHBOARD.user, "User Manager"),
+      customMenuItem(PATH_DASHBOARD.invoice, "Invoice Manager"),
+      // customMenuItem(PATH_DASHBOARD.user, "User"),
+      customMenuItem(PATH_DASHBOARD.invoicetemplate, "Invoice Template"),
+    ],
+  },
+  {
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Company</span>
+    ),
+    key: "sub2",
+    icon: <CoffeeOutlined />,
+    children: [
+      customMenuItem(PATH_COMPANY.organizations, "Organizations"),
+      customMenuItem(PATH_COMPANY.partners, "Partners"),
+      customMenuItem(PATH_COMPANY.stores, "Stores"),
+    ],
   },
 ];
 
-const SiderBarConfig = { AdminSiderBarConfig, UserSiderBarConfig };
+const OrganizationSiderBarConfig = [
+  {
+    label: <SidebarLogo />,
+    key: "logo",
+    icon: null,
+  },
+  {
+    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Home</span>,
+    key: "1",
+    icon: <PieChartOutlined />,
+  },
+  {
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Dashboard</span>
+    ),
+    key: "sub1",
+    icon: <DesktopOutlined />,
+    children: [
+      customMenuItem(PATH_DASHBOARD.brand, "Organization"),
+      customMenuItem(PATH_DASHBOARD.user, "User Manager"),
+      customMenuItem(PATH_DASHBOARD.invoice, "Invoice Manager"),
+      // customMenuItem(PATH_DASHBOARD.user, "User"),
+      customMenuItem(PATH_DASHBOARD.invoicetemplate, "Invoice Template"),
+    ],
+  },
+  {
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Company</span>
+    ),
+    key: "sub2",
+    icon: <CoffeeOutlined />,
+    children: [
+      customMenuItem(PATH_COMPANY.organizations, "Organizations"),
+      customMenuItem(PATH_COMPANY.partners, "Partners"),
+      customMenuItem(PATH_COMPANY.stores, "Stores"),
+    ],
+  },
+];
+
+const SiderBarConfig = {
+  SystemAdminSiderBarConfig,
+  BrandAdminSiderBarConfig,
+  OrganizationSiderBarConfig,
+};
 export default SiderBarConfig;
