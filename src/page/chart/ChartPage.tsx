@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import LineChartStoresPage from "./LineChartStoresPage";
 import { Button } from "antd";
 
-export default async function ChartPage(props: any) {
+export default function ChartPage(props: any) {
   const [selectedChart, setSelectedChart] = useState("bar");
 
   const handleSelectChart = (chartType: string) => {

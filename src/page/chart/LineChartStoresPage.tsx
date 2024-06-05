@@ -58,7 +58,7 @@ function LineChartStoresPage() {
             ],
           },
         };
-        chartRef.current = new Chart(ctx, config); // Save chart instance
+        chartRef.current = new Chart(ctx, config);
       }
     }
     return () => {
