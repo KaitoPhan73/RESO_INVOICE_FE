@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
-import { Chart, ChartConfiguration } from "chart.js";
+import { Chart, ChartConfiguration, registerables } from "chart.js";
+
+Chart.register(...registerables);
 
 function LineChartStoresPage() {
   const chartRef = useRef<Chart | null>(null);
@@ -66,15 +68,15 @@ function LineChartStoresPage() {
         chartRef.current.destroy();
       }
     };
-  }, [chartRef.current]);
+  }, []); // No dependencies needed here
 
   return (
     <>
       <h1 className="w-[110px] mx-auto mt-10 text-s font-semibold capitalize ">
-        line Chart
+        Line Chart
       </h1>
       <div className="w-[1100px] h-screen flex mx-auto my-auto">
-        <div className="border border-gray-400 pt-0 rounded-s  w-full h-fit my-auto  shadow-s">
+        <div className="border border-gray-400 pt-0 rounded-s w-full h-fit my-auto shadow-s">
           <canvas id="myChart"></canvas>
         </div>
       </div>

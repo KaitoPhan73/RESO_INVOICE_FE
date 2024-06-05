@@ -11,19 +11,23 @@ function LogoutLogic() {
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
   const accessToken = searchParams.get("accessToken");
+
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
+
     if (accessToken === localStorage.getItem("accessToken")) {
       authApi.logoutFromNextClientToNextServer(true, signal).then((res) => {
         dispatch(setUser(null));
         router.push(`/login?redirectFrom=${pathname}`);
       });
     }
+
     return () => {
       controller.abort();
     };
-  }, [accessToken, router, pathname, setUser]);
+  }, [accessToken, router, pathname, dispatch]);
+
   return <div>page</div>;
 }
 
