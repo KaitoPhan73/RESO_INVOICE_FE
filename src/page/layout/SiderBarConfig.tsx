@@ -66,7 +66,6 @@ const AdminSiderBarConfig = [
     children: [
       customMenuItem(PATH_COMPANY.organizations, "Organizations"),
       customMenuItem(PATH_COMPANY.partners, "Partners"),
-      customMenuItem(PATH_COMPANY.stores, "Stores"),
     ],
   },
   // {

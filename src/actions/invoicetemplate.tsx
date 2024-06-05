@@ -11,7 +11,7 @@ const invoiceTemplateApi = {
     });
   },
   createInvoiceTemplate: (data: TInvoiceTemplateBody) => {
-    return httpInvoice.post<TInvoiceTemplateBody>("templates", data);
+    return httpInvoice.post<TInvoiceTemplateBody>("invoice-templates", data);
   },
 };
 

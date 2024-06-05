@@ -37,6 +37,9 @@ export default function StoresPage({ props, data }: Props) {
       dataIndex: "address",
     },
   ];
+  console.log(data);
 
-  return <TableRender columns={columns} data={data} onDelete onEdit onCreate />;
+  // return <TableRender columns={columns} data={data} onDelete onEdit onCreate />;
+  return;
+  <div></div>;
 }

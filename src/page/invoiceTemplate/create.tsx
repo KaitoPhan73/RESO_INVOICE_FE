@@ -13,28 +13,9 @@ import {
   InvoiceTemplateBody,
   TInvoiceTemplateBody,
 } from "@/schemaValidations/invoiceTemplate.schema";
-import { useQuery } from "react-query";
 import { TOrganizationsBase } from "@/types/Organization";
 
 export default function CreateInvoiceTemplatePage() {
-  const { data: listOrganization } = useQuery("listOrganization", async () => {
-    try {
-      const response = await invoiceTemplateApi.getInvoiceTemplate(" ", {
-        page: 1,
-        size: 100,
-      });
-      return response.payload.items;
-    } catch (error) {
-      throw new Error("Failed to fetch data");
-    }
-  });
-  const transformedList: { value: string; label: string }[] = listOrganization
-    ? listOrganization.map((item: any) => ({
-        value: item.id,
-        label: item.name,
-      }))
-    : [];
-
   const { PATH_DASHBOARD } = PATHS;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
@@ -105,7 +86,7 @@ export default function CreateInvoiceTemplatePage() {
             <SelectField
               name="status"
               label="Status"
-              options={transformedList}
+              options={statusList}
               fullWidth
             />
           </Grid>
@@ -115,6 +96,7 @@ export default function CreateInvoiceTemplatePage() {
               variant="contained"
               color="primary"
               fullWidth
+              onClick={handleSubmit(onSubmit)}
               sx={{ marginTop: "10px", marginBottom: "10px" }}
             >
               Tạo
