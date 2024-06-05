@@ -1,5 +1,4 @@
 export type TPartnersBase = {
-  id: string;
   name: string;
   description: string;
   apiUrl: string;
