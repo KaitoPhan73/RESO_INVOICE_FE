@@ -1,6 +1,4 @@
-import getInvoiceTemplateApi from "@/actions/invoicetemplate";
 import OrganizationsApi from "@/actions/organizations";
-import InvoiceTemplatePage from "@/page/invoiceTemplate";
 import OrganizationsPage from "@/page/organization";
 import { cookies } from "next/headers";
 import React from "react";
