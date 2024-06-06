@@ -6,10 +6,16 @@ import { TPartnersBase } from "@/types/Partner";
 import { TTableResponse } from "@/types/Table";
 
 const partnersApi = {
-  getPartners: (sessionToken?: string, params?: any) => {
+  getPartners: (accessToken?: string, params?: any) => {
     return httpInvoice.get<TTableResponse<TPartnersBase>>("partners", {
       params,
-      headers: { Authorization: `Bearer ${sessionToken}` },
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+  },
+  getPartnersById: (id: string, accessToken?: string, params?: any) => {
+    return httpInvoice.get<TPartnersBase>(`partners/${id}`, {
+      params,
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
   },
   createPartners: (data: TPartnersBody) => {

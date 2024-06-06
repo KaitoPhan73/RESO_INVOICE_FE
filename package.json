@@ -27,7 +27,7 @@
     "@tanstack/react-query-devtools": "^5.40.0",
     "ahooks": "^3.7.11",
     "antd": "^5.18.0",
-    "chart.js": "^3.9.1",
+    "chart.js": "^4.1.1",
     "date-fns": "^3.6.0",
     "draft-js": "^0.11.7",
     "next": "^14.2.3",

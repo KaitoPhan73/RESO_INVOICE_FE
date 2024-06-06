@@ -1,6 +1,12 @@
 /* eslint-disable react/prop-types */
-import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
-import { Controller, useFormContext } from 'react-hook-form';
+import {
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import { Controller, useFormContext } from "react-hook-form";
 
 const SelectField = ({
   name,
@@ -11,12 +17,12 @@ const SelectField = ({
   const {
     options = null,
     children = null,
-    size = 'small',
+    size = "small",
     fullWidth = false,
     rules = null,
     disabled = false,
     className = null,
-    multiple = false
+    multiple = false,
   } = props;
   const { control } = useFormContext();
 
@@ -35,12 +41,14 @@ const SelectField = ({
           <Select
             multiple={multiple}
             id={name}
-            helperText={fieldState.error ? fieldState.error.message : props.helperText}
+            helperText={
+              fieldState.error ? fieldState.error.message : props.helperText
+            }
             label={label}
             {...field}
             {...props}
             error={Boolean(fieldState.error)}
-            value={field.value || []}
+            value={field.value !== undefined ? field.value : multiple ? [] : ""}
           >
             {children ??
               options?.map(({ label, value, id }) => (
@@ -54,12 +62,14 @@ const SelectField = ({
               </MenuItem>
             )}
           </Select>
-          <FormHelperText>{fieldState.error && fieldState.error.message}</FormHelperText>
+          <FormHelperText>
+            {fieldState.error && fieldState.error.message}
+          </FormHelperText>
         </FormControl>
       )}
       name={name}
       control={control}
-      defaultValue={multiple ? [] : ''}
+      defaultValue={multiple ? [] : ""}
       rules={rules}
     />
   );
