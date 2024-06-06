@@ -1,11 +1,28 @@
-export const getLocalStorage = (name: string) => localStorage.getItem(name);
-export const setLocalStorage = (name: string, value: any) => {
-  localStorage.setItem(name, value);
+import { isClient } from "@/lib/http";
+
+export const getLocalStorage = (name: string) => {
+  if (isClient()) {
+    return localStorage.getItem(name);
+  }
+  return null; // or any default value you want to return for server-side
 };
 
-export const removeUserInfo = () => localStorage.removeItem("user");
-export const setUserInfo = (userInfo: any) =>
+export const setLocalStorage = (name: string, value: any) => {
+  if (isClient()) {
+    localStorage.setItem(name, value);
+  }
+};
+
+export const removeUserInfo = () => {
+  if (isClient()) {
+    localStorage.removeItem("user");
+  }
+};
+
+export const setUserInfo = (userInfo: any) => {
   setLocalStorage("user", JSON.stringify(userInfo));
+};
+
 export const getUserInfo = () => {
   const userString = getLocalStorage("user");
   try {
@@ -16,8 +33,16 @@ export const getUserInfo = () => {
   }
 };
 
-export const removeAppToken = (token: string) =>
-  localStorage.removeItem("accessToken");
-export const setAppToken = (token: any) =>
+export const removeAppToken = (token: string) => {
+  if (isClient()) {
+    localStorage.removeItem("accessToken");
+  }
+};
+
+export const setAppToken = (token: any) => {
   setLocalStorage("accessToken", token);
-export const getAppToken = () => getLocalStorage("accessToken");
+};
+
+export const getAppToken = () => {
+  return getLocalStorage("accessToken");
+};

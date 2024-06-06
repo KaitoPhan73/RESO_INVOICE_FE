@@ -45,28 +45,13 @@ const SystemAdminSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Dashboard</span>
-    ),
-    key: "sub1",
-    icon: <DesktopOutlined />,
-    children: [
-      customMenuItem(PATH_DASHBOARD.brand, "Brand"),
-      customMenuItem(PATH_DASHBOARD.user, "User Manager"),
-      customMenuItem(PATH_DASHBOARD.invoice, "Invoice Manager"),
-      // customMenuItem(PATH_DASHBOARD.user, "User"),
-      customMenuItem(PATH_DASHBOARD.invoicetemplate, "Invoice Template"),
-    ],
-  },
-  {
-    label: (
       <span style={{ fontSize: "16px", fontWeight: "bold" }}>Company</span>
     ),
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [
-      customMenuItem(PATH_COMPANY.organizations, "Organizations"),
       customMenuItem(PATH_COMPANY.partners, "Partners"),
-      customMenuItem(PATH_COMPANY.stores, "Stores"),
+      customMenuItem(PATH_DASHBOARD.brand, "Brand"),
     ],
   },
 ];

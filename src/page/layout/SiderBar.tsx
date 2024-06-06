@@ -1,3 +1,4 @@
+"use client";
 import type { MenuProps } from "antd";
 import SiderBarConfig from "./SiderBarConfig";
 import { getUserInfo } from "@/utils/utils";
@@ -22,21 +23,25 @@ const {
   OrganizationSiderBarConfig,
   SystemAdminSiderBarConfig,
 } = SiderBarConfig;
-const role = getUserInfo().role;
+
+const user = getUserInfo();
 let SiderConfigs: MenuItem[] | null = null;
 
-switch (role) {
+switch (user?.role) {
   case RoleEnum.BrandAdmin:
+    console.log("BrandAdmin");
     SiderConfigs = BrandAdminSiderBarConfig.map(
       ({ label, key, icon, children }) => getItem(label, key, icon, children)
     );
     break;
   case RoleEnum.Organization:
+    console.log("Organization");
     SiderConfigs = OrganizationSiderBarConfig.map(
       ({ label, key, icon, children }) => getItem(label, key, icon, children)
     );
     break;
   case RoleEnum.SystemAdmin:
+    console.log("SystemAdmin");
     SiderConfigs = SystemAdminSiderBarConfig.map(
       ({ label, key, icon, children }) => getItem(label, key, icon, children)
     );

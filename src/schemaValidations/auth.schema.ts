@@ -6,7 +6,7 @@ export const AuthBase = z.object({
   id: z.string(),
   username: z.string(),
   name: z.string(),
-  role: z.string(),
+  role: z.number(),
   status: z.string(),
   brandName: z.string(),
 });

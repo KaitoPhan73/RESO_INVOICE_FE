@@ -9,24 +9,24 @@ interface UserState {
   isAuthenticated: boolean;
 }
 
-// const loadState = () => {
-//   try {
-//     const serializedState = localStorage.getItem("cart");
-//     if (serializedState === null) {
-//       return {
-//         products: [],
-//       };
-//     }
-//     return JSON.parse(serializedState);
-//   } catch (err) {
-//     return {
-//       products: [],
-//     };
-//   }
-// };
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem("cart");
+    if (serializedState === null) {
+      return {
+        products: [],
+      };
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return {
+      products: [],
+    };
+  }
+};
 
 const initialState: UserState = {
-  user: null,
+  user: loadState(),
   isAuthenticated: false,
 };
 

@@ -26,6 +26,7 @@ import { LoginBody, TLoginBody } from "@/schemaValidations/auth.schema";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/User/userSlice";
 import PATHS from "@/route/paths";
+import { stringify } from "querystring";
 
 type Props = {
   postData: any;
@@ -56,16 +57,15 @@ export default function LoginPage() {
     setLoading(true);
     try {
       const response = await authApi.checkLogin(values);
-      console.log("response", response.status);
+      const { accessToken, ...user } = response.payload;
       await authApi.auth({
         accessToken: response.payload.accessToken,
-        // expiresAt: response.payload.,
+        user: JSON.stringify(user),
       });
       if (response.status === 200) {
-        router.push(PATH_DASHBOARD.brand);
-        const { accessToken, ...user } = response.payload;
         dispatch(setUser(user));
         enqueueSnackbar("Login successfully", { variant: "success" });
+        router.refresh();
       }
     } catch (error: any) {
       console.log("error", error);
