@@ -7,11 +7,12 @@ import {
   FileOutlined,
   CoffeeOutlined,
   AppstoreAddOutlined,
+  LineChartOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
 import Image from "next/image";
 
-const { PATH_DASHBOARD, PATH_COMPANY } = PATHS;
+const { PATH_DASHBOARD, PATH_COMPANY, PATH_CHART } = PATHS;
 
 const customMenuItem = (path: string, name: string) => {
   return {
@@ -91,6 +92,16 @@ const BrandAdminSiderBarConfig = [
       customMenuItem(PATH_COMPANY.organizations, "Organizations"),
       customMenuItem(PATH_COMPANY.partners, "Partners"),
       customMenuItem(PATH_COMPANY.stores, "Stores"),
+    ],
+  },
+  {
+    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Chart</span>,
+    key: "sub3",
+    icon: <LineChartOutlined />,
+    children: [
+      customMenuItem(PATH_CHART.chart, "Chart"),
+      // customMenuItem(PATH_DASHBOARD.user, "User Manager"),
+      // customMenuItem(PATH_DASHBOARD.invoice, "Invoice Manager"),
     ],
   },
 ];
