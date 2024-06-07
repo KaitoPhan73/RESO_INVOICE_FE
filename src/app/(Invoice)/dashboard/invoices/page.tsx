@@ -1,5 +1,5 @@
 import InvoiceApi from "@/actions/invoices";
-import InvoicePage from "@/page/invoice";
+import InvoicePage from "@/page/invoices";
 import { cookies } from "next/headers";
 import React from "react";
 
@@ -15,6 +15,6 @@ export default async function Invoice(props: any) {
   return (
     <>
       <InvoicePage props={props} data={response.payload} />
-    </>
+    </> 
   );
 }

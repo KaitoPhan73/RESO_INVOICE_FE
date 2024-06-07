@@ -7,7 +7,7 @@ import InventoryItemsPage from "./inventoryItems";
 import InvoicePage from "./invoice";
 import OrganizationPage from "./organizations";
 import UsersPage from "./users";
-import OrganizationsPage from "@/page/organization";
+import OrganizationsPage from "@/page/organizations";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
