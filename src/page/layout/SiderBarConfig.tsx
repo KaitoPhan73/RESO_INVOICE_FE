@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-const { PATH_DASHBOARD, PATH_COMPANY, PATH_CHART } = PATHS;
+const { PATH_DASHBOARD, PATH_ORGANIZATION, PATH_CHART } = PATHS;
 
 const customMenuItem = (path: string, name: string) => {
   return {
@@ -57,16 +57,17 @@ const SystemAdminSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Brands Detail</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+        Brands Detail
+      </span>
     ),
-      key: "sub3",
+    key: "sub3",
     icon: <CoffeeOutlined />,
     children: [
       customMenuItem(PATH_DASHBOARD.inventoryitems, "Inventory Items"),
       customMenuItem(PATH_DASHBOARD.invoices, "Invoices"),
       customMenuItem(PATH_DASHBOARD.organizations, "Organizations"),
       customMenuItem(PATH_DASHBOARD.users, "Users"),
-
     ],
   },
 ];
@@ -103,19 +104,16 @@ const BrandAdminSiderBarConfig = [
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [
-      customMenuItem(PATH_COMPANY.organizations, "Organizations"),
+      customMenuItem(PATH_DASHBOARD.organizations, "Organizations"),
       customMenuItem(PATH_DASHBOARD.partners, "Partners"),
-      customMenuItem(PATH_COMPANY.stores, "Stores"),
+      customMenuItem(PATH_DASHBOARD.stores, "Stores"),
     ],
   },
   {
     label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Chart</span>,
     key: "sub3",
     icon: <LineChartOutlined />,
-    children: [
-      customMenuItem(PATH_CHART.chart, "Chart"),
-
-    ],
+    children: [customMenuItem(PATH_CHART.chart, "Chart")],
   },
 ];
 
@@ -132,29 +130,26 @@ const OrganizationSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Dashboard</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+        Quản lí hóa đơn
+      </span>
     ),
     key: "sub1",
     icon: <DesktopOutlined />,
     children: [
-      customMenuItem(PATH_DASHBOARD.brands, "Organization"),
-      customMenuItem(PATH_DASHBOARD.user, "User Manager"),
-      customMenuItem(PATH_DASHBOARD.invoices, "Invoice Manager"),
-      // customMenuItem(PATH_DASHBOARD.user, "User"),
-      customMenuItem(PATH_DASHBOARD.invoicetemplate, "Invoice Template"),
+      customMenuItem(PATH_ORGANIZATION.invoicetemplate, "Template"),
+      customMenuItem(PATH_ORGANIZATION.invoices, "Invoice"),
     ],
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Company</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+        Quản lí cửa hàng
+      </span>
     ),
     key: "sub2",
     icon: <CoffeeOutlined />,
-    children: [
-      customMenuItem(PATH_COMPANY.organizations, "Organizations"),
-      customMenuItem(PATH_DASHBOARD.partners, "Partners"),
-      customMenuItem(PATH_COMPANY.stores, "Stores"),
-    ],
+    children: [customMenuItem(PATH_ORGANIZATION.stores, "Stores")],
   },
 ];
 

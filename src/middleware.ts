@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import PATHS from "./route/paths";
 
 const privatePaths = ["/dashboard/", "/company/"];
 const authPaths = ["/login", "/register"];
 
 export function middleware(request: NextRequest) {
+  const { PATH_DASHBOARD, PATH_USER, PATH_ORGANIZATION } = PATHS;
   const { pathname } = request.nextUrl;
   const accessToken = request.cookies.get("accessToken")?.value;
   const userRaw = request.cookies.get("user")?.value ?? " ";
@@ -30,7 +32,7 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/dashboard/partners", request.url));
     } else if (user?.role === 2) {
       return NextResponse.redirect(
-        new URL("/dashboard/organization", request.url)
+        new URL(PATH_ORGANIZATION.invoices, request.url)
       );
     }
   }
