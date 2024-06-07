@@ -55,5 +55,6 @@ const organizationsApi = {
     );
   },
 };
+console.log("hihihi", organizationsApi);
 
 export default organizationsApi;

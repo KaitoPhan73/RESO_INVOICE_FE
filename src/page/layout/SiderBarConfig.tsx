@@ -51,8 +51,23 @@ const SystemAdminSiderBarConfig = [
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [
-      customMenuItem(PATH_COMPANY.partners, "Partners"),
-      customMenuItem(PATH_DASHBOARD.brand, "Brand"),
+      customMenuItem(PATH_DASHBOARD.partners, "Partners"),
+      customMenuItem(PATH_DASHBOARD.brands, "Brand"),
+    ],
+  },
+  {
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+        Brands Detail
+      </span>
+    ),
+    key: "sub3",
+    icon: <CoffeeOutlined />,
+    children: [
+      customMenuItem(PATH_DASHBOARD.inventoryitems, "Inventory Items"),
+      customMenuItem(PATH_DASHBOARD.invoices, "Invoices"),
+      customMenuItem(PATH_DASHBOARD.organizations, "Organizations"),
+      customMenuItem(PATH_DASHBOARD.users, "Users"),
     ],
   },
 ];
@@ -75,9 +90,9 @@ const BrandAdminSiderBarConfig = [
     key: "sub1",
     icon: <DesktopOutlined />,
     children: [
-      customMenuItem(PATH_DASHBOARD.brand, "Brand"),
+      customMenuItem(PATH_DASHBOARD.brands, "Brand"),
       customMenuItem(PATH_DASHBOARD.user, "User Manager"),
-      customMenuItem(PATH_DASHBOARD.invoice, "Invoice Manager"),
+      customMenuItem(PATH_DASHBOARD.invoices, "Invoice Manager"),
       // customMenuItem(PATH_DASHBOARD.user, "User"),
       customMenuItem(PATH_COMPANY.invoicetemplate, "Invoice Template"),
     ],
@@ -90,7 +105,7 @@ const BrandAdminSiderBarConfig = [
     icon: <CoffeeOutlined />,
     children: [
       customMenuItem(PATH_COMPANY.organizations, "Organizations"),
-      customMenuItem(PATH_COMPANY.partners, "Partners"),
+      customMenuItem(PATH_DASHBOARD.partners, "Partners"),
       customMenuItem(PATH_COMPANY.stores, "Stores"),
     ],
   },
