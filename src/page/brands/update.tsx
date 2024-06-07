@@ -4,25 +4,37 @@ import { BrandBody, TBrandBody } from "@/schemaValidations/brand.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
-import React from "react";
+import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { InputField, SelectField } from "@/components/form";
 import { Button, Grid, TextField } from "@mui/material";
 import PATHS from "@/route/paths";
 import { statusList } from "./config";
 import MiddleBrandTab from "./tabDetail/middleTab";
+import { Modal } from "antd";
+import ModalBrandPartner from "./tabDetail/modalBrandPartner";
 
 type Props = {
   data: {
     detail: any;
-    inventoryItems: any;
-    invoices: any;
-    organizations: any;
-    users: any;
+    brandId: string;
   };
 };
 export default function UpdateBrandPage({ data }: Props) {
   const { PATH_DASHBOARD } = PATHS;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TBrandBody>({
@@ -73,19 +85,49 @@ export default function UpdateBrandPage({ data }: Props) {
               fullWidth
             />
           </Grid>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            onClick={handleSubmit(onSubmit)}
-            sx={{ marginTop: "10px", marginBottom: "10px" }}
+          <Grid
+            container
+            item
+            xs={12}
+            display={"flex"}
+            justifyContent={"flex-end"}
+            spacing={2}
           >
-            Tạo
-          </Button>
+            <Grid item xs={2}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                onClick={showModal}
+                sx={{ marginTop: "10px", marginBottom: "10px" }}
+              >
+                Liên kết đối tác
+              </Button>
+            </Grid>
+            <Grid item xs={2}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                onClick={handleSubmit(onSubmit)}
+                sx={{ marginTop: "10px", marginBottom: "10px" }}
+              >
+                Tạo
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
       </FormProvider>
-      <MiddleBrandTab data={data} />
+      <Modal
+        title="Liên kết doanh nghiệp với thương hiệu"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <ModalBrandPartner brandId={data.brandId} />
+      </Modal>
     </>
   );
 }

@@ -17,9 +17,6 @@ export function middleware(request: NextRequest) {
     user = null;
   }
 
-  console.log("pathname", pathname);
-  console.log("user", user?.role);
-
   // If the user is not logged in, do not allow access to private paths
   if (privatePaths.some((path) => pathname.startsWith(path)) && !accessToken) {
     return NextResponse.redirect(new URL("/login", request.url));
