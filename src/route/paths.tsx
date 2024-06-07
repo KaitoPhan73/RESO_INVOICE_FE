@@ -11,7 +11,6 @@ const PATH_DASHBOARD = {
   brand: path(ROOT_DASHBOARD, "/brand"),
   user: path(ROOT_DASHBOARD, "/users"),
   invoice: path(ROOT_DASHBOARD, "/invoice"),
-  invoicetemplate: path(ROOT_DASHBOARD, "/invoicetemplate"),
 };
 
 const PATH_USER = {
@@ -23,8 +22,9 @@ const PATH_USER = {
 const PATH_COMPANY = {
   root: ROOT_COMPANY,
   organizations: path(ROOT_COMPANY, "/organizations"),
-  partners: path(ROOT_COMPANY, "/partners"),
-  stores: path(ROOT_COMPANY, "/stores"),
+  partners: path(ROOT_COMPANY, "/organizations/partners"),
+  stores: path(ROOT_COMPANY, "/organizations/stores"),
+  invoicetemplate: path(ROOT_COMPANY, "/organizations/invoicetemplate"),
 };
 
 const PATH_CHART = {

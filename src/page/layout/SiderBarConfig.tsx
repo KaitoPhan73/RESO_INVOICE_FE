@@ -79,7 +79,7 @@ const BrandAdminSiderBarConfig = [
       customMenuItem(PATH_DASHBOARD.user, "User Manager"),
       customMenuItem(PATH_DASHBOARD.invoice, "Invoice Manager"),
       // customMenuItem(PATH_DASHBOARD.user, "User"),
-      customMenuItem(PATH_DASHBOARD.invoicetemplate, "Invoice Template"),
+      customMenuItem(PATH_COMPANY.invoicetemplate, "Invoice Template"),
     ],
   },
   {
@@ -98,11 +98,7 @@ const BrandAdminSiderBarConfig = [
     label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Chart</span>,
     key: "sub3",
     icon: <LineChartOutlined />,
-    children: [
-      customMenuItem(PATH_CHART.chart, "Chart"),
-      // customMenuItem(PATH_DASHBOARD.user, "User Manager"),
-      // customMenuItem(PATH_DASHBOARD.invoice, "Invoice Manager"),
-    ],
+    children: [customMenuItem(PATH_CHART.chart, "Chart")],
   },
 ];
 
@@ -119,29 +115,26 @@ const OrganizationSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Dashboard</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+        Quản lí hóa đơn
+      </span>
     ),
     key: "sub1",
     icon: <DesktopOutlined />,
     children: [
-      customMenuItem(PATH_DASHBOARD.brand, "Organization"),
-      customMenuItem(PATH_DASHBOARD.user, "User Manager"),
-      customMenuItem(PATH_DASHBOARD.invoice, "Invoice Manager"),
-      // customMenuItem(PATH_DASHBOARD.user, "User"),
-      customMenuItem(PATH_DASHBOARD.invoicetemplate, "Invoice Template"),
+      customMenuItem(PATH_COMPANY.invoicetemplate, "Template"),
+      customMenuItem(PATH_DASHBOARD.invoice, "Invoice"),
     ],
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Company</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+        Quản lí cửa hàng
+      </span>
     ),
     key: "sub2",
     icon: <CoffeeOutlined />,
-    children: [
-      customMenuItem(PATH_COMPANY.organizations, "Organizations"),
-      customMenuItem(PATH_COMPANY.partners, "Partners"),
-      customMenuItem(PATH_COMPANY.stores, "Stores"),
-    ],
+    children: [customMenuItem(PATH_COMPANY.stores, "Stores")],
   },
 ];
 
