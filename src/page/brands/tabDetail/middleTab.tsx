@@ -26,6 +26,7 @@ export default function MiddleBrandTab({ data }: Props) {
   const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  console.log("sdsdsdsdsdsdsdsds");
   const CustomTabPanel = (props: TabPanelProps) => {
     const { children, value, index, ...other } = props;
 

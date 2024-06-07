@@ -6,7 +6,7 @@ import { Button, Table } from "antd";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-interface TRowSelection {
+export interface TRowSelection {
   type?: "checkbox" | "radio";
   onChange?: (selectedRowKeys: React.Key[], selectedRows: any[]) => void;
   selectedRowKeys?: React.Key[];

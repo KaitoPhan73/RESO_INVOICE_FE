@@ -16,33 +16,9 @@ export default async function UserDetail({
   const accessToken = cookieStore.get("accessToken")?.value;
   const response = await brandApi.getBrandById(params.slug, accessToken!);
 
-  const resInventoryItems = await brandApi.getInventoryItemsByBrandId(
-    params.slug,
-    accessToken!,
-    defaultParams
-  );
-  const resInvoices = await brandApi.getInvoiceByBrandId(
-    params.slug,
-    accessToken!,
-    defaultParams
-  );
-  const resOrganizations = await brandApi.getOrganizationByBrandId(
-    params.slug,
-    accessToken!,
-    defaultParams
-  );
-  const resUsers = await brandApi.getUserByBrandId(
-    params.slug,
-    accessToken!,
-    defaultParams
-  );
-
   const data = {
     detail: response.payload,
-    inventoryItems: resInventoryItems.payload,
-    invoices: resInvoices.payload,
-    organizations: resOrganizations.payload,
-    users: resUsers.payload,
+    brandId: params.slug,
   };
   return <UpdateBrandPage data={data} />;
 }
