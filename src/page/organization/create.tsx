@@ -15,7 +15,7 @@ import {
 } from "@/schemaValidations/organizations.schema";
 
 export default function CreateOrganizationPage() {
-  const { PATH_COMPANY } = PATHS;
+  const { PATH_DASHBOARD } = PATHS;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TOrganizationsBody>({
@@ -36,7 +36,7 @@ export default function CreateOrganizationPage() {
       const response = await organizationApi.createOrganizations(values);
       console.log("values", values);
       if (response.status === 201) {
-        router.push(PATH_COMPANY.organizations);
+        router.push(PATH_DASHBOARD.organizations);
         enqueueSnackbar("Tạo thành công", { variant: "success" });
       }
     } catch (error: any) {

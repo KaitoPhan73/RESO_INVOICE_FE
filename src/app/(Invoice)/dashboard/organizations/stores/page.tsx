@@ -10,7 +10,8 @@ export default async function Organizations(props: any) {
   };
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
-  const organizationId = JSON.parse(cookieStore.get("organizationId")?.value!);
+  const storeUser = cookieStore.get("user")?.value;
+  const organizationId = JSON.parse(storeUser!).organizationId;
   const response = await OrganizationsApi.getStoresByOrganizationById(
     organizationId,
     accessToken!,

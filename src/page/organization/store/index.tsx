@@ -1,3 +1,4 @@
+"use client";
 import TableRender from "@/components/FeTable/TableRender";
 import { TStore } from "@/schemaValidations/store.schema";
 import { TableColumnsType, Tag } from "antd";

@@ -1,3 +1,4 @@
+"use client";
 import TableRender from "@/components/FeTable/TableRender";
 import { TInvoice } from "@/schemaValidations/invoice.schema";
 import { TableColumnsType, Tag } from "antd";

@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-const { PATH_DASHBOARD, PATH_COMPANY, PATH_CHART } = PATHS;
+const { PATH_DASHBOARD, PATH_ORGANIZATION, PATH_CHART } = PATHS;
 
 const customMenuItem = (path: string, name: string) => {
   return {
@@ -94,7 +94,7 @@ const BrandAdminSiderBarConfig = [
       customMenuItem(PATH_DASHBOARD.user, "User Manager"),
       customMenuItem(PATH_DASHBOARD.invoices, "Invoice Manager"),
       // customMenuItem(PATH_DASHBOARD.user, "User"),
-      customMenuItem(PATH_COMPANY.invoicetemplate, "Invoice Template"),
+      customMenuItem(PATH_DASHBOARD.invoicetemplate, "Invoice Template"),
     ],
   },
   {
@@ -104,9 +104,9 @@ const BrandAdminSiderBarConfig = [
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [
-      customMenuItem(PATH_COMPANY.organizations, "Organizations"),
+      customMenuItem(PATH_DASHBOARD.organizations, "Organizations"),
       customMenuItem(PATH_DASHBOARD.partners, "Partners"),
-      customMenuItem(PATH_COMPANY.stores, "Stores"),
+      customMenuItem(PATH_DASHBOARD.stores, "Stores"),
     ],
   },
   {
@@ -137,8 +137,8 @@ const OrganizationSiderBarConfig = [
     key: "sub1",
     icon: <DesktopOutlined />,
     children: [
-      customMenuItem(PATH_COMPANY.invoicetemplate, "Template"),
-      customMenuItem(PATH_DASHBOARD.invoice, "Invoice"),
+      customMenuItem(PATH_ORGANIZATION.invoicetemplate, "Template"),
+      customMenuItem(PATH_ORGANIZATION.invoices, "Invoice"),
     ],
   },
   {
@@ -149,7 +149,7 @@ const OrganizationSiderBarConfig = [
     ),
     key: "sub2",
     icon: <CoffeeOutlined />,
-    children: [customMenuItem(PATH_COMPANY.stores, "Stores")],
+    children: [customMenuItem(PATH_ORGANIZATION.stores, "Stores")],
   },
 ];
 
