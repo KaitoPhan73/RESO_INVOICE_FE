@@ -25,12 +25,12 @@ export function middleware(request: NextRequest) {
   // If the user is logged in, do not allow access to login/register pages
   if (authPaths.some((path) => pathname.startsWith(path)) && accessToken) {
     if (user?.role === 0) {
-      return NextResponse.redirect(new URL("/dashboard/brand", request.url));
+      return NextResponse.redirect(new URL("/dashboard/brands", request.url));
     } else if (user?.role === 1) {
-      return NextResponse.redirect(new URL("/company/partners", request.url));
+      return NextResponse.redirect(new URL("/dashboard/partners", request.url));
     } else if (user?.role === 2) {
       return NextResponse.redirect(
-        new URL("/company/organization", request.url)
+        new URL("/dashboard/organization", request.url)
       );
     }
   }
