@@ -19,7 +19,7 @@ type Props = {
   data: any;
 };
 export default function UpdatePartnersPage({ data }: Props) {
-  const { PATH_COMPANY } = PATHS;
+  const { PATH_DASHBOARD } = PATHS;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TPartnersBody>({
@@ -35,7 +35,7 @@ export default function UpdatePartnersPage({ data }: Props) {
       const response = await partnersApi.createPartners(values);
       console.log("values", values);
       if (response.status === 201) {
-        router.push(PATH_COMPANY.partners);
+        router.push(PATH_DASHBOARD.partners);
         enqueueSnackbar("Tạo thành công", { variant: "success" });
       }
     } catch (error: any) {
