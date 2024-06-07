@@ -1,5 +1,5 @@
 import OrganizationsApi from "@/actions/organizations";
-import OrganizationsPage from "@/page/organization";
+import OrganizationsPage from "@/page/brands/tabDetail/organizations";
 import { cookies } from "next/headers";
 import React from "react";
 
@@ -14,6 +14,7 @@ export default async function Organizations(props: any) {
     accessToken!,
     params
   );
+  console.log("datmamamam:", response.payload);
 
   return (
     <>

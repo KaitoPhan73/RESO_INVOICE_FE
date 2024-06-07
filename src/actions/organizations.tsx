@@ -17,5 +17,6 @@ const organizationsApi = {
     return httpInvoice.post<TOrganizationsBody>("organizations", data);
   },
 };
+console.log("hihihi", organizationsApi);
 
 export default organizationsApi;
