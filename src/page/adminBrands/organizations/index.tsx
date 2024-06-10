@@ -13,11 +13,6 @@ export default function OrganizationsInBrandPage({ props, data }: Props) {
   console.log("dataaaa>:", data);
   const columns: TableColumnsType<TOrganization> = [
     {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
-    },
-    {
       title: "Tên tổ chức",
       dataIndex: "name",
       key: "name",
@@ -37,11 +32,7 @@ export default function OrganizationsInBrandPage({ props, data }: Props) {
       dataIndex: "taxCode",
       key: "taxCode",
     },
-    {
-      title: "ID thương hiệu",
-      dataIndex: "brandId",
-      key: "brandId",
-    },
+
     {
       title: "Tên thương hiệu",
       dataIndex: "brandName",

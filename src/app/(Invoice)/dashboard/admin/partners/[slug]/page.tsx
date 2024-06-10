@@ -1,5 +1,5 @@
 import partnersApi from "@/actions/partners";
-import UpdatePartnersPage from "@/page/partners/update";
+import UpdatePartnersPage from "@/page/adminSys/partners/update";
 import { cookies } from "next/headers";
 import React from "react";
 

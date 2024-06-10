@@ -1,5 +1,5 @@
 import brandApi from "@/actions/brands";
-import UpdateBrandPage from "@/page/brands/update";
+import UpdateBrandPage from "@/page/adminSys/brands/update";
 import { cookies } from "next/headers";
 import React from "react";
 

@@ -53,6 +53,7 @@ const SystemAdminSiderBarConfig = [
     children: [
       customMenuItem(PATH_ADMINSYSTEM.partners, "Partners"),
       customMenuItem(PATH_ADMINSYSTEM.brands, "Brand"),
+      customMenuItem(PATH_ADMINSYSTEM.usersinbrand, "Users In Brand"),
     ],
   },
   {
@@ -90,8 +91,8 @@ const BrandAdminSiderBarConfig = [
     key: "sub1",
     icon: <DesktopOutlined />,
     children: [
-      customMenuItem(PATH_BRAND.invoices, "Invoice Manager"),
-      customMenuItem(PATH_BRAND.inventoryitems, "Inventory Item"),
+      customMenuItem(PATH_BRAND.invoices, "Invoice Management"),
+      customMenuItem(PATH_BRAND.users, "User Management"),
       customMenuItem(PATH_BRAND.organizations, "Organizations"),
 
     ],
