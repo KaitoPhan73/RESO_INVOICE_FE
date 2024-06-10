@@ -7,7 +7,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { InputField, SelectField } from "@/components/form";
 import { Button, Grid } from "@mui/material";
 import PATHS from "@/route/paths";
-import partnersApi from "@/actions/partner";
+import partnersApi from "@/actions/partners";
 import { environmentList, typeList } from "./config";
 import {
   PartnersBody,

@@ -52,7 +52,7 @@ const SystemAdminSiderBarConfig = [
     icon: <CoffeeOutlined />,
     children: [
       customMenuItem(PATH_DASHBOARD.partners, "Partners"),
-      customMenuItem(PATH_DASHBOARD.adminbrands, "Brand"),
+      customMenuItem(PATH_DASHBOARD.brands, "Brand"),
     ],
   },
   {

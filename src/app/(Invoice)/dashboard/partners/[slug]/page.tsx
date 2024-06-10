@@ -1,4 +1,4 @@
-import partnersApi from "@/actions/partner";
+import partnersApi from "@/actions/partners";
 import UpdatePartnersPage from "@/page/partners/update";
 import { cookies } from "next/headers";
 import React from "react";
