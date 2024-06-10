@@ -1,3 +1,4 @@
+import { TUser } from "@/types/User";
 import { message } from "antd";
 import z from "zod";
 
@@ -22,3 +23,5 @@ export type TLoginBody = z.TypeOf<typeof LoginBody>;
 export const LoginResponse = AuthBase;
 
 export type TLoginResponse = z.TypeOf<typeof LoginResponse>;
+export type TUserOrZero = TUser | 0;
+
