@@ -1,10 +1,9 @@
-import PartnersApi from "@/actions/partners";
-import userApi from "@/actions/users";
-import UsersInBrandPage from "@/page/adminSys/users";
+import brandApi from "@/actions/brands";
+import OrganizationAccountsPage from "@/page/adminBrands/organizationAccounts";
 import { cookies } from "next/headers";
 import React from "react";
 
-export default async function Users(props: any) {
+export default async function OrganizationAccounts(props: any) {
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     size: props.searchParams.size ? +props.searchParams.size : 10,
@@ -12,8 +11,8 @@ export default async function Users(props: any) {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
   const storeUser = cookieStore.get("user")?.value;
-  const brandId = JSON.parse(storeUser!).id;
-  const response = await userApi.getUserByBrandId(
+  const brandId = JSON.parse(storeUser!).brandId;
+  const response = await brandApi.getOrganizationAccountsByBrandId(
     brandId,
     accessToken!,
     params
@@ -22,7 +21,7 @@ export default async function Users(props: any) {
 
   return (
     <>
-      <UsersInBrandPage props={props} data={response.payload} />
+      <OrganizationAccountsPage props={props} data={response.payload} />
     </>
   );
 }

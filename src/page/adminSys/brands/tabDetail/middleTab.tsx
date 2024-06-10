@@ -18,7 +18,7 @@ type Props = {
     inventoryItems: any;
     invoices: any;
     organizations: any;
-    users: any;
+    // users: any;
   };
 };
 export default function MiddleBrandTab({ data }: Props) {
@@ -101,7 +101,7 @@ export default function MiddleBrandTab({ data }: Props) {
             </TabContext>
           </Box>
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={3}>
+        {/* <CustomTabPanel value={value} index={3}>
           <Grid container spacing={2}>
             <Grid item xs={7}></Grid>
           </Grid>
@@ -110,7 +110,7 @@ export default function MiddleBrandTab({ data }: Props) {
               <UsersPage data={data.users} />
             </TabContext>
           </Box>
-        </CustomTabPanel>
+        </CustomTabPanel> */}
       </Stack>
     </Grid>
   );

@@ -31,17 +31,17 @@ export default async function BrandOptions({
     accessToken!,
     defaultParams
   );
-  const resUsers = await brandApi.getUserByBrandId(
-    params.slug,
-    accessToken!,
-    defaultParams
-  );
+  // const resUsers = await brandApi.getUserByBrandId(
+  //   params.slug,
+  //   accessToken!,
+  //   defaultParams
+  // );
 
   const data = {
     inventoryItems: resInventoryItems.payload,
     invoices: resInvoices.payload,
     organizations: resOrganizations.payload,
-    users: resUsers.payload,
+    // users: resUsers.payload,
     brandId: params.slug,
   };
   return <MiddleBrandTab data={data} />;

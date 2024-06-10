@@ -2,7 +2,7 @@
 
 import TableRender from "@/components/FeTable/TableRender";
 import { RoleEnum } from "@/enums/role";
-import { TUser } from "@/schemaValidations/user.schema";
+import { TBrandAccounts } from "@/schemaValidations/brand-accounts.schema";
 import { TableColumnsType, Tag } from "antd";
 import React from "react";
 
@@ -11,10 +11,10 @@ interface Props {
   data: any; 
 }
 
-export default function UsersInBrandPage({ props, data }: Props) {
+export default function BrandAccountPage({ props, data }: Props) {
   console.log("data:", data);
 
-  const columns: TableColumnsType<TUser> = [
+  const columns: TableColumnsType<TBrandAccounts> = [
 
     {
       title: "Tên đăng nhập",
@@ -55,9 +55,9 @@ export default function UsersInBrandPage({ props, data }: Props) {
         ),
     },
     {
-      title: "Mã cửa hàng",
-      dataIndex: "storeCode",
-      key: "storeCode",
+      title: "Mã tổ chức",
+      dataIndex: "organizationCode",
+      key: "organizationCode",
     },
     {
       title: "Mã thương hiệu",
