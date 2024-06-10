@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Grid,
@@ -26,7 +26,6 @@ import { LoginBody, TLoginBody } from "@/schemaValidations/auth.schema";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/User/userSlice";
 import PATHS from "@/route/paths";
-import { stringify } from "querystring";
 
 type Props = {
   postData: any;
@@ -73,20 +72,110 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+
+
+  useEffect(() => {
+    const stars = document.querySelectorAll('.star');
+    const speed = 2;
+
+    stars.forEach((star, index) => {
+      const randX = Math.random() * window.innerWidth;
+      const randY = Math.random() * window.innerHeight;
+      const rotation = Math.random() * 180;
+
+      star.setAttribute('style', `top: ${randY}px; left: ${randX}px; transform: rotate(${rotation}deg);`);
+
+      const goRight = Math.random() < 0.5;
+      const goDown = Math.random() < 0.5;
+
+      let speedX = Math.random() * speed;
+      let speedY = Math.random() * speed;
+
+      if (!goRight) speedX = -speedX;
+      if (!goDown) speedY = -speedY;
+
+      const updateStarPosition = () => {
+        let x = parseFloat(star.getAttribute('style')?.split(';')[1]?.split(':')[1] || '0');
+        let y = parseFloat(star.getAttribute('style')?.split(';')[0]?.split(':')[1] || '0');
+
+        if (x > window.innerWidth || x < 0) speedX = -speedX;
+        if (y > window.innerHeight || y < 0) speedY = -speedY;
+
+        x += speedX;
+        y += speedY;
+
+        star.setAttribute('style', `top: ${y}px; left: ${x}px; transform: rotate(${rotation}deg); box-shadow: 0 0 100px #000;`);
+      };
+
+      setInterval(updateStarPosition, 1000 / 60);
+    });
+
+  }, []);
+
   return (
     <FormProvider {...methods}>
       <Grid container spacing={2} sx={{ height: "100vh" }}>
         <Grid item xs={6} sm={6}>
           <Box
-            component="img"
+            component="div"
             sx={{
               height: "100%",
               width: "100%",
-              objectFit: "cover",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              overflow: "hidden",
+              position: "relative",
             }}
-            alt="Background image"
-            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-          />
+          >
+            <Box
+              component="img"
+              sx={{
+                position: "absolute",
+                zIndex: 1,
+                maxWidth: "100%",
+                maxHeight: "100%",
+                transition: "transform 0.5s",
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
+              alt="Background image"
+              src="/images/logo-deercoffee.jpg"
+            />
+            <Box
+              component="img"
+              sx={{
+                position: "absolute",
+                zIndex: 0,
+                filter: "blur(8px)",
+                width: "100%",
+                height: "100%",
+              }}
+              alt="Background image"
+              src="/images/logo-deercoffee.jpg"
+            />
+            {[...Array(10)].map((_, i) => (
+              <Box
+                key={i}
+                className="star"
+                component="div"
+                sx={{
+                  position: "absolute",
+                  zIndex: 2,
+                  width: "40px",
+                  height: "40px",
+                  backgroundImage: "url('/images/sky.jpg')", 
+                  backgroundSize: "cover",
+                  animation: "spin 5s linear infinite", 
+                  borderRadius: "50%",
+                  backgroundColor: "black",
+                  boxShadow: "0 0 1000px #000",
+
+                }}
+              />
+            ))}
+          </Box>
         </Grid>
         <Grid item xs={6} sm={6} sx={{ display: "flex", alignItems: "center" }}>
           <Paper
