@@ -15,8 +15,23 @@ const PATH_DASHBOARD = {
   organizations: path(ROOT_DASHBOARD, "/organizations"),
   users: path(ROOT_DASHBOARD, "/users"),
   brands: path(ROOT_DASHBOARD, "/brands"),
+  adminsystem: path(ROOT_DASHBOARD, "/admin"),
+  userssystem: path(ROOT_DASHBOARD, "/users"),
+  inventoryitemssystem: path(ROOT_DASHBOARD, "/inventoryitems"),
+  invoicessystem: path(ROOT_DASHBOARD, "/invoices"),
+  organizationssystem: path(ROOT_DASHBOARD, "/organizations"),
   partners: path(ROOT_DASHBOARD, "/partners"),
   stores: path(ROOT_DASHBOARD, "/stores"),
+};
+
+const PATH_ADMINSYSTEM = {
+  root: PATH_DASHBOARD,
+  brands: path(PATH_DASHBOARD.adminsystem, "/brands"),
+  partners: path(PATH_DASHBOARD.adminsystem, "/partners"),
+  userssystem: path(PATH_DASHBOARD.userssystem, "/users"),
+  inventoryitemssystem: path(PATH_DASHBOARD.adminsystem, "/inventoryitems"),
+  invoicessystem: path(PATH_DASHBOARD.adminsystem, "/invoices"),
+  organizationssystem: path(PATH_DASHBOARD.adminsystem, "/organizations"),
 };
 
 const PATH_ORGANIZATION = {
@@ -59,6 +74,7 @@ const PATHS = {
   PATH_CHART,
   PATH_ORGANIZATION,
   PATH_BRAND,
+  PATH_ADMINSYSTEM
 };
 
 export default PATHS;
