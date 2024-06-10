@@ -28,8 +28,8 @@ const user = getUserInfo();
 let SiderConfigs: MenuItem[] | null = null;
 
 switch (user?.role) {
-  case RoleEnum.BrandAdmin:
-    console.log("BrandAdmin");
+  case RoleEnum.Brand:
+    console.log("Brand");
     SiderConfigs = BrandAdminSiderBarConfig.map(
       ({ label, key, icon, children }) => getItem(label, key, icon, children)
     );

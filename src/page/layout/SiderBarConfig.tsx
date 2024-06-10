@@ -96,18 +96,7 @@ const BrandAdminSiderBarConfig = [
 
     ],
   },
-  // {
-  //   label: (
-  //     <span style={{ fontSize: "16px", fontWeight: "bold" }}>Company</span>
-  //   ),
-  //   key: "sub2",
-  //   icon: <CoffeeOutlined />,
-  //   children: [
-  //     customMenuItem(PATH_DASHBOARD.organizations, "Organizations"),
-  //     customMenuItem(PATH_DASHBOARD.partners, "Partners"),
-  //     customMenuItem(PATH_DASHBOARD.stores, "Stores"),
-  //   ],
-  // },
+
   {
     label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Chart</span>,
     key: "sub3",
