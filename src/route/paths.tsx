@@ -26,19 +26,27 @@ const PATH_ORGANIZATION = {
   invoicetemplate: path(PATH_DASHBOARD.organizations, "/templates"),
 };
 
+const PATH_BRAND = {
+  root: PATH_DASHBOARD,
+  inventoryitems: path(PATH_DASHBOARD.brands, "/inventoryitems"),
+  invoices: path(PATH_DASHBOARD.brands, "/invoices"),
+  organizations: path(PATH_DASHBOARD.brands, "/organizations"),
+};
+
+
 const PATH_USER = {
   root: ROOT_USER,
   contact: path(ROOT_DASHBOARD, "/contact"),
   about: path(ROOT_DASHBOARD, "/about"),
 };
 
-const PATH_COMPANY = {
-  root: ROOT_COMPANY,
-  // brands: path(ROOT_COMPANY, "/brands"),
-  // partners: path(ROOT_COMPANY, "/partners"),
-  organizations: path(ROOT_COMPANY, "/organizations"),
-  stores: path(ROOT_COMPANY, "/stores"),
-};
+// const PATH_COMPANY = {
+//   root: ROOT_COMPANY,
+//   // brands: path(ROOT_COMPANY, "/brands"),
+//   // partners: path(ROOT_COMPANY, "/partners"),
+//   organizations: path(ROOT_COMPANY, "/organizations"),
+//   stores: path(ROOT_COMPANY, "/stores"),
+// };
 
 const PATH_CHART = {
   root: ROOT_CHART,
@@ -50,6 +58,7 @@ const PATHS = {
   PATH_USER,
   PATH_CHART,
   PATH_ORGANIZATION,
+  PATH_BRAND,
 };
 
 export default PATHS;

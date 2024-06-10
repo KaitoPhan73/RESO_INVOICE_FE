@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-const { PATH_DASHBOARD, PATH_ORGANIZATION, PATH_CHART } = PATHS;
+const { PATH_DASHBOARD, PATH_ORGANIZATION, PATH_CHART, PATH_BRAND } = PATHS;
 
 const customMenuItem = (path: string, name: string) => {
   return {
@@ -90,25 +90,24 @@ const BrandAdminSiderBarConfig = [
     key: "sub1",
     icon: <DesktopOutlined />,
     children: [
-      customMenuItem(PATH_DASHBOARD.brands, "Brand"),
-      customMenuItem(PATH_DASHBOARD.user, "User Manager"),
-      customMenuItem(PATH_DASHBOARD.invoices, "Invoice Manager"),
-      // customMenuItem(PATH_DASHBOARD.user, "User"),
-      customMenuItem(PATH_DASHBOARD.invoicetemplate, "Invoice Template"),
+      customMenuItem(PATH_BRAND.invoices, "Invoice Manager"),
+      customMenuItem(PATH_BRAND.inventoryitems, "Inventory Item"),
+      customMenuItem(PATH_BRAND.organizations, "Organizations"),
+
     ],
   },
-  {
-    label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Company</span>
-    ),
-    key: "sub2",
-    icon: <CoffeeOutlined />,
-    children: [
-      customMenuItem(PATH_DASHBOARD.organizations, "Organizations"),
-      customMenuItem(PATH_DASHBOARD.partners, "Partners"),
-      customMenuItem(PATH_DASHBOARD.stores, "Stores"),
-    ],
-  },
+  // {
+  //   label: (
+  //     <span style={{ fontSize: "16px", fontWeight: "bold" }}>Company</span>
+  //   ),
+  //   key: "sub2",
+  //   icon: <CoffeeOutlined />,
+  //   children: [
+  //     customMenuItem(PATH_DASHBOARD.organizations, "Organizations"),
+  //     customMenuItem(PATH_DASHBOARD.partners, "Partners"),
+  //     customMenuItem(PATH_DASHBOARD.stores, "Stores"),
+  //   ],
+  // },
   {
     label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Chart</span>,
     key: "sub3",

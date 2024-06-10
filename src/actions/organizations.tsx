@@ -1,5 +1,6 @@
 import { httpInvoice } from "@/lib/http";
 import { TOrganizationsBody } from "@/schemaValidations/organizations.schema";
+import { TBrandBase } from "@/types/Brand";
 import { TOrganizationsBase } from "@/types/Organization";
 import { TTableResponse } from "@/types/Table";
 
@@ -55,6 +56,5 @@ const organizationsApi = {
     );
   },
 };
-console.log("hihihi", organizationsApi);
 
 export default organizationsApi;
