@@ -1,6 +1,6 @@
 import brandApi from "@/actions/brands";
-import MiddleBrandTab from "@/page/brands/tabDetail/middleTab";
-import UpdateBrandPage from "@/page/brands/update";
+import MiddleBrandTab from "@/page/adminSys/brands/tabDetail/middleTab";
+import UpdateBrandPage from "@/page/adminSys/brands/update";
 import { cookies } from "next/headers";
 import React from "react";
 

@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Invoices() {
+export default function UserInBrand() {
   return <div>pagedetail u</div>;
 }

@@ -1,20 +1,26 @@
 import brandApi from "@/actions/brands";
-import BrandPage from "@/page/adminSys/brands";
+import InvoiceInBrandPage from "@/page/adminBrands/invoices";
 import { cookies } from "next/headers";
 import React from "react";
 
-export default async function Brand(props: any) {
+export default async function InvoicesInBrand(props: any) {
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     size: props.searchParams.size ? +props.searchParams.size : 10,
   };
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
-  const response = await brandApi.getBrands(accessToken!, params);
+  const storeUser = cookieStore.get("user")?.value;
+  const brandId = JSON.parse(storeUser!).brandId;
+  const response = await brandApi.getInvoiceByBrandId(
+    brandId,
+    accessToken!,
+    params
+  );
 
   return (
     <>
-      <BrandPage props={props} data={response.payload} />
+      <InvoiceInBrandPage props={props} data={response.payload} />
     </>
   );
 }

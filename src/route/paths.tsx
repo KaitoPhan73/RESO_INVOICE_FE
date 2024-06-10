@@ -28,6 +28,7 @@ const PATH_ADMINSYSTEM = {
   root: PATH_DASHBOARD,
   brands: path(PATH_DASHBOARD.adminsystem, "/brands"),
   partners: path(PATH_DASHBOARD.adminsystem, "/partners"),
+  usersinbrand: path(PATH_DASHBOARD.adminsystem, "/usersinbrand"),
   userssystem: path(PATH_DASHBOARD.userssystem, "/users"),
   inventoryitemssystem: path(PATH_DASHBOARD.adminsystem, "/inventoryitems"),
   invoicessystem: path(PATH_DASHBOARD.adminsystem, "/invoices"),
@@ -43,7 +44,7 @@ const PATH_ORGANIZATION = {
 
 const PATH_BRAND = {
   root: PATH_DASHBOARD,
-  inventoryitems: path(PATH_DASHBOARD.brands, "/inventoryitems"),
+  users: path(PATH_DASHBOARD.brands, "/users"),
   invoices: path(PATH_DASHBOARD.brands, "/invoices"),
   organizations: path(PATH_DASHBOARD.brands, "/organizations"),
 };

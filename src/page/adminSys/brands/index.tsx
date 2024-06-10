@@ -32,17 +32,6 @@ export default function BrandPage({ props, data }: Props) {
     },
   ];
 
-  // const rowSelection: TRowSelection = {
-  //   type: "checkbox",
-  //   onChange: (selectedRowKeys, selectedRows) => {
-  //     console.log(
-  //       `selectedRowKeys: ${selectedRowKeys}`,
-  //       "selectedRows: ",
-  //       selectedRows
-  //     );
-  //   },
-  // };
-
   return (
     <TableRender
       columns={columns}
