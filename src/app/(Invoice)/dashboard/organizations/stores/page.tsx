@@ -1,6 +1,5 @@
-import brandApi from "@/actions/brands";
 import OrganizationsApi from "@/actions/organizations";
-import OrganizationsPage from "@/page/organizations";
+import OrganizationsStorePage from "@/page/organization/store";
 import { cookies } from "next/headers";
 import React from "react";
 
@@ -11,20 +10,17 @@ export default async function Organizations(props: any) {
   };
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
-  const storeUser = cookieStore.get("User")?.value;
-  const brandId = JSON.parse(storeUser!).brandId;
-  console.log("hehehe:",storeUser);
-  console.log("hehehe:",brandId);
-  const response = await brandApi.getOrganizationByBrandId(
-    brandId,
+  const storeUser = cookieStore.get("user")?.value;
+  const organizationId = JSON.parse(storeUser!).organizationId;
+  const response = await OrganizationsApi.getStoresByOrganizationById(
+    organizationId,
     accessToken!,
-    params,
+    params
   );
-  
 
   return (
     <>
-      <OrganizationsPage props={props} data={response.payload} />
+      <OrganizationsStorePage props={props} data={response.payload} />
     </>
   );
 }

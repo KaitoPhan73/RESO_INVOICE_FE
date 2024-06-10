@@ -16,7 +16,23 @@ const PATH_DASHBOARD = {
   users: path(ROOT_DASHBOARD, "/users"),
   brands: path(ROOT_DASHBOARD, "/brands"),
   partners: path(ROOT_DASHBOARD, "/partners"),
+  stores: path(ROOT_DASHBOARD, "/stores"),
 };
+
+const PATH_ORGANIZATION = {
+  root: PATH_DASHBOARD,
+  stores: path(PATH_DASHBOARD.organizations, "/stores"),
+  invoices: path(PATH_DASHBOARD.organizations, "/invoices"),
+  invoicetemplate: path(PATH_DASHBOARD.organizations, "/templates"),
+};
+
+const PATH_BRAND = {
+  root: PATH_DASHBOARD,
+  inventoryitems: path(PATH_DASHBOARD.brands, "/inventoryitems"),
+  invoices: path(PATH_DASHBOARD.brands, "/invoices"),
+  organizations: path(PATH_DASHBOARD.brands, "/organizations"),
+};
+
 
 const PATH_USER = {
   root: ROOT_USER,
@@ -24,13 +40,13 @@ const PATH_USER = {
   about: path(ROOT_DASHBOARD, "/about"),
 };
 
-const PATH_COMPANY = {
-  root: ROOT_COMPANY,
-  // brands: path(ROOT_COMPANY, "/brands"),
-  // partners: path(ROOT_COMPANY, "/partners"),
-  organizations: path(ROOT_COMPANY, "/organizations"),
-  stores: path(ROOT_COMPANY, "/stores"),
-};
+// const PATH_COMPANY = {
+//   root: ROOT_COMPANY,
+//   // brands: path(ROOT_COMPANY, "/brands"),
+//   // partners: path(ROOT_COMPANY, "/partners"),
+//   organizations: path(ROOT_COMPANY, "/organizations"),
+//   stores: path(ROOT_COMPANY, "/stores"),
+// };
 
 const PATH_CHART = {
   root: ROOT_CHART,
@@ -40,8 +56,9 @@ const PATH_CHART = {
 const PATHS = {
   PATH_DASHBOARD,
   PATH_USER,
-  PATH_COMPANY,
   PATH_CHART,
+  PATH_ORGANIZATION,
+  PATH_BRAND,
 };
 
 export default PATHS;
