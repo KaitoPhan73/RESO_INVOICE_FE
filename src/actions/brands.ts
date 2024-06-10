@@ -47,8 +47,8 @@ const brandApi = {
     });
   },
   
-  getUserByBrandId: (brandId: string, sessionToken: string, params?: any) => {
-    return httpInvoice.get<TBrandBase>(`brands/${brandId}/users`, {
+  getOrganizationAccountsByBrandId: (brandId: string, sessionToken: string, params?: any) => {
+    return httpInvoice.get<TBrandBase>(`brands/${brandId}/organization-accounts`, {
       params,
       headers: { Authorization: `Bearer ${sessionToken}` },
     });

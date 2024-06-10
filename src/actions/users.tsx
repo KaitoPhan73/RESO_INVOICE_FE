@@ -37,6 +37,7 @@ const userApi = {
       headers: { Authorization: `Bearer ${sessionToken}` },
     });
   },
+  
 
 };
 
