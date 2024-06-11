@@ -15,7 +15,6 @@ export default function BrandAccountPage({ props, data }: Props) {
   console.log("data:", data);
 
   const columns: TableColumnsType<TBrandAccounts> = [
-
     {
       title: "Tên đăng nhập",
       dataIndex: "username",
@@ -61,8 +60,8 @@ export default function BrandAccountPage({ props, data }: Props) {
     },
     {
       title: "Mã thương hiệu",
-      dataIndex: "brandCode",
-      key: "brandCode",
+      dataIndex: "brandId",
+      key: "brandId",
     },
   ];
 
