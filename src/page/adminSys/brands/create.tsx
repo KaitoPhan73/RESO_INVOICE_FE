@@ -30,7 +30,7 @@ export default function CreateBrandPage() {
 
   const onSubmit = async (values: TBrandBody) => {
     try {
-      const response = await brandApi.createBrand(values);
+      // const response = await brandApi.createBrand(values);
       console.log("values", values);
       // if (response.status === 200) {
       //   router.push(PATH_DASHBOARD.brand);
