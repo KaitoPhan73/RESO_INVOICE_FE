@@ -64,7 +64,13 @@ export default function LoginPage() {
       if (response.status === 200) {
         dispatch(setUser(user));
         enqueueSnackbar("Login successfully", { variant: "success" });
-        router.refresh();
+        if (user?.role === 0) {
+          router.push(PATHS.PATH_BRAND.organizations);
+        } else if (user?.role === 1) {
+          router.push(PATHS.PATH_ADMINSYSTEM.brands);
+        } else if (user?.role === 2) {
+          router.push(PATHS.PATH_ORGANIZATION.invoices);
+        }
       }
     } catch (error: any) {
       console.log("error", error);
@@ -73,9 +79,8 @@ export default function LoginPage() {
     }
   };
 
-
   useEffect(() => {
-    const stars = document.querySelectorAll('.star');
+    const stars = document.querySelectorAll(".star");
     const speed = 2;
 
     stars.forEach((star, index) => {
@@ -83,7 +88,10 @@ export default function LoginPage() {
       const randY = Math.random() * window.innerHeight;
       const rotation = Math.random() * 180;
 
-      star.setAttribute('style', `top: ${randY}px; left: ${randX}px; transform: rotate(${rotation}deg);`);
+      star.setAttribute(
+        "style",
+        `top: ${randY}px; left: ${randX}px; transform: rotate(${rotation}deg);`
+      );
 
       const goRight = Math.random() < 0.5;
       const goDown = Math.random() < 0.5;
@@ -95,8 +103,12 @@ export default function LoginPage() {
       if (!goDown) speedY = -speedY;
 
       const updateStarPosition = () => {
-        let x = parseFloat(star.getAttribute('style')?.split(';')[1]?.split(':')[1] || '0');
-        let y = parseFloat(star.getAttribute('style')?.split(';')[0]?.split(':')[1] || '0');
+        let x = parseFloat(
+          star.getAttribute("style")?.split(";")[1]?.split(":")[1] || "0"
+        );
+        let y = parseFloat(
+          star.getAttribute("style")?.split(";")[0]?.split(":")[1] || "0"
+        );
 
         if (x > window.innerWidth || x < 0) speedX = -speedX;
         if (y > window.innerHeight || y < 0) speedY = -speedY;
@@ -104,12 +116,14 @@ export default function LoginPage() {
         x += speedX;
         y += speedY;
 
-        star.setAttribute('style', `top: ${y}px; left: ${x}px; transform: rotate(${rotation}deg); box-shadow: 0 0 100px #000;`);
+        star.setAttribute(
+          "style",
+          `top: ${y}px; left: ${x}px; transform: rotate(${rotation}deg); box-shadow: 0 0 100px #000;`
+        );
       };
 
       setInterval(updateStarPosition, 1000 / 60);
     });
-
   }, []);
 
   return (
@@ -165,13 +179,12 @@ export default function LoginPage() {
                   zIndex: 2,
                   width: "40px",
                   height: "40px",
-                  backgroundImage: "url('/images/sky.jpg')", 
+                  backgroundImage: "url('/images/sky.jpg')",
                   backgroundSize: "cover",
-                  animation: "spin 5s linear infinite", 
+                  animation: "spin 5s linear infinite",
                   borderRadius: "50%",
                   backgroundColor: "black",
                   boxShadow: "0 0 1000px #000",
-
                 }}
               />
             ))}

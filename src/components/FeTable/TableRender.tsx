@@ -40,8 +40,8 @@ const TableRender = (props: IProps) => {
     onCreate,
   } = props;
   const meta = {
-    current: propsUrl ? propsUrl.page : 1,
-    pageSize: propsUrl ? propsUrl.size : 10,
+    current: propsUrl.searchParams ? propsUrl.searchParams.page : 1,
+    pageSize: propsUrl.searchParams ? propsUrl.searchParams.size : 10,
     total: data.total,
   };
   useEffect(() => {
@@ -63,10 +63,10 @@ const TableRender = (props: IProps) => {
     updatedColumns.push({
       dataIndex: "delete",
       fixed: "right",
-      width: 100,
+      width: 50,
       render: (_: any, record: any) => (
         <DeleteOutlined
-          style={{ fontSize: "32px", color: "red" }}
+          style={{ fontSize: "24px", color: "red" }}
           onClick={() => onDelete(record[rowKey!])}
         />
       ),
@@ -77,10 +77,10 @@ const TableRender = (props: IProps) => {
     updatedColumns.push({
       dataIndex: "edit",
       fixed: "right",
-      width: 100,
+      width: 50,
       render: (_: any, record: any) => (
         <a onClick={() => router.push(pathname!.concat(`/${record[rowKey!]}`))}>
-          <EditOutlined style={{ fontSize: "32px" }} />
+          <EditOutlined style={{ fontSize: "24px" }} />
         </a>
       ),
     });

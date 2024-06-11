@@ -3,7 +3,7 @@ import OrganizationsStorePage from "@/page/organization/store";
 import { cookies } from "next/headers";
 import React from "react";
 
-export default async function Organizations(props: any) {
+export default async function Stores(props: any) {
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     size: props.searchParams.size ? +props.searchParams.size : 10,
