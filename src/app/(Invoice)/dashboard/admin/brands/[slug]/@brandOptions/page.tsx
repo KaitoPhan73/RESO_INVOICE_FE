@@ -44,7 +44,7 @@ export default async function BrandOptions(props: any) {
     // inventoryItems: resInventoryItems.payload,
     invoices: resInvoices.payload,
     organizations: resOrganizations.payload,
-    resOrganizationsAccounts: resOrganizationsAccounts.payload,
+    organizationsAccounts: resOrganizationsAccounts.payload,
     // users: resUsers.payload,
     brandId: props.params.slug,
   };

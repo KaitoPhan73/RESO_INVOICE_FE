@@ -1,8 +1,62 @@
+import { RoleEnum } from "@/enums/role";
 import { TInventoryItem } from "@/schemaValidations/inventoryItems.chema";
 import { TInvoice } from "@/schemaValidations/invoice.schema";
 import { TOrganization } from "@/schemaValidations/organization.schema";
+import { TOrganizationAccounts } from "@/schemaValidations/organizationaccounts.schema";
 import { TUser } from "@/schemaValidations/user.schema";
-import { TableColumnsType } from "antd"; // Assuming you are using Ant Design
+import { TableColumnsType, Tag } from "antd"; // Assuming you are using Ant Design
+
+export const organizationAccountsColumns: TableColumnsType<TOrganizationAccounts> =
+  [
+    {
+      title: "Tên đăng nhập",
+      dataIndex: "username",
+      key: "username",
+    },
+    {
+      title: "Tên",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Vai trò",
+      dataIndex: "role",
+      key: "role",
+      render: (value: number) => {
+        const roles = {
+          1: "Admin",
+          2: "User",
+          3: "Guest",
+        };
+        return RoleEnum[value] || "Unknown";
+      },
+    },
+    {
+      title: "Trạng thái",
+      dataIndex: "status",
+      key: "status",
+      render: (value: number) =>
+        value === 0 ? (
+          <Tag color="geekblue" key={value}>
+            Inactive
+          </Tag>
+        ) : (
+          <Tag color="green" key={value}>
+            Active
+          </Tag>
+        ),
+    },
+    {
+      title: "Mã cửa hàng",
+      dataIndex: "storeCode",
+      key: "storeCode",
+    },
+    {
+      title: "Mã thương hiệu",
+      dataIndex: "brandCode",
+      key: "brandCode",
+    },
+  ];
 
 export const itemColumns: TableColumnsType<TInventoryItem> = [
   {

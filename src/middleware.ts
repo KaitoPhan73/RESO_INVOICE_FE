@@ -6,13 +6,7 @@ const privatePaths = ["/"];
 const authPaths = ["/login"];
 
 export function middleware(request: NextRequest) {
-  const {
-    PATH_DASHBOARD,
-    PATH_USER,
-    PATH_ORGANIZATION,
-    PATH_BRAND,
-    PATH_ADMINSYSTEM,
-  } = PATHS;
+  const { PATH_ORGANIZATION, PATH_BRAND, PATH_ADMINSYSTEM } = PATHS;
   const { pathname } = request.nextUrl;
   const accessToken = request.cookies.get("accessToken")?.value;
   const userRaw = request.cookies.get("user")?.value ?? " ";
@@ -33,15 +27,32 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
   if (authPaths.some((path) => pathname.startsWith(path)) && accessToken) {
+    let destinationUrl;
+
     if (user?.role === 0) {
+      destinationUrl = PATH_BRAND.organizations;
+    } else if (user?.role === 1) {
+      destinationUrl = PATH_ADMINSYSTEM.brands;
+    } else if (user?.role === 2) {
+      destinationUrl = PATH_ORGANIZATION.invoices;
+    }
+    if (destinationUrl) {
+      return NextResponse.redirect(new URL(destinationUrl, request.url));
+    }
+  }
+
+  if (user) {
+    if (user.role === 0 && pathname.startsWith(PATH_ADMINSYSTEM.brands)) {
       return NextResponse.redirect(
         new URL(PATH_BRAND.organizations, request.url)
       );
-    } else if (user?.role === 1) {
+    }
+    if (user.role === 1 && pathname.startsWith(PATH_ORGANIZATION.invoices)) {
       return NextResponse.redirect(
         new URL(PATH_ADMINSYSTEM.brands, request.url)
       );
-    } else if (user?.role === 2) {
+    }
+    if (user.role === 2 && pathname.startsWith(PATH_BRAND.organizations)) {
       return NextResponse.redirect(
         new URL(PATH_ORGANIZATION.invoices, request.url)
       );
@@ -53,5 +64,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/", "/login", "/register", "/dashboard/:path*", "/company/:path*"],
+  matcher: ["/", "/login", "/register", "/dashboard/:path*"],
 };

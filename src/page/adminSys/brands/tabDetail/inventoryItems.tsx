@@ -6,5 +6,5 @@ type Props = {
   data: any;
 };
 export default function InventoryItemsPage({ data }: Props) {
-  return <TableRender columns={invoiceColumns} data={data} onEdit />;
+  return <TableRender columns={invoiceColumns} data={data} />;
 }

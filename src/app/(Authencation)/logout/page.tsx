@@ -29,15 +29,10 @@ function LogoutLogic() {
       try {
         await authApi.logoutFromNextClientToNextServer(true, signal);
 
-        // Clear cookies and local storage
         clearCookies();
         localStorage.clear();
-        sessionStorage.clear(); // Clear session storage as well if needed
+        sessionStorage.clear();
 
-        // Dispatch action to clear user state
-        // dispatch(setUser(null));
-
-        // Redirect to login page
         router.push(`/login?redirectFrom=${pathname}`);
       } catch (error) {
         console.error("Logout failed:", error);

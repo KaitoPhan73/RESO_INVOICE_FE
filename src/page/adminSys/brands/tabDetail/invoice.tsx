@@ -7,7 +7,5 @@ type Props = {
   props: any;
 };
 export default function InvoicePage({ data, props }: Props) {
-  return (
-    <TableRender columns={invoiceColumns} propsUrl={props} data={data} onEdit />
-  );
+  return <TableRender columns={invoiceColumns} propsUrl={props} data={data} />;
 }

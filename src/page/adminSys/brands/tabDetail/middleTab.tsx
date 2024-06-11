@@ -8,6 +8,7 @@ import InvoicePage from "./invoice";
 import OrganizationPage from "./organizations";
 import UsersPage from "./users";
 import OrganizationsPage from "@/page/organizations";
+import OrganizationAccountsPage from "./organizationAccounts";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -103,13 +104,16 @@ export default function MiddleBrandTab({ data, props }: Props) {
             </TabContext>
           </Box>
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={3}>
+        <CustomTabPanel value={value} index={2}>
           <Grid container spacing={2}>
             <Grid item xs={7}></Grid>
           </Grid>
           <Box sx={{ pt: "5px" }}>
             <TabContext value={activeTab}>
-              <InvoicePage data={data.invoices} props={props} />
+              <OrganizationAccountsPage
+                data={data.organizationsAccounts}
+                props={props}
+              />
             </TabContext>
           </Box>
         </CustomTabPanel>
