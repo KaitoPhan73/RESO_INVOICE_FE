@@ -1,22 +1,16 @@
-import accountApi from "@/actions/accounts";;
-import BrandAccountPage from "@/page/adminSys/brand-account";
+import accountApi from "@/actions/accounts";
 import CreateBrandAccountPage from "@/page/adminSys/brand-account/create";
 import { cookies } from "next/headers";
 import React from "react";
 
-export default async function BrandAccounts(props: any) {
+export default async function createBrandAccount(props: any) {
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
-    size: props.searchParams.size ? +props.searchParams.size : 10,
+    size: props.searchParams.size ? +props.searchParams.size : 100,
   };
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
   const response = await accountApi.getBrandAccount(accessToken!, params);
   console.log("hiii: ",response);
-
-  return (
-    <>
-      <BrandAccountPage props={props} data={response.payload} />
-    </>
-  );
+  return <CreateBrandAccountPage props={props} brands={response.payload} />;
 }
