@@ -46,5 +46,14 @@ export default function OrganizationsStorePage({ props, data }: Props) {
     },
   ];
 
-  return <TableRender columns={columns} data={data} onDelete onEdit onCreate />;
+  return (
+    <TableRender
+      columns={columns}
+      propsUrl={props}
+      data={data}
+      onDelete
+      onEdit
+      onCreate
+    />
+  );
 }

@@ -3,7 +3,7 @@ import OrganizationsInvoiceTemplatePage from "@/page/organization/invoiceTemplat
 import { cookies } from "next/headers";
 import React from "react";
 
-export default async function Organizations(props: any) {
+export default async function Templates(props: any) {
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     size: props.searchParams.size ? +props.searchParams.size : 10,
