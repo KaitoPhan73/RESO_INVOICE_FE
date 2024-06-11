@@ -36,6 +36,7 @@ export default function BrandPage({ props, data }: Props) {
     <TableRender
       columns={columns}
       data={data}
+      propsUrl={props}
       onDelete
       onEdit
       onCreate

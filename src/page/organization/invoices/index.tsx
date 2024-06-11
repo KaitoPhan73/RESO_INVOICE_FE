@@ -98,5 +98,14 @@ export default function OrganizationsInvoicePage({ props, data }: Props) {
     },
   ];
 
-  return <TableRender columns={columns} data={data} onDelete onEdit onCreate />;
+  return (
+    <TableRender
+      columns={columns}
+      data={data}
+      propsUrl={props}
+      onDelete
+      onEdit
+      onCreate
+    />
+  );
 }

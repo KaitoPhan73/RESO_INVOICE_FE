@@ -42,6 +42,8 @@ function LogoutLogic() {
     if (accessToken === localStorage.getItem("accessToken")) {
       logout();
     } else {
+      //tạm thời cho log out lun nếu sửa ở cookie
+      logout();
       console.error("Access token does not match");
     }
 
