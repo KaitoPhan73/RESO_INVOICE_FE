@@ -4,33 +4,36 @@ import UpdateBrandPage from "@/page/adminSys/brands/update";
 import { cookies } from "next/headers";
 import React from "react";
 
-export default async function BrandOptions({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function BrandOptions(props: any) {
   const defaultParams = {
     page: 1,
     size: 10,
   };
+  console.log("props", props);
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
 
-  const resInventoryItems = await brandApi.getInventoryItemsByBrandId(
-    params.slug,
-    accessToken!,
-    defaultParams
-  );
+  // const resInventoryItems = await brandApi.getInventoryItemsByBrandId(
+  //   params.slug,
+  //   accessToken!,
+  //   defaultParams
+  // );
   const resInvoices = await brandApi.getInvoiceByBrandId(
-    params.slug,
+    props.params.slug,
     accessToken!,
     defaultParams
   );
   const resOrganizations = await brandApi.getOrganizationByBrandId(
-    params.slug,
+    props.params.slug,
     accessToken!,
     defaultParams
   );
+  const resOrganizationsAccounts =
+    await brandApi.getOrganizationAccountsByBrandId(
+      props.params.slug,
+      accessToken!,
+      defaultParams
+    );
   // const resUsers = await brandApi.getUserByBrandId(
   //   params.slug,
   //   accessToken!,
@@ -38,11 +41,12 @@ export default async function BrandOptions({
   // );
 
   const data = {
-    inventoryItems: resInventoryItems.payload,
+    // inventoryItems: resInventoryItems.payload,
     invoices: resInvoices.payload,
     organizations: resOrganizations.payload,
+    resOrganizationsAccounts: resOrganizationsAccounts.payload,
     // users: resUsers.payload,
-    brandId: params.slug,
+    brandId: props.params.slug,
   };
-  return <MiddleBrandTab data={data} />;
+  return <MiddleBrandTab data={data} props={props} />;
 }

@@ -15,19 +15,21 @@ interface TabPanelProps {
 }
 type Props = {
   data: {
-    inventoryItems: any;
+    // inventoryItems: any;
     invoices: any;
     organizations: any;
+    organizationsAccounts: any;
     // users: any;
   };
+  props: any;
 };
-export default function MiddleBrandTab({ data }: Props) {
+export default function MiddleBrandTab({ data, props }: Props) {
+  console.log("params", props);
   const [activeTab, setActiveTab] = useState("1");
   const [value, setValue] = React.useState(0);
   const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  console.log("sdsdsdsdsdsdsdsds");
   const CustomTabPanel = (props: TabPanelProps) => {
     const { children, value, index, ...other } = props;
 
@@ -65,19 +67,29 @@ export default function MiddleBrandTab({ data }: Props) {
             onChange={handleChangeTab}
             aria-label="basic tabs example"
           >
-            <Tab label="Hàng tồn kho" {...a11yProps(0)} />
+            {/* <Tab label="Hàng tồn kho" {...a11yProps(0)} /> */}
             <Tab label="Hóa đơn" {...a11yProps(1)} />
             <Tab label="Tổ chức" {...a11yProps(2)} />
-            <Tab label="Người dùng" {...a11yProps(3)} />
+            <Tab label="Tài khoản tổ chức" {...a11yProps(3)} />
           </Tabs>
         </Box>
-        <CustomTabPanel value={value} index={0}>
+        {/* <CustomTabPanel value={value} index={0}>
           <Grid container spacing={2}>
             <Grid item xs={7}></Grid>
           </Grid>
           <Box sx={{ pt: "5px" }}>
             <TabContext value={activeTab}>
               <InventoryItemsPage data={data.inventoryItems} />
+            </TabContext>
+          </Box>
+        </CustomTabPanel> */}
+        <CustomTabPanel value={value} index={0}>
+          <Grid container spacing={2}>
+            <Grid item xs={7}></Grid>
+          </Grid>
+          <Box sx={{ pt: "5px" }}>
+            <TabContext value={activeTab}>
+              <InvoicePage data={data.invoices} props={props} />
             </TabContext>
           </Box>
         </CustomTabPanel>
@@ -87,17 +99,17 @@ export default function MiddleBrandTab({ data }: Props) {
           </Grid>
           <Box sx={{ pt: "5px" }}>
             <TabContext value={activeTab}>
-              <InvoicePage data={data.invoices} />
+              <OrganizationsPage props={props} data={data.organizations} />
             </TabContext>
           </Box>
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={2}>
+        <CustomTabPanel value={value} index={3}>
           <Grid container spacing={2}>
             <Grid item xs={7}></Grid>
           </Grid>
           <Box sx={{ pt: "5px" }}>
             <TabContext value={activeTab}>
-              <OrganizationsPage  props={OrganizationPage} data={data.organizations} />
+              <InvoicePage data={data.invoices} props={props} />
             </TabContext>
           </Box>
         </CustomTabPanel>

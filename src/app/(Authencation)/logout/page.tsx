@@ -35,7 +35,7 @@ function LogoutLogic() {
         sessionStorage.clear(); // Clear session storage as well if needed
 
         // Dispatch action to clear user state
-        dispatch(setUser(null));
+        // dispatch(setUser(null));
 
         // Redirect to login page
         router.push(`/login?redirectFrom=${pathname}`);
@@ -47,6 +47,8 @@ function LogoutLogic() {
     if (accessToken === localStorage.getItem("accessToken")) {
       logout();
     } else {
+      //tạm thời cho log out lun nếu sửa ở cookie
+      logout();
       console.error("Access token does not match");
     }
 
