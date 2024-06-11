@@ -1,4 +1,4 @@
-import PartnersApi from "@/actions/partner";
+import PartnersApi from "@/actions/partners";
 import StoresApi from "@/actions/store";
 import StoresPage from "@/page/stores";
 import { cookies } from "next/headers";

@@ -31,4 +31,4 @@ export type TUser = {
   role: string;
   status: string;
   brandName: string;
-};
+} | null;

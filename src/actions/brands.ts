@@ -3,18 +3,6 @@ import { TBrandBody } from "@/schemaValidations/brand.schema";
 import { TBrandBase } from "@/types/Brand";
 import { TTableResponse } from "@/types/Table";
 
-// const getBrands = async (sessionToken: string, params?: any) => {
-//   "use server";
-//   return httpInvoice.get<TTableResponse<TBrandBase>>("brands", {
-//     params,
-//     headers: { Authorization: `Bearer ${sessionToken}` },
-//   });
-// };
-// const createBrand = async (data: TBrandBody) => {
-//   " use server";
-//   return httpInvoice.post<TBrandBody>("brands", data);
-// };
-
 const brandApi = {
   getBrands: (sessionToken: string, params?: any) => {
     return httpInvoice.get<TTableResponse<TBrandBase>>("brands", {
@@ -58,8 +46,9 @@ const brandApi = {
       headers: { Authorization: `Bearer ${sessionToken}` },
     });
   },
-  getUserByBrandId: (brandId: string, sessionToken: string, params?: any) => {
-    return httpInvoice.get<TBrandBase>(`brands/${brandId}/users`, {
+  
+  getOrganizationAccountsByBrandId: (brandId: string, sessionToken: string, params?: any) => {
+    return httpInvoice.get<TBrandBase>(`brands/${brandId}/organization-accounts`, {
       params,
       headers: { Authorization: `Bearer ${sessionToken}` },
     });

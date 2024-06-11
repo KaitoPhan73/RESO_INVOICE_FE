@@ -1,4 +1,4 @@
-import PartnersApi from "@/actions/partner";
+import PartnersApi from "@/actions/partners";
 import ChartPage from "@/page/chart/ChartPage";
 import ChartStoresPage from "@/page/chart/BarChartStoresPage";
 import LineChartStoresPage from "@/page/chart/LineChartStoresPage";
