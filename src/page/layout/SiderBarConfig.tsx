@@ -12,7 +12,13 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-const { PATH_DASHBOARD, PATH_ORGANIZATION, PATH_CHART, PATH_BRAND, PATH_ADMINSYSTEM } = PATHS;
+const {
+  PATH_DASHBOARD,
+  PATH_ORGANIZATION,
+  PATH_CHART,
+  PATH_BRAND,
+  PATH_ADMINSYSTEM,
+} = PATHS;
 
 const customMenuItem = (path: string, name: string) => {
   return {
@@ -46,7 +52,7 @@ const SystemAdminSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Company</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>DashBoard</span>
     ),
     key: "sub2",
     icon: <CoffeeOutlined />,
@@ -94,7 +100,6 @@ const BrandAdminSiderBarConfig = [
       customMenuItem(PATH_BRAND.invoices, "Invoice Management"),
       customMenuItem(PATH_BRAND.organizationaccounts, "Organization Accounts"),
       customMenuItem(PATH_BRAND.organizations, "Organizations"),
-
     ],
   },
 

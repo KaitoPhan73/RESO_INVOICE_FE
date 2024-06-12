@@ -5,6 +5,7 @@ import items from "./SiderBar";
 import FooterCustom from "./Footer";
 import HeaderCustom from "./Header";
 import { usePathname } from "next/navigation";
+import SidebarComponent from "./SideBarComponent";
 const { Content, Sider } = Layout;
 
 const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -43,22 +44,15 @@ const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   } = theme.useToken();
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider
-        trigger={null}
-        collapsible
+      <SidebarComponent
         collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          items={items}
-          selectedKeys={selectedKeys}
-          openKeys={openKeys}
-          onOpenChange={onOpenChange}
-        />
-      </Sider>
+        onOpenChange={onOpenChange}
+        openKeys={openKeys}
+        selectedKeys={selectedKeys}
+        setCollapsed={setCollapsed}
+        setOpenKeys={setOpenKeys}
+        setSelectedKeys={setSelectedKeys}
+      />
       <Layout>
         <HeaderCustom
           style={{ padding: 0, background: colorBgContainer }}
