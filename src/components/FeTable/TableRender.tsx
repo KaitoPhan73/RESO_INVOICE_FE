@@ -1,3 +1,4 @@
+"use client";
 import { TTableResponse } from "@/types/Table";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Table, DatePicker } from "antd";
@@ -73,13 +74,6 @@ const TableRender = (props: IProps) => {
           newParams.set(key, filterValue.toString());
         }
       }
-      // Remove page from URL if filterDropdown is "date"
-      // const column = columns.find(
-      //   (col) => (col as ColumnType<any>).dataIndex === key
-      // );
-      // if (column && column.filterDropdown === "date") {
-      //   newParams.delete("page");
-      // }
     });
 
     replace(`${pathname}?${newParams.toString()}`);
