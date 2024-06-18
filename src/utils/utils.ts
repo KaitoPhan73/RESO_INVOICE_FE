@@ -33,6 +33,21 @@ export const getUserInfo = () => {
   }
 };
 
+export const getFormattedDate = () => {
+  const date = new Date();
+
+  // Lấy 2 số cuối của năm
+  const year = date.getFullYear().toString();
+
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+
+  // Lấy ngày, thêm '0' nếu ngày là số một chữ số
+  const day = date.getDate().toString().padStart(2, "0");
+
+  // Ghép các phần lại với nhau
+  return `${year}-${month}-${day}`;
+};
+
 export const removeAppToken = (token: string) => {
   if (isClient()) {
     localStorage.removeItem("accessToken");

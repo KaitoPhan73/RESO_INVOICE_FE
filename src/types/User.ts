@@ -16,7 +16,7 @@ export type TUserBase = {
   id: string;
   username: string;
   name: string;
-  role: boolean;
+  role: number;
   status: boolean;
   storeId: string;
   storeCode: string;

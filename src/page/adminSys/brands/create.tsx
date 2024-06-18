@@ -12,7 +12,7 @@ import PATHS from "@/route/paths";
 import { statusList } from "./config";
 
 export default function CreateBrandPage() {
-  const { PATH_DASHBOARD } = PATHS;
+  const { PATH_ADMINSYSTEM } = PATHS;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TBrandBody>({
@@ -30,12 +30,12 @@ export default function CreateBrandPage() {
 
   const onSubmit = async (values: TBrandBody) => {
     try {
-      // const response = await brandApi.createBrand(values);
+      const response = await brandApi.createBrand(values);
       console.log("values", values);
-      // if (response.status === 200) {
-      //   router.push(PATH_DASHBOARD.brand);
-      //   enqueueSnackbar("Tạo thành công", { variant: "success" });
-      // }
+      if (response.status === 201) {
+        router.push(PATH_ADMINSYSTEM.brands);
+        enqueueSnackbar("Tạo thành công", { variant: "success" });
+      }
     } catch (error: any) {
       console.log("error", error);
     }

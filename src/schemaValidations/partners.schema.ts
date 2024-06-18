@@ -7,6 +7,8 @@ export const PartnersBody = z.object({
   environment: z.number().int(),
   schemaConfig: z.string(),
   code: z.string(),
+  username: z.string(),
+  password: z.string(),
 });
 
 export type TPartnersBody = z.TypeOf<typeof PartnersBody>;

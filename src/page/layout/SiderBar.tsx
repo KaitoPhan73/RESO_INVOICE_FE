@@ -3,6 +3,7 @@ import type { MenuProps } from "antd";
 import SiderBarConfig from "./SiderBarConfig";
 import { getUserInfo } from "@/utils/utils";
 import { RoleEnum } from "@/enums/role";
+import userApi from "@/actions/users";
 type MenuItem = Required<MenuProps>["items"][number];
 
 function getItem(
@@ -25,7 +26,7 @@ const {
 } = SiderBarConfig;
 
 const user = getUserInfo();
-let SiderConfigs: MenuItem[] | null = null;
+let SiderConfigs: MenuItem[];
 
 switch (user?.role) {
   case RoleEnum.Brand:
@@ -51,6 +52,6 @@ switch (user?.role) {
     break;
 }
 
-const items: MenuItem[] = SiderConfigs ?? [];
+const items: MenuItem[] = SiderConfigs;
 
 export default items;

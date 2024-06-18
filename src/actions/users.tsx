@@ -1,28 +1,7 @@
-import { httpInvoice, httpMock } from "@/lib/http";
+import { httpInvoice, httpServer } from "@/lib/http";
+import { TLoginResponse } from "@/schemaValidations/auth.schema";
 import { TTableResponse } from "@/types/Table";
 import { TUserBase } from "@/types/User";
-
-// const getUsers = async (sessionToken: string, params?: any) => {
-//   "use server";
-//   return httpInvoice.get<TTableResponse<TUserBase>>("brands", {
-//     params,
-//     headers: { Authorization: `Bearer ${sessionToken}` },
-//   });
-// };
-
-// const getBrandById: (brandId: string, sessionToken: string, params?: any) => {
-//   return httpInvoice.get<TBrandBase>(`brands/${brandId}`, {
-//     params,
-//     headers: { Authorization: `Bearer ${sessionToken}` },
-//   });
-// },
-
-// const userApi = {
-//   getUsers,
-// };
-
-// export default userApi;
-
 
 const userApi = {
   getUsers: (sessionToken: string, params?: any) => {
@@ -37,8 +16,11 @@ const userApi = {
       headers: { Authorization: `Bearer ${sessionToken}` },
     });
   },
-  
-
+  getUserFromServer: (params?: any) => {
+    return httpServer.get<TLoginResponse>("api/user", {
+      params,
+    });
+  },
 };
 
 export default userApi;

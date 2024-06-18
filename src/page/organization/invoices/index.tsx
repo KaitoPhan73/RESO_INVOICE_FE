@@ -1,7 +1,7 @@
 "use client";
 import TableRender from "@/components/FeTable/TableRender";
 import { TInvoice } from "@/schemaValidations/invoice.schema";
-import { TableColumnsType, Tag } from "antd";
+import { DatePicker, TableColumnsType, Tag } from "antd";
 import React from "react";
 interface Props {
   props: any;
@@ -14,6 +14,7 @@ export default function OrganizationsInvoicePage({ props, data }: Props) {
       dataIndex: "createdDate",
       key: "createdDate",
       render: (value: string) => new Date(value).toLocaleString(),
+      filterDropdown: "date",
     },
     {
       title: "Ngày chỉnh sửa",
