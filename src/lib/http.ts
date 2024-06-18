@@ -184,6 +184,13 @@ const createHttpClient = (defaultBaseUrl: string) => {
     ) {
       return request<Response>("PUT", url, { ...options, body });
     },
+    patch<Response>(
+      url: string,
+      body: any,
+      options?: Omit<CustomOptions, "body"> | undefined
+    ) {
+      return request<Response>("PUT", url, { ...options, body });
+    },
     delete<Response>(
       url: string,
       options?: Omit<CustomOptions, "body"> | undefined

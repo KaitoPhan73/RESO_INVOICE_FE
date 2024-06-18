@@ -19,7 +19,6 @@ export default async function OrganizationsInBrand(props: any) {
     accessToken!,
     params
   );
-  console.log("hiii: ",response);
 
   return (
     <>

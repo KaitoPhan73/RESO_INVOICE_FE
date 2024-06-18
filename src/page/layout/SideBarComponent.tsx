@@ -96,6 +96,7 @@ const SidebarComponent = ({
 
   return (
     <Sider
+      theme="light"
       trigger={null}
       collapsible
       collapsed={collapsed}
@@ -103,7 +104,7 @@ const SidebarComponent = ({
     >
       <div className="demo-logo-vertical" />
       <Menu
-        theme="dark"
+        theme="light"
         mode="inline"
         items={items}
         selectedKeys={selectedKeys}

@@ -92,15 +92,23 @@ const BrandAdminSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Dashboard</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Organization</span>
     ),
     key: "sub1",
-    icon: <DesktopOutlined />,
+    icon: <UserOutlined />,
     children: [
-      customMenuItem(PATH_BRAND.invoices, "Invoice Management"),
-      customMenuItem(PATH_BRAND.organizationaccounts, "Organization Accounts"),
-      customMenuItem(PATH_BRAND.organizations, "Organizations"),
+      customMenuItem(PATH_BRAND.organizationaccounts, "Accounts"),
+      customMenuItem(PATH_BRAND.organizations, "Management"),
     ],
+  },
+
+  {
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Invoice</span>
+    ),
+    key: "sub2",
+    icon: <FileOutlined />,
+    children: [customMenuItem(PATH_BRAND.invoices, "Management")],
   },
 
   {
