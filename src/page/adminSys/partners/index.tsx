@@ -36,7 +36,20 @@ export default function PartnersPage({ props, data }: Props) {
       title: "Schema Config",
       dataIndex: "schemaConfig",
     },
-  ];
+    {
+      title: "Username",
+      dataIndex: "username",
+    },
+    {
+      title: "Password",
+      dataIndex: "password",
+    },
+    {
+      title: "Code",
+      dataIndex: "code",
+    },
+  ]
+
 
   return (
     <TableRender

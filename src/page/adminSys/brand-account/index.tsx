@@ -60,8 +60,8 @@ export default function BrandAccountPage({ props, data }: Props) {
     },
     {
       title: "Mã thương hiệu",
-      dataIndex: "brandId",
-      key: "brandId",
+      dataIndex: "brandCode",
+      key: "brandCode",
     },
   ];
 
