@@ -1,25 +1,15 @@
 "use client";
 import authApi from "@/actions/auth";
-import { setUser } from "@/redux/User/userSlice";
+import { setUser, setUserServer } from "@/redux/User/userSlice";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
-
-function clearCookies() {
-  const cookies = document.cookie.split("; ");
-  for (const cookie of cookies) {
-    const eqPos = cookie.indexOf("=");
-    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-  }
-}
 
 function LogoutLogic() {
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
-  const accessToken = searchParams.get("accessToken");
 
   useEffect(() => {
     const controller = new AbortController();
@@ -27,30 +17,25 @@ function LogoutLogic() {
 
     const logout = async () => {
       try {
-        await authApi.logoutFromNextClientToNextServer(true, signal);
-
-        clearCookies();
+        dispatch(setUser(null));
+        dispatch(setUserServer(null));
         localStorage.clear();
         sessionStorage.clear();
-
+        await authApi.logoutFromNextClientToNextServer(true, signal);
         router.push(`/login?redirectFrom=${pathname}`);
       } catch (error) {
         console.error("Logout failed:", error);
+      } finally {
+        router.refresh();
       }
     };
 
-    if (accessToken === localStorage.getItem("accessToken")) {
-      logout();
-    } else {
-      //tạm thời cho log out lun nếu sửa ở cookie
-      logout();
-      console.error("Access token does not match");
-    }
+    logout();
 
     return () => {
       controller.abort();
     };
-  }, [accessToken, router, pathname, dispatch]);
+  }, [router, pathname, dispatch]);
 
   return <div>Logging out...</div>;
 }

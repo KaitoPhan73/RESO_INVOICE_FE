@@ -1,5 +1,8 @@
 import { httpInvoice } from "@/lib/http";
+import { TInvoiceReport } from "@/schemaValidations/invoice-report.schema";
+import { TInvoiceTemplateBody } from "@/schemaValidations/invoiceTemplate.schema";
 import { TOrganizationsBody } from "@/schemaValidations/organizations.schema";
+import { TStore } from "@/schemaValidations/store.schema";
 import { TBrandBase } from "@/types/Brand";
 import { TOrganizationsBase } from "@/types/Organization";
 import { TTableResponse } from "@/types/Table";
@@ -18,7 +21,7 @@ const organizationsApi = {
     return httpInvoice.post<TOrganizationsBody>("organizations", data);
   },
   getOrganizationById: (organizationId: string, sessionToken: string) => {
-    return httpInvoice.get<TOrganizationsBase>(
+    return httpInvoice.get<TTableResponse<TOrganizationsBase>>(
       `organizations/${organizationId}`,
       {
         headers: { Authorization: `Bearer ${sessionToken}` },
@@ -30,7 +33,7 @@ const organizationsApi = {
     sessionToken: string,
     params?: any
   ) => {
-    return httpInvoice.get<TOrganizationsBase>(
+    return httpInvoice.get<TTableResponse<TOrganizationsBase>>(
       `organizations/${organizationId}/invoices`,
       { params, headers: { Authorization: `Bearer ${sessionToken}` } }
     );
@@ -40,7 +43,7 @@ const organizationsApi = {
     sessionToken: string,
     params?: any
   ) => {
-    return httpInvoice.get<TOrganizationsBase>(
+    return httpInvoice.get<TTableResponse<TInvoiceTemplateBody>>(
       `organizations/${organizationId}/templates`,
       { params, headers: { Authorization: `Bearer ${sessionToken}` } }
     );
@@ -50,8 +53,18 @@ const organizationsApi = {
     sessionToken: string,
     params?: any
   ) => {
-    return httpInvoice.get<TOrganizationsBase>(
+    return httpInvoice.get<TTableResponse<TStore>>(
       `organizations/${organizationId}/stores`,
+      { params, headers: { Authorization: `Bearer ${sessionToken}` } }
+    );
+  },
+  getInvoiceReportByOrganizationId: (
+    organizationId: string,
+    sessionToken: string,
+    params?: any
+  ) => {
+    return httpInvoice.get<TInvoiceReport>(
+      `organizations/${organizationId}/invoice-report`,
       { params, headers: { Authorization: `Bearer ${sessionToken}` } }
     );
   },

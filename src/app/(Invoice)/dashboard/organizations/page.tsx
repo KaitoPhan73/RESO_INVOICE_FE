@@ -13,14 +13,11 @@ export default async function Organizations(props: any) {
   const accessToken = cookieStore.get("accessToken")?.value;
   const storeUser = cookieStore.get("User")?.value;
   const brandId = JSON.parse(storeUser!).brandId;
-  console.log("hehehe:",storeUser);
-  console.log("hehehe:",brandId);
   const response = await brandApi.getOrganizationByBrandId(
     brandId,
     accessToken!,
-    params,
+    params
   );
-  
 
   return (
     <>

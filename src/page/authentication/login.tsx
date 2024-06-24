@@ -24,6 +24,8 @@ import InputField from "@/components/form/InputField";
 import authApi from "@/actions/auth";
 import { LoginBody, TLoginBody } from "@/schemaValidations/auth.schema";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 import { setUser } from "@/redux/User/userSlice";
 import PATHS from "@/route/paths";
 
@@ -37,6 +39,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const user = useSelector((state: RootState) => state.user.userServer);
   const router = useRouter();
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -50,7 +53,7 @@ export default function LoginPage() {
     },
   });
   const { handleSubmit, control } = methods;
-
+  console.log("userOKKK", user);
   const onSubmit = async (values: TLoginBody) => {
     if (loading) return;
     setLoading(true);
