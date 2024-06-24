@@ -17,6 +17,7 @@ export default async function InvoicesInBrand(props: any) {
     accessToken!,
     params
   );
+  console.log("invoice:", response);
 
   return (
     <>

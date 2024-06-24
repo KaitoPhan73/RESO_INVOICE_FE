@@ -1,6 +1,5 @@
-"use client";
 import { Avatar, Button, Layout, Col, Row } from "antd";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -22,6 +21,15 @@ type Props = {
 const HeaderCustom = ({ style, setCollapsed, collapsed }: Props) => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const [flashing, setFlashing] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFlashing(!flashing);
+    }, 500); 
+
+    return () => clearInterval(interval);
+  }, [flashing]);
 
   const handleLogout = async () => {
     router.push("/logout");
@@ -37,13 +45,17 @@ const HeaderCustom = ({ style, setCollapsed, collapsed }: Props) => {
             onClick={() => setCollapsed(!collapsed)}
             style={{
               fontSize: "16px",
-              width: 64,
-              height: 64,
+              width: 90,
+              height: 90,
             }}
           />
         </Col>
         <Col>
-          <Avatar size={36} icon={<UserOutlined />} />
+          <Avatar
+            size={50}
+            icon={<UserOutlined />}
+            src={flashing ? "/images/khai.jpg" : "/images/khai.jpg"}
+          />
         </Col>
         <Col>
           <Button type="text" icon={<LogoutOutlined />} onClick={handleLogout}>
