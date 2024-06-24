@@ -26,6 +26,9 @@ import { LoginBody, TLoginBody } from '@/schemaValidations/auth.schema';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@/redux/User/userSlice';
 import PATHS from '@/route/paths';
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+
 
 type Props = {
   postData: any;
@@ -37,6 +40,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const user = useSelector((state: RootState) => state.user.userServer);
   const router = useRouter();
 
   const togglePasswordVisibility = () => {
@@ -51,7 +55,7 @@ export default function LoginPage() {
     },
   });
   const { handleSubmit, control } = methods;
-
+  console.log("userOKKK", user);
   const onSubmit = async (values: TLoginBody) => {
     if (loading) return;
     setLoading(true);

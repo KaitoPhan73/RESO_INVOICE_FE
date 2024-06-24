@@ -1,6 +1,5 @@
 import InvoiceApi from "@/actions/invoices";
 import OrganizationsInvoiceDetailPage from "@/page/organization/invoices/detail";
-import { AnyPtrRecord } from "dns";
 import { cookies } from "next/headers";
 import React from "react";
 

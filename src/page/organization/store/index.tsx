@@ -25,12 +25,12 @@ export default function OrganizationsStorePage({ props, data }: Props) {
       key: "status",
       render: (value: number) =>
         value === 0 ? (
-          <Tag color="volcano" key={value}>
-            Chờ xử lý
+          <Tag color="default" key={value}>
+            Không hoạt động
           </Tag>
         ) : (
           <Tag color="green" key={value}>
-            Hoàn thành
+            Hoạt động
           </Tag>
         ),
     },

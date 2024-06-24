@@ -4,13 +4,16 @@ import {
   FormControl,
   FormHelperText,
   Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
+  Popover,
+  IconButton,
 } from "@mui/material";
 import { useFormContext, Controller } from "react-hook-form";
+import CloseIcon from "@mui/icons-material/Close";
+
+interface Option {
+  value: any; // Cập nhật type definition cho Option
+  label: string;
+}
 
 interface TyphoFieldProps {
   name: string;
@@ -35,7 +38,9 @@ interface TyphoFieldProps {
     | "error";
   className?: string;
   fullWidth?: boolean;
-  showBorder?: boolean; // Prop to control border visibility
+  showBorder?: boolean;
+  options?: Option[]; // Options can be an array of Options or an enum object
+  convert?: (value: any) => string; // Convert function receives the field value
 }
 
 const TyphoField: React.FC<TyphoFieldProps> = ({
@@ -45,21 +50,43 @@ const TyphoField: React.FC<TyphoFieldProps> = ({
   color = "initial",
   className = "",
   fullWidth = false,
-  showBorder = false, // Default to no border
-  ...props
+  showBorder = false,
+  options,
+  convert, // Accepts a convert function
 }) => {
   const { control } = useFormContext();
-  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
   const [fullText, setFullText] = useState<string | null>(null);
 
-  const handleClickOpen = (text: string) => {
-    setFullText(text);
-    setOpen(true);
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    setAnchorEl(event.currentTarget);
+    setFullText(event.currentTarget.dataset.value || null);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setAnchorEl(null);
     setFullText(null);
+  };
+
+  const open = Boolean(anchorEl);
+
+  const getOptionLabel = (value: any) => {
+    if (options) {
+      const option = options.find((opt) => opt.value == value);
+      return option ? option.label : String(value);
+    }
+    return String(value);
+  };
+
+  const getValueLabel = (value: any) => {
+    if (options) {
+      const option = options.find((opt) => opt.value == value);
+      return option ? option.label : String(value);
+    }
+    if (convert) {
+      return convert(value);
+    }
+    return String(value);
   };
 
   return (
@@ -75,7 +102,6 @@ const TyphoField: React.FC<TyphoFieldProps> = ({
               gap: "4px",
             }}
           >
-            {/* Wrapping the label in a Box for overflow handling */}
             <Box
               sx={{
                 display: "flex",
@@ -85,8 +111,9 @@ const TyphoField: React.FC<TyphoFieldProps> = ({
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}
-              onClick={() => handleClickOpen(`${label}: ${field.value}`)}
-              title={label} // Show full label on hover
+              onClick={handleClick}
+              data-value={field.value}
+              title={label}
             >
               <Typography variant="caption" color="textSecondary">
                 {label}:
@@ -107,11 +134,12 @@ const TyphoField: React.FC<TyphoFieldProps> = ({
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}
-              onClick={() => handleClickOpen(field.value || "")}
-              title={field.value} // Show full value on hover
+              onClick={handleClick}
+              data-value={field.value || ""}
+              title={field.value}
             >
               <Typography variant={variant} color={color} noWrap>
-                {field.value ? field.value : "\u00A0"}
+                {field.value ? getValueLabel(field.value) : "\u00A0"}
               </Typography>
             </Box>
             {fieldState.error && (
@@ -123,20 +151,32 @@ const TyphoField: React.FC<TyphoFieldProps> = ({
         control={control}
       />
 
-      {/* Dialog for showing full text */}
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-        <DialogTitle>Chi tiết</DialogTitle>
-        <DialogContent>
+      <Popover
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <Box p={2} sx={{ minWidth: "200px" }}>
           <Typography variant="body1" color="textPrimary">
-            {fullText}
+            {fullText ? getValueLabel(fullText) : ""}
           </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Đóng
-          </Button>
-        </DialogActions>
-      </Dialog>
+          <IconButton
+            onClick={handleClose}
+            size="small"
+            sx={{ position: "absolute", top: "8px", right: "8px" }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
+      </Popover>
     </>
   );
 };

@@ -4,14 +4,17 @@ import store from "./store";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import SnackbarProviders from "./SnackBar";
 const cache = createCache({ key: "my-prefix-key" });
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Provider store={store}>
-      <CacheProvider value={cache}>
-        <AntdRegistry>{children}</AntdRegistry>
-      </CacheProvider>
-    </Provider>
+    <CacheProvider value={cache}>
+      <SnackbarProviders>
+        <Provider store={store}>
+          <AntdRegistry>{children}</AntdRegistry>
+        </Provider>
+      </SnackbarProviders>
+    </CacheProvider>
   );
 };
 

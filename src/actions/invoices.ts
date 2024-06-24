@@ -1,5 +1,6 @@
 import { httpInvoice } from "@/lib/http";
 import { TInvoice } from "@/schemaValidations/invoice.schema";
+import { TPartnerInvoiceHistoryResponse } from "@/schemaValidations/partner-invoice-history.schema";
 import { TTableResponse } from "@/types/Table";
 
 const InvoiceApi = {
@@ -23,6 +24,17 @@ const InvoiceApi = {
     return httpInvoice.put<TInvoice>(`invoices/${id}`, data, {
       headers: { Authorization: `Bearer ${sessionToken}` },
     });
+  },
+  getPartnerInvoiceHistoryByInvoiceId: async (
+    id: string,
+    sessionToken: string
+  ) => {
+    return httpInvoice.get<TPartnerInvoiceHistoryResponse>(
+      `invoices/${id}/partner-invoice-history`,
+      {
+        headers: { Authorization: `Bearer ${sessionToken}` },
+      }
+    );
   },
 };
 

@@ -1,7 +1,5 @@
-"use client";
 import TableRender from "@/components/FeTable/TableRender";
 import { TInvoiceTemplateBody } from "@/schemaValidations/invoiceTemplate.schema";
-import { TOrganizationsBase } from "@/types/Organization";
 import { TableColumnsType } from "antd";
 import React from "react";
 interface Props {
@@ -14,27 +12,30 @@ export default function OrganizationsInvoiceTemplatePage({
 }: Props) {
   const columns: TableColumnsType<TInvoiceTemplateBody> = [
     {
-      title: "Tên",
-      dataIndex: "name",
+      title: "Organization Name",
+      dataIndex: "organizationName",
     },
     {
-      title: "Address",
-      dataIndex: "address",
+      title: "Template Name",
+      dataIndex: "templateName",
     },
     {
-      title: "Representative",
-      dataIndex: "representative",
+      title: "Template Type",
+      dataIndex: "templateType",
     },
     {
-      title: "Tax Code",
-      dataIndex: "taxCode",
+      title: "Invoice Series",
+      dataIndex: "invSeries",
     },
     {
-      title: "Brand Name",
-      dataIndex: "brandName",
+      title: "Invoice Type",
+      dataIndex: "invoiceType",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
     },
   ];
-
   return (
     <TableRender
       columns={columns}

@@ -4,6 +4,7 @@ import "./globals.css";
 import SnackbarProviders from "@/redux/SnackBar";
 import AppProvider from "@/redux/AppProvider";
 import { AuthProvider } from "@/context/userContext";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,11 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SnackbarProviders>
-          <AppProvider>
-            <AuthProvider>{children}</AuthProvider>
-          </AppProvider>
-        </SnackbarProviders>
+        <AppProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </AppProvider>
       </body>
     </html>
   );

@@ -1,3 +1,4 @@
+"use client"
 import OrganizationsApi from "@/actions/organizations";
 import OrganizationsStorePage from "@/page/organization/store";
 import InvoiceForm from "@/page/organization/template";
