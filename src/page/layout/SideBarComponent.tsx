@@ -54,6 +54,7 @@ const SidebarComponent = ({
   const [user, setUser] = useState<TLoginResponse | undefined | null>();
   useEffect(() => {
     if (userRedux === null) {
+      console.log("cccccc");
       const fetchData = async () => {
         try {
           const res = await userApi.getUserFromServer();
@@ -69,7 +70,8 @@ const SidebarComponent = ({
   }, [userRedux]);
 
   let SiderConfigs: MenuItem[];
-  console.log("usersdsdsdsd:", user);
+  console.log("userRedux:", userRedux);
+  console.log("user:", user);
 
   switch (user?.role) {
     case RoleEnum.Brand:

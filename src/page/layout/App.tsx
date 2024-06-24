@@ -14,26 +14,51 @@ const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const pathname = usePathname();
   useEffect(() => {
-    setSelectedKeys([pathname]);
-
-    const findOpenKeys: any = (items: any, path: any) => {
+    const findOpenKeys = (items: any[], path: string): string[] => {
       for (let item of items) {
         if (item.children) {
+          // Kiểm tra từng child của item
           for (let child of item.children) {
-            if (child.key === path) {
+            if (path.startsWith(child.key)) {
+              // Nếu path bắt đầu bằng child.key, trả về key của item
               return [item.key];
             }
           }
+          // Nếu không tìm thấy trong children của item, tiếp tục đệ quy
           const openKey = findOpenKeys(item.children, path);
           if (openKey.length) {
+            // Nếu tìm thấy openKey, trả về key của item và openKey
             return [item.key, ...openKey];
           }
         }
       }
-      return [];
+      return []; // Nếu không tìm thấy, trả về mảng rỗng
     };
 
-    setOpenKeys(findOpenKeys(items, pathname));
+    const findSelectedKey = (items: any[], path: string): string => {
+      for (let item of items) {
+        if (path.startsWith(item.key)) {
+          // Nếu path bắt đầu bằng item.key, trả về item.key
+          return item.key;
+        }
+        if (item.children) {
+          // Nếu không, tiếp tục tìm trong children của item
+          const selectedKey = findSelectedKey(item.children, path);
+          if (selectedKey) {
+            return selectedKey;
+          }
+        }
+      }
+      return ""; // Nếu không tìm thấy, trả về chuỗi rỗng
+    };
+
+    // Tìm selectedKey dựa trên pathname
+    const selectedKey = findSelectedKey(items, pathname);
+    setSelectedKeys([selectedKey]);
+
+    // Tìm openKeys dựa trên pathname
+    const openKeys = findOpenKeys(items, pathname);
+    setOpenKeys(openKeys);
   }, [pathname]);
 
   const onOpenChange = (keys: any) => {
