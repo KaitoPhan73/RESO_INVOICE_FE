@@ -16,7 +16,7 @@ import { useSnackbar } from "notistack";
 import partnersApi from "@/actions/partners";
 
 export default function CreatePartnersPage() {
-  const { PATH_DASHBOARD } = PATHS;
+  const { PATH_ADMINSYSTEM } = PATHS;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TPartnersBody>({
@@ -29,6 +29,8 @@ export default function CreatePartnersPage() {
       environment: 0,
       schemaConfig: "",
       code: "",
+      username: "",
+      password: "",
     },
   });
   const { handleSubmit } = methods;
@@ -38,7 +40,7 @@ export default function CreatePartnersPage() {
       const response = await partnersApi.createPartners(values);
       console.log("values", values);
       if (response.status === 201) {
-        router.push(PATH_DASHBOARD.partners);
+        router.push(PATH_ADMINSYSTEM.partners);
         enqueueSnackbar("Tạo thành công", { variant: "success" });
       }
     } catch (error: any) {
@@ -75,6 +77,12 @@ export default function CreatePartnersPage() {
         </Grid>
         <Grid item xs={4}>
           <InputField name="code" label="Code" fullWidth />
+        </Grid>
+        <Grid item xs={4}>
+          <InputField name="username" label="Tài khoản" fullWidth />
+        </Grid>
+        <Grid item xs={4}>
+          <InputField name="password" label="Mật khẩu" fullWidth />
         </Grid>
 
         <Grid item xs={12}>

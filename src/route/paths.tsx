@@ -12,6 +12,8 @@ const PATH_DASHBOARD = {
   inventoryitems: path(ROOT_DASHBOARD, "/inventoryitems"),
   invoices: path(ROOT_DASHBOARD, "/invoices"),
   invoicetemplate: path(ROOT_DASHBOARD, "/invoicetemplate"),
+  template: path(ROOT_DASHBOARD, "/template"),
+
   organizations: path(ROOT_DASHBOARD, "/organizations"),
   users: path(ROOT_DASHBOARD, "/users"),
   brands: path(ROOT_DASHBOARD, "/brands"),
@@ -40,6 +42,8 @@ const PATH_ORGANIZATION = {
   stores: path(PATH_DASHBOARD.organizations, "/stores"),
   invoices: path(PATH_DASHBOARD.organizations, "/invoices"),
   invoicetemplate: path(PATH_DASHBOARD.organizations, "/templates"),
+  template: path(PATH_DASHBOARD.template, "/template"),
+
 };
 
 const PATH_BRAND = {

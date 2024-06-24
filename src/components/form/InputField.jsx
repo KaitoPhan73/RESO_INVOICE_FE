@@ -27,7 +27,7 @@ const FormInput = ({
           fullWidth={fullWidth}
           size={size}
           disabled={disabled}
-          required={props.required}
+          required={props.required} 
         >
           <TextField
             {...field}

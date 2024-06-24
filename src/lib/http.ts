@@ -189,7 +189,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
       body: any,
       options?: Omit<CustomOptions, "body"> | undefined
     ) {
-      return request<Response>("PATCH", url, { ...options, body });
+      return request<Response>("PUT", url, { ...options, body });
     },
     delete<Response>(
       url: string,

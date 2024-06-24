@@ -5,6 +5,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 type TUser = Omit<TLoginResponse, "accessToken">;
 
 interface UserState {
+  userServer: TLoginResponse | undefined | null;
   user: TUser | null;
   isAuthenticated: boolean;
 }
@@ -26,6 +27,7 @@ const loadState = () => {
 };
 
 const initialState: UserState = {
+  userServer: null,
   user: loadState(),
   isAuthenticated: false,
 };
@@ -34,6 +36,9 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setUserServer(state, action: PayloadAction<TLoginResponse | null>) {
+      state.userServer = action.payload;
+    },
     setUser(state, action: PayloadAction<TUser | null>) {
       state.user = action.payload;
       state.isAuthenticated = !!action.payload;
@@ -51,5 +56,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, loadUserFromStorage } = userSlice.actions;
+export const { setUser, loadUserFromStorage, setUserServer } =
+  userSlice.actions;
 export default userSlice.reducer;

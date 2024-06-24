@@ -5,6 +5,7 @@ import items from "./SiderBar";
 import FooterCustom from "./Footer";
 import HeaderCustom from "./Header";
 import { usePathname } from "next/navigation";
+import SidebarComponent from "./SideBarComponent";
 const { Content, Sider } = Layout;
 
 const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -43,43 +44,25 @@ const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   } = theme.useToken();
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider
-        trigger={null}
-        collapsible
+      <SidebarComponent
         collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          items={items}
-          selectedKeys={selectedKeys}
-          openKeys={openKeys}
-          onOpenChange={onOpenChange}
-        />
-      </Sider>
+        onOpenChange={onOpenChange}
+        openKeys={openKeys}
+        selectedKeys={selectedKeys}
+        setCollapsed={setCollapsed}
+        setOpenKeys={setOpenKeys}
+        setSelectedKeys={setSelectedKeys}
+      />
       <Layout>
         <HeaderCustom
           style={{ padding: 0, background: colorBgContainer }}
           collapsed={collapsed}
           setCollapsed={setCollapsed}
         />
-        <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            {children}
-          </div>
+        <Content
+          style={{ margin: "1px", padding: "2rem", backgroundColor: "white" }}
+        >
+          {children}
         </Content>
         <FooterCustom style={{ textAlign: "center" }} />
       </Layout>
