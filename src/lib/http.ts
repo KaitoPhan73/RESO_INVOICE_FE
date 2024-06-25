@@ -57,7 +57,7 @@ let clientLogoutRequest: null | Promise<any> = null;
 export const isClient = () => typeof window !== "undefined";
 const createHttpClient = (defaultBaseUrl: string) => {
   const request = async <Response>(
-    method: "GET" | "POST" | "PUT" | "DELETE",
+    method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE",
     url: string,
     options?: CustomOptions | undefined
   ) => {

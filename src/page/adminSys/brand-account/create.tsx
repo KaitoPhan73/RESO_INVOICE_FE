@@ -1,6 +1,5 @@
 "use client"
-import brandApi from "@/actions/brands";
-import { BrandBody, TBrandAccountBody, TBrandBody } from "@/schemaValidations/brand.schema";
+import { BrandAccountBody, BrandBody, TBrandAccountBody, TBrandBody } from "@/schemaValidations/brand.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
@@ -9,7 +8,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import { InputField, SelectField } from "@/components/form";
 import { Button, Grid } from "@mui/material";
 import PATHS from "@/route/paths";
-import { statusList } from "../brands/config";
+import { statusList } from "./config";
+import brandApi from "@/actions/brands";
 
 interface Props {
   props: any;
@@ -17,16 +17,11 @@ interface Props {
 }
 
 export default function CreateBrandAccountPage({ brands }: Props) {
-  const { PATH_DASHBOARD } = PATHS;
+  const {PATH_ADMINSYSTEM} = PATHS;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
-
-  const options = brands.items.map((item: TBrandBody) => ({
-    label: item.name, value: item.brandId
-  }))
-  console.log("dsdsdsd", options)
   const methods = useForm<TBrandAccountBody>({
-    resolver: zodResolver(BrandBody),
+    resolver: zodResolver(BrandAccountBody),
     defaultValues: {
       brandId: "",
       username: "cccc",
@@ -37,17 +32,22 @@ export default function CreateBrandAccountPage({ brands }: Props) {
     },
   });
 
+  const options = brands.items.map((item: TBrandBody) => ({
+    label: item.name, value: item.brandId
+  }))
+
   const { handleSubmit } = methods;
 
   const onSubmit = async (values: TBrandAccountBody) => {
-    console.log("ccccccccc",values);
+   
     try {
-      // const response = await brandApi.createBrandAccount(values.brandId, values);
-      // console.log("values", values);
-      // if (response.status === 201) {
-      //   router.push(PATH_DASHBOARD.partners);
-      //   enqueueSnackbar("Tạo thành công", { variant: "success" });
-      // }
+      const response = await brandApi.createBrandAccount(values.brandId, values);
+    
+      console.log("values", values);
+      if (response.status === 201) {
+        router.push(PATH_ADMINSYSTEM.brandaccount);
+        enqueueSnackbar("Tạo thành công", { variant: "success" });
+      }
     } catch (error: any) {
       console.log("error", error);
       enqueueSnackbar("Tạo thất bại", { variant: "error" });
