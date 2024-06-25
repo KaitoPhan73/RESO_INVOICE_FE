@@ -1,4 +1,15 @@
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
+import { vi, enUS } from "date-fns/locale";
+export const formatDate = (
+  date: string | Date,
+  locale: "vi" | "en" = "en"
+): string => {
+  const dateObj = typeof date === "string" ? parseISO(date) : date;
+
+  const selectedLocale = locale === "vi" ? vi : enUS;
+
+  return format(dateObj, "dd/MM/yyyy", { locale: selectedLocale });
+};
 
 export const formattedDate = (timestamp: any) => {
   return format(new Date(timestamp), "dd/MM/yyyy");

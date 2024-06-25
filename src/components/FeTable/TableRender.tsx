@@ -1,49 +1,41 @@
-"use client";
-import { TTableResponse } from "@/types/Table";
-import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Table, DatePicker } from "antd";
-import type { ColumnType, ColumnGroupType } from "antd/es/table";
+import React, { useEffect, useState } from "react";
+import { Table, Button } from "antd";
+import { CustomColumnType } from "@/types/TablePropsCustom";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { ReloadOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { TTableResponse } from "@/types/Table";
+import Filter from "./Filter"; // Import Filter component
 
-export interface TRowSelection {
-  type?: "checkbox" | "radio";
-  onChange?: (selectedRowKeys: React.Key[], selectedRows: any[]) => void;
-  selectedRowKeys?: React.Key[];
-}
-
-interface IProps {
-  data: TTableResponse<any>;
-  columns: (ColumnType<any> | ColumnGroupType<any>)[];
-  propsUrl?: any;
-  rowKey?: string;
-  onDelete?: any;
-  onCreate?: any;
+interface TableRenderProps<RecordType> {
+  data: TTableResponse<RecordType>;
+  columns: CustomColumnType<RecordType>[];
+  onDelete?: (id: string | number) => void;
   onEdit?: any;
-  rowSelection?: TRowSelection;
+  onCreate?: any;
+  rowSelection?: any;
+  rowKey?: keyof RecordType;
+  propsUrl: any;
 }
 
-const TableRender = (props: IProps) => {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+const TableRender = <RecordType extends object>({
+  data,
+  columns,
+  onDelete,
+  onEdit,
+  onCreate,
+  rowKey,
+  rowSelection,
+  propsUrl,
+}: TableRenderProps<RecordType>) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [isFetching, setIsFetching] = useState<boolean>(false);
-  const {
-    data,
-    columns,
-    rowKey = "id",
-    onEdit,
-    onDelete,
-    propsUrl,
-    rowSelection,
-    onCreate,
-  } = props;
+  const finalRowKey: keyof RecordType = rowKey || ("id" as keyof RecordType);
 
-  // Update pagination meta information
   const meta = {
-    current: propsUrl.searchParams.page ? +propsUrl.searchParams.page : 1,
-    pageSize: propsUrl.searchParams.size ? +propsUrl.searchParams.size : 10,
+    current: propsUrl ? propsUrl.page : 1,
+    pageSize: propsUrl ? propsUrl.limit : 10,
     total: data.total,
   };
 
@@ -51,140 +43,134 @@ const TableRender = (props: IProps) => {
     if (data) setIsFetching(false);
   }, [data]);
 
-  const onChange = (pagination: any, filters: any, sorter: any, extra: any) => {
-    const currentParams = new URLSearchParams(searchParams);
-    const newParams = new URLSearchParams();
-    console.log("currentParams:", currentParams.toString());
-    // Copy existing query params to newParams
-    currentParams.forEach((value, key) => {
-      newParams.set(key, value);
-    });
-
-    // Update page and size
-    if (pagination && pagination.current) {
-      newParams.set("page", pagination.current.toString());
-    }
-
-    Object.keys(filters).forEach((key) => {
-      const filterValue = filters[key];
-      if (filterValue) {
-        if (Array.isArray(filterValue)) {
-          newParams.set(key, filterValue.join(","));
-        } else {
-          newParams.set(key, filterValue.toString());
-        }
-      }
-    });
-
-    replace(`${pathname}?${newParams.toString()}`);
+  const handleFilterChange = (key: string, value: any) => {
+    const params = new URLSearchParams(searchParams);
+    params.set(key, value);
+    router.replace(`${pathname}?${params.toString()}`);
     setIsFetching(true);
   };
 
-  // Extend columns to add actions (edit, delete)
-  let updatedColumns = [...columns];
+  const renderHeader = () => {
+    const filteredColumns = columns.filter((column) => column.filter);
 
-  // Add filterDropdown for columns where filterDropdown is "date"
-  updatedColumns = updatedColumns.map((column) => {
-    if (
-      (column as ColumnType<any>).dataIndex &&
-      column.filterDropdown === "date"
-    ) {
-      return {
-        ...column,
-        filterDropdown: (
-          <DatePicker
-            onChange={(date, dateString) => {
-              const params = new URLSearchParams(searchParams);
-              if (typeof dateString === "string" && dateString) {
-                params.set((column as ColumnType<any>).dataIndex!, dateString);
-              } else {
-                params.delete((column as ColumnType<any>).dataIndex!);
-              }
-              params.delete("page");
-              replace(`${pathname}?${params.toString()}`);
-              setIsFetching(true);
-            }}
-          />
-        ),
-      };
+    if (filteredColumns.length === 0) {
+      return null;
     }
-    return column;
+
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "16px",
+        }}
+      >
+        {/* Filters area */}
+        <div style={{ display: "flex", gap: "16px" }}>
+          {filteredColumns.map((column, index) => (
+            <div key={index}>
+              <Filter column={column} onFilterChange={handleFilterChange} />
+            </div>
+          ))}
+        </div>
+        {onCreate && (
+          <Button
+            icon={<PlusOutlined />}
+            type="primary"
+            onClick={() => router.push(`${pathname}/create`)}
+          >
+            Thêm mới
+          </Button>
+        )}
+      </div>
+    );
+  };
+
+  const updatedColumns: any = columns.map((column) => {
+    // Clone column to avoid mutating original object
+    let updatedColumn: CustomColumnType<RecordType> = { ...column };
+
+    // Check if column has render function already defined
+    if (!column.render) {
+      // Define default render function if not provided
+      updatedColumn.render = (value: any) => value;
+    }
+
+    return updatedColumn;
   });
 
-  // Add edit and delete columns if onDelete and onEdit are provided
+  // Add delete button column
   if (onDelete) {
     updatedColumns.push({
       dataIndex: "delete",
       fixed: "right",
       width: 50,
-      render: (_: any, record: any) => (
-        <DeleteOutlined
-          style={{ fontSize: "24px", color: "red" }}
-          onClick={() => onDelete(record[rowKey!])}
-        />
+      render: (_: any, record: RecordType) => (
+        <Button
+          type="link"
+          icon={<ReloadOutlined style={{ fontSize: "18px", color: "green" }} />}
+          onClick={() => onDelete(String(record[finalRowKey]))}
+        >
+          Xóa
+        </Button>
       ),
     });
   }
 
+  // Add edit button column
   if (onEdit) {
     updatedColumns.push({
       dataIndex: "edit",
       fixed: "right",
       width: 50,
-      render: (_: any, record: any) => (
-        <a onClick={() => router.push(pathname!.concat(`/${record[rowKey!]}`))}>
-          <EditOutlined style={{ fontSize: "24px" }} />
-        </a>
+      render: (_: any, record: RecordType) => (
+        <Button
+          type="link"
+          icon={<EditOutlined style={{ fontSize: "18px" }} />}
+          onClick={() => router.push(`${pathname}/${record[finalRowKey]}`)}
+        >
+          Chỉnh sửa
+        </Button>
       ),
     });
   }
 
-  const renderHeader = () => (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      {/* Filters area */}
-      <div>
-        {updatedColumns.map((column: any) =>
-          column.filterDropdown ? (
-            <div key={column.key}>
-              <span>{column.title}:</span>
-              {column.filterDropdown}
-            </div>
-          ) : null
-        )}
-      </div>
-
-      {/* Create button */}
-      <Button
-        icon={<PlusOutlined />}
-        type="primary"
-        onClick={() => router.push(pathname!.concat(`/create`))}
-      >
-        Thêm mới
-      </Button>
-    </div>
-  );
+  const onChange = (
+    pagination: any,
+    _filters: any,
+    _sorter: any,
+    _extra: any
+  ) => {
+    if (pagination && pagination.current) {
+      const params = new URLSearchParams(searchParams);
+      params.set("page", pagination.current.toString());
+      router.replace(`${pathname}?${params.toString()}`);
+      setIsFetching(true);
+    }
+  };
 
   return (
     <Table
-      title={onCreate ? renderHeader : undefined}
-      rowSelection={rowSelection ? { ...rowSelection } : undefined}
-      loading={isFetching}
-      rowKey={rowKey}
+      rowSelection={rowSelection}
       dataSource={data.items}
-      columns={updatedColumns}
-      onChange={onChange}
-      scroll={{ x: 1500 }}
       pagination={{
         ...meta,
-        showTotal: (total, range) =>
-          `${range[0]}-${range[1]} trên ${total} kết quả`,
+        showTotal: (total, range) => {
+          return (
+            <div>
+              {" "}
+              {range[0]}-{range[1]} trên {total} rows
+            </div>
+          );
+        },
       }}
+      scroll={{ x: 1500 }}
+      rowKey={(record) => String(record[finalRowKey])}
+      columns={updatedColumns}
+      onChange={onChange}
+      title={renderHeader}
+      loading={isFetching}
     />
   );
 };
