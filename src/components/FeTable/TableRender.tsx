@@ -1,10 +1,11 @@
 "use client";
 import { TTableResponse } from "@/types/Table";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Table, DatePicker } from "antd";
+import { Button, Table } from "antd";
 import type { ColumnType, ColumnGroupType } from "antd/es/table";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import FilterDropdown from "./FilterDropDown";
 
 export interface TRowSelection {
   type?: "checkbox" | "radio";
@@ -39,7 +40,7 @@ const TableRender = (props: IProps) => {
     rowSelection,
     onCreate,
   } = props;
-
+  console.log("propsUrl:", propsUrl);
   // Update pagination meta information
   const meta = {
     current: propsUrl.searchParams.page ? +propsUrl.searchParams.page : 1,
@@ -54,7 +55,7 @@ const TableRender = (props: IProps) => {
   const onChange = (pagination: any, filters: any, sorter: any, extra: any) => {
     const currentParams = new URLSearchParams(searchParams);
     const newParams = new URLSearchParams();
-    console.log("currentParams:", currentParams.toString());
+
     // Copy existing query params to newParams
     currentParams.forEach((value, key) => {
       newParams.set(key, value);
@@ -83,27 +84,18 @@ const TableRender = (props: IProps) => {
   // Extend columns to add actions (edit, delete)
   let updatedColumns = [...columns];
 
-  // Add filterDropdown for columns where filterDropdown is "date"
+  // Add FilterDropdown for columns with specified filter types
   updatedColumns = updatedColumns.map((column) => {
-    if (
-      (column as ColumnType<any>).dataIndex &&
-      column.filterDropdown === "date"
-    ) {
+    if ((column as ColumnType<any>).filterDropdown) {
+      const { filterType, options, placeholder } = column as any;
       return {
         ...column,
         filterDropdown: (
-          <DatePicker
-            onChange={(date, dateString) => {
-              const params = new URLSearchParams(searchParams);
-              if (typeof dateString === "string" && dateString) {
-                params.set((column as ColumnType<any>).dataIndex!, dateString);
-              } else {
-                params.delete((column as ColumnType<any>).dataIndex!);
-              }
-              params.delete("page");
-              replace(`${pathname}?${params.toString()}`);
-              setIsFetching(true);
-            }}
+          <FilterDropdown
+            filterType={filterType}
+            dataIndex={(column as ColumnType<any>).dataIndex as string}
+            options={options}
+            placeholder={placeholder}
           />
         ),
       };
