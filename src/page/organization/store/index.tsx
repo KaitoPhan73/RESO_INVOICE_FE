@@ -1,23 +1,25 @@
 "use client";
 import TableRender from "@/components/FeTable/TableRender";
+import { TInvoice } from "@/schemaValidations/invoice.schema";
 import { TStore } from "@/schemaValidations/store.schema";
-import { TableColumnsType, Tag } from "antd";
+import { CustomColumnType } from "@/types/TablePropsCustom";
+import { Tag } from "antd";
 import React from "react";
 interface Props {
   props: any;
   data: any;
 }
 export default function OrganizationsStorePage({ props, data }: Props) {
-  const columns: TableColumnsType<TStore> = [
+  const columns: CustomColumnType<TInvoice>[] = [
     {
-      title: "Tên cửa hàng",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Tên ngắn",
-      dataIndex: "shortName",
-      key: "shortName",
+      title: "Ngày tạo",
+      dataIndex: "createdDate",
+      key: "createdDate",
+      render: (value: string) => new Date(value).toLocaleString(),
+      filter: {
+        type: "datetime",
+        placeholder: "Chọn ngày tạo",
+      },
     },
     {
       title: "Trạng thái",
@@ -25,24 +27,59 @@ export default function OrganizationsStorePage({ props, data }: Props) {
       key: "status",
       render: (value: number) =>
         value === 0 ? (
-          <Tag color="default" key={value}>
-            Không hoạt động
+          <Tag color="geekblue" key={value}>
+            Chờ xử lý
           </Tag>
         ) : (
           <Tag color="green" key={value}>
-            Hoạt động
+            Hoàn thành
           </Tag>
         ),
     },
     {
-      title: "So điện thoại",
-      dataIndex: "phone",
-      key: "phone",
+      title: "Phương thức thanh toán",
+      dataIndex: "paymentMethod",
+      key: "paymentMethod",
     },
     {
-      title: "Mã cửa hàng",
-      dataIndex: "code",
-      key: "code",
+      title: "Tỉ lệ quy đổi",
+      dataIndex: "currencyExchangeRate",
+      key: "currencyExchangeRate",
+    },
+    {
+      title: "Tổng số luợng bán",
+      dataIndex: "totalSaleAmount",
+      key: "totalSaleAmount",
+    },
+    {
+      title: "Tổng số tiền giảm giá",
+      dataIndex: "totalDiscountAmount",
+      key: "totalDiscountAmount",
+    },
+    {
+      title: "Tổng số tiền không bao gồm VAT",
+      dataIndex: "totalAmountWithoutTax",
+      key: "totalAmountWithoutTax",
+    },
+    {
+      title: "Tổng số tiền",
+      dataIndex: "totalAmount",
+      key: "totalAmount",
+    },
+    {
+      title: "Trạng thái thanh toán",
+      dataIndex: "paymentMethod",
+      key: "paymentMethod",
+      render: (value: number) =>
+        value === 0 ? (
+          <Tag color="volcano" key={value}>
+            Chờ xử lí
+          </Tag>
+        ) : (
+          <Tag color="green" key={value}>
+            Hoàn thành
+          </Tag>
+        ),
     },
   ];
 

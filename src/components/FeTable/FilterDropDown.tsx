@@ -1,77 +1,33 @@
-"use client";
-import { DatePicker, Select, Input } from "antd";
-import type { DatePickerProps } from "antd";
-import { useRouter, useSearchParams } from "next/navigation";
+// src/components/FilterDropdown.tsx
+
+import React from "react";
+import { Select } from "antd";
 
 interface FilterDropdownProps {
-  filterType: "date" | "datetime" | "select" | "text";
+  filterType: "sorter"; // Chỉ xử lý cho filterType là "sorter"
   dataIndex: string;
-  options?: { value: string | number; label: string }[]; // For select type
-  placeholder?: string;
-  onChange?: (value: any) => void;
+  onFilterChange: (key: string, value: any) => void;
 }
 
-const FilterDropdown = ({
+const FilterDropdown: React.FC<FilterDropdownProps> = ({
   filterType,
   dataIndex,
-  options,
-  placeholder = "",
-  onChange,
-}: FilterDropdownProps) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathname = useRouter();
-
-  const handleFilterChange = (value: any) => {
-    if (onChange) {
-      onChange(value);
-    }
-    const params = new URLSearchParams(searchParams);
-    if (value) {
-      params.set(dataIndex, value.toString());
-    } else {
-      params.delete(dataIndex);
-    }
-    params.delete("page");
-    router.replace(`${pathname}?${params.toString()}`);
-  };
-
-  switch (filterType) {
-    case "date":
-      return (
-        <DatePicker
-          onChange={(date, dateString) => handleFilterChange(dateString)}
-          placeholder={placeholder}
-        />
-      );
-    case "datetime":
-      return (
-        <DatePicker
-          showTime
-          onChange={(date, dateString) => handleFilterChange(dateString)}
-          placeholder={placeholder}
-        />
-      );
-    case "select":
-      return (
-        <Select
-          onChange={handleFilterChange}
-          placeholder={placeholder}
-          style={{ width: 200 }}
-          options={options}
-        />
-      );
-    case "text":
-      return (
-        <Input
-          onChange={(e) => handleFilterChange(e.target.value)}
-          placeholder={placeholder}
-          allowClear
-        />
-      );
-    default:
-      return null;
+  onFilterChange,
+}) => {
+  if (filterType !== "sorter") {
+    return null; // Không render gì nếu filterType không phải "sorter"
   }
+
+  return (
+    <Select
+      defaultValue=""
+      onChange={(value) => onFilterChange(dataIndex, value)}
+    >
+      <Select.Option value="">Không sắp xếp</Select.Option>
+      <Select.Option value="ascend">Sắp xếp tăng dần</Select.Option>
+      <Select.Option value="descend">Sắp xếp giảm dần</Select.Option>
+    </Select>
+  );
 };
 
 export default FilterDropdown;

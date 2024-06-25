@@ -1,6 +1,7 @@
 "use client";
 import TableRender from "@/components/FeTable/TableRender";
 import { TInvoice } from "@/schemaValidations/invoice.schema";
+import { formatDate, formattedDateTime } from "@/utils/formater";
 import { TableColumnsType, Tag } from "antd";
 import React from "react";
 interface Props {
@@ -14,14 +15,14 @@ export default function InvoiceInBrandPage({ props, data }: Props) {
       title: "Ngày tạo",
       dataIndex: "createdDate",
       key: "createdDate",
-      render: (value: string) => new Date(value).toLocaleString(),
+      render: (value: string) => <span>{formatDate(value, "vi")}</span>,
       filterDropdown: "date",
     },
     {
       title: "Ngày chỉnh sửa",
       dataIndex: "updatedDate",
       key: "updatedDate",
-      render: (value: string) => new Date(value).toLocaleString(),
+      render: (value: string) => <span>{formatDate(value, "vi")}</span>,
     },
     {
       title: "Trạng thái",
