@@ -70,8 +70,6 @@ const SidebarComponent = ({
   }, [userRedux]);
 
   let SiderConfigs: MenuItem[];
-  console.log("userRedux:", userRedux);
-  console.log("user:", user);
 
   switch (user?.role) {
     case RoleEnum.Brand:

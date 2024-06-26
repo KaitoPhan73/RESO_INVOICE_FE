@@ -11,7 +11,7 @@ import {
   InputAdornment,
 } from '@mui/material';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router'; // Use `useRouter` instead of `useRouter` from 'next/navigation'
 import {
   VisibilityOff,
   Visibility,
@@ -26,9 +26,8 @@ import { LoginBody, TLoginBody } from '@/schemaValidations/auth.schema';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@/redux/User/userSlice';
 import PATHS from '@/route/paths';
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 type Props = {
   postData: any;
@@ -55,7 +54,6 @@ export default function LoginPage() {
     },
   });
   const { handleSubmit, control } = methods;
-  console.log("userOKKK", user);
   const onSubmit = async (values: TLoginBody) => {
     if (loading) return;
     setLoading(true);
@@ -250,7 +248,6 @@ export default function LoginPage() {
                   {loading ? 'Happy Code ...' : 'Login'}
                 </Button>
 
-                {/* Hiển thị animation khi đang loading */}
                 {loading && (
                   <div
                     style={{
@@ -278,3 +275,4 @@ export default function LoginPage() {
     </div>
   );
 }
+
