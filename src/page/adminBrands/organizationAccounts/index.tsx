@@ -3,18 +3,19 @@
 import TableRender from "@/components/FeTable/TableRender";
 import { RoleEnum } from "@/enums/role";
 import { TOrganizationAccounts } from "@/schemaValidations/organizationaccounts.schema";
+import { CustomColumnType } from "@/types/TablePropsCustom";
 import { TableColumnsType, Tag } from "antd";
 import React from "react";
 
 interface Props {
   props: any;
-  data: any; 
+  data: any;
 }
 
 export default function OrganizationAccountsPage({ props, data }: Props) {
   console.log("data:", data);
 
-  const columns: TableColumnsType<TOrganizationAccounts> = [
+  const columns: CustomColumnType<TOrganizationAccounts>[] = [
 
     {
       title: "Tên đăng nhập",
@@ -56,7 +57,7 @@ export default function OrganizationAccountsPage({ props, data }: Props) {
     },
     {
       title: "Mã cửa hàng",
-      dataIndex: "storeCode",
+      dataIndex: "organizationCode",
       key: "storeCode",
     },
     {
@@ -66,6 +67,6 @@ export default function OrganizationAccountsPage({ props, data }: Props) {
     },
   ];
 
-  return <TableRender columns={columns} propsUrl={props} data={data} onDelete onEdit onCreate />;
+  return <TableRender columns={columns} propsUrl={props} data={data} onDelete={() => { }}
+    onEdit onCreate />;
 }
-  

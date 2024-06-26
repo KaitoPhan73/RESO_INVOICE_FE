@@ -155,6 +155,18 @@ const OrganizationSiderBarConfig = [
     customMenuItem(PATH_ORGANIZATION.template, "template")],
 
   },
+  {
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+        Thống Kê
+      </span>
+    ),
+    key: "sub3",
+    icon: <LineChartOutlined />,
+    children: [customMenuItem(PATH_CHART.chart, "Chart")],
+
+  },
+
 ];
 
 const SiderBarConfig = {

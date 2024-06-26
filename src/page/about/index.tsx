@@ -34,7 +34,6 @@
 "use client";
 
 import CustomTable from "@/components/FeTable/CustomTable";
-import { TBrandBase } from "@/types/Brand";
 import { TableColumnsType } from "antd";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";

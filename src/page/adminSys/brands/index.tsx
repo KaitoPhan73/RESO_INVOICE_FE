@@ -1,7 +1,9 @@
 "use client";
-import TableRender, { TRowSelection } from "@/components/FeTable/TableRender";
-import { TBrandBase } from "@/types/Brand";
+import TableRender from "@/components/FeTable/TableRender";
+import { TBrandBody } from "@/schemaValidations/brand.schema";
+import { CustomColumnType } from "@/types/TablePropsCustom";
 import { TableColumnsType, TableProps } from "antd";
+import { Tag } from "antd";
 import React from "react";
 interface Props {
   props: any;
@@ -9,26 +11,46 @@ interface Props {
 }
 
 export default function BrandPage({ props, data }: Props) {
-  const columns: TableColumnsType<TBrandBase> = [
+  const columns: CustomColumnType<TBrandBody>[] = [
+    {
+      title: "id",
+      dataIndex: "brandId",
+      key: "id",
+    },
     {
       title: "Tên",
       dataIndex: "name",
+      key: "name",
     },
     {
       title: "Mã",
       dataIndex: "code",
+      key: "code",
     },
     {
       title: "MST",
-      dataIndex: "taxcode",
+      dataIndex: "taxCode",
+      key: "taxcode",
     },
     {
       title: "Mô tả",
       dataIndex: "descriptions",
+      key: "descriptions",
     },
     {
       title: "Trạng thái",
       dataIndex: "status",
+      key: "status",
+      render: (value: number) =>
+        value === 0 ? (
+          <Tag color="geekblue" key={value}>
+            Chờ xử lý
+          </Tag>
+        ) : (
+          <Tag color="green" key={value}>
+            Hoàn thành
+          </Tag>
+        ),
     },
   ];
 
@@ -37,10 +59,9 @@ export default function BrandPage({ props, data }: Props) {
       columns={columns}
       data={data}
       propsUrl={props}
-      onDelete
+      onDelete={() => { }}
       onEdit
       onCreate
-      // rowSelection={rowSelection}
     />
   );
 }

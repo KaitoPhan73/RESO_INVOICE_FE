@@ -10,7 +10,7 @@ export default async function createBrandAccount(props: any) {
   };
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
-  const response = await accountApi.getBrandAccount(accessToken!, params);
+  const response = await accountApi.getBrands(accessToken!, params);
   console.log("hiii: ",response);
   return <CreateBrandAccountPage props={props} brands={response.payload} />;
 }

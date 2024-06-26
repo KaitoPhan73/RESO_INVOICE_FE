@@ -88,7 +88,7 @@ export default function OrganizationsStorePage({ props, data }: Props) {
       columns={columns}
       propsUrl={props}
       data={data}
-      onDelete
+      onDelete={() => {}}
       onEdit
       onCreate
     />
