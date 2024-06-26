@@ -1,10 +1,10 @@
 import { httpInvoice } from "@/lib/http";
-import { TBrandAccountBody, TBrandBody } from "@/schemaValidations/brand.schema";
+import { TBrandAccountBody, TBrandBody, TCreateBrandBody } from "@/schemaValidations/brand.schema";
 import { TBrandBase } from "@/types/Brand";
 import { TTableResponse } from "@/types/Table";
 
 const brandApi = {
-  getBrands: (accessToken: string, params?: any) => {
+  getBrands: (accessToken: string, params?: any) => { 
     return httpInvoice.get<TTableResponse<TBrandBase>>("brands", {
       params,
       headers: { Authorization: `Bearer ${accessToken}` },
@@ -60,12 +60,13 @@ const brandApi = {
     });
   },
 
-  createBrand: (data: TBrandBody) => {
-    return httpInvoice.post<TBrandBody>("brands", data);
+  createBrand: (data: TCreateBrandBody) => {
+    return httpInvoice.post<TCreateBrandBody>("brands", data);
   },
-  createBrandAccount: (brandId: string ,data: TBrandAccountBody) => {
+  createBrandAccount: (brandId: string, data: TBrandAccountBody) => { 
     return httpInvoice.post<TBrandAccountBody>(`brands/${brandId}/users`, data);
   },
+  
 };
 
 export default brandApi;

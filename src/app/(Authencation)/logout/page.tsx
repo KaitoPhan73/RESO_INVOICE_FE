@@ -4,12 +4,12 @@ import { setUser, setUserServer } from "@/redux/User/userSlice";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import '@dotlottie/player-component'; // Import the Lottie player component
 
 function LogoutLogic() {
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useDispatch();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -37,7 +37,21 @@ function LogoutLogic() {
     };
   }, [router, pathname, dispatch]);
 
-  return <div>Logging out...</div>;
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ textAlign: 'center' }}>
+        {/* <dotlottie-player
+          src="https://lottie.host/d4dd4311-b564-4771-83e3-06141e29eeb4/tQqrViPvvP.json"
+          background="transparent"
+          speed="1"
+          style={{ width: 150, height: 150 }}
+          loop
+          autoplay
+        ></dotlottie-player> */}
+        <div>Logging out...</div>
+      </div>
+    </div>
+  );
 }
 
 export default function LogoutPage() {

@@ -10,6 +10,7 @@ import { Button, Grid } from "@mui/material";
 import PATHS from "@/route/paths";
 import { statusList } from "./config";
 import brandApi from "@/actions/brands";
+import { TBrandBase } from "@/types/Brand";
 
 interface Props {
   props: any;
@@ -24,25 +25,24 @@ export default function CreateBrandAccountPage({ brands }: Props) {
     resolver: zodResolver(BrandAccountBody),
     defaultValues: {
       brandId: "",
-      username: "cccc",
-      name: "ccc",
-      password: "cailon",
+      username: "",
+      name: "",
+      password: "",
       status: 0,
       role: 0,
     },
   });
 
-  const options = brands.items.map((item: TBrandBody) => ({
-    label: item.name, value: item.brandId
+  const options = brands.items.map((item: TBrandBase) => ({
+    label: item.name, value: item.id
   }))
 
   const { handleSubmit } = methods;
 
   const onSubmit = async (values: TBrandAccountBody) => {
-   
     try {
       const response = await brandApi.createBrandAccount(values.brandId, values);
-    
+      
       console.log("values", values);
       if (response.status === 201) {
         router.push(PATH_ADMINSYSTEM.brandaccount);
@@ -53,6 +53,7 @@ export default function CreateBrandAccountPage({ brands }: Props) {
       enqueueSnackbar("Tạo thất bại", { variant: "error" });
     }
   };
+  
 
   return (
     <FormProvider {...methods}>
@@ -66,13 +67,13 @@ export default function CreateBrandAccountPage({ brands }: Props) {
           />
         </Grid>
         <Grid item xs={4}>
-          <InputField name="username" label="Username" fullWidth />
+          <InputField name="username" label="UserName" fullWidth />
         </Grid>
         <Grid item xs={4}>
           <InputField name="name" label="Name" fullWidth />
         </Grid>
         <Grid item xs={4}>
-          <InputField name="password" label="Password" fullWidth type="password" />
+          <InputField name="password" label="password" fullWidth/>
         </Grid>
         <Grid item xs={4}>
           <SelectField
@@ -82,17 +83,7 @@ export default function CreateBrandAccountPage({ brands }: Props) {
             fullWidth
           />
         </Grid>
-        <Grid item xs={4}>
-          <SelectField
-            name="role"
-            label="Role"
-            options={[
-              { label: "Admin", value: 0 },
-              { label: "User", value: 1 }
-            ]}
-            fullWidth
-          />
-        </Grid>
+        
         <Grid item xs={12}>
           <Button
             type="submit"

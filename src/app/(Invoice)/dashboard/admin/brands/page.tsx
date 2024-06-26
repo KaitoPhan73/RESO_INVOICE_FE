@@ -11,6 +11,7 @@ export default async function Brand(props: any) {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
   const response = await brandApi.getBrands(accessToken!, params);
+  // console.log("brandsess:", response);
 
   return (
     <>

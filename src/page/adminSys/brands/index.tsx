@@ -11,6 +11,10 @@ interface Props {
 export default function BrandPage({ props, data }: Props) {
   const columns: TableColumnsType<TBrandBase> = [
     {
+      title: "id",
+      dataIndex: "id",
+    },
+    {
       title: "Tên",
       dataIndex: "name",
     },
