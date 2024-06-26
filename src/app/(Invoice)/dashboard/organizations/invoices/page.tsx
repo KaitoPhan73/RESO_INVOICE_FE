@@ -12,6 +12,7 @@ export default async function Invoices(props: any) {
       ? props.searchParams.createdDate
       : getFormattedDate(),
   };
+  console.log("params", params);
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
   const storeUser = cookieStore.get("user")?.value;

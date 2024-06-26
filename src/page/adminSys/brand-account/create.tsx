@@ -10,7 +10,6 @@ import { Button, Grid } from "@mui/material";
 import PATHS from "@/route/paths";
 import { statusList } from "./config";
 import brandApi from "@/actions/brands";
-import { TBrandBase } from "@/types/Brand";
 
 interface Props {
   props: any;
@@ -33,8 +32,8 @@ export default function CreateBrandAccountPage({ brands }: Props) {
     },
   });
 
-  const options = brands.items.map((item: TBrandBase) => ({
-    label: item.name, value: item.id
+  const options = brands.items.map((item: TBrandBody) => ({
+    label: item.name, value: item.brandId
   }))
 
   const { handleSubmit } = methods;

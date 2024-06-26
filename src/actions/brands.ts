@@ -1,17 +1,16 @@
 import { httpInvoice } from "@/lib/http";
 import { TBrandAccountBody, TBrandBody, TCreateBrandBody } from "@/schemaValidations/brand.schema";
-import { TBrandBase } from "@/types/Brand";
 import { TTableResponse } from "@/types/Table";
 
 const brandApi = {
   getBrands: (accessToken: string, params?: any) => { 
-    return httpInvoice.get<TTableResponse<TBrandBase>>("brands", {
+    return httpInvoice.get<TTableResponse<TBrandBody>>("brands", {
       params,
       headers: { Authorization: `Bearer ${accessToken}` },
     });
   },
   getBrandById: (brandId: string, sessionToken: string, params?: any) => {
-    return httpInvoice.get<TBrandBase>(`brands/${brandId}`, {
+    return httpInvoice.get<TBrandBody>(`brands/${brandId}`, {
       params,
       headers: { Authorization: `Bearer ${sessionToken}` },
     });
@@ -21,7 +20,7 @@ const brandApi = {
     sessionToken: string,
     params?: any
   ) => {
-    return httpInvoice.get<TBrandBase>(
+    return httpInvoice.get<TBrandBody>(
       `brands/${brandId}/organization-accounts`,
       {
         params,
@@ -44,7 +43,7 @@ const brandApi = {
     sessionToken: string,
     params?: any
   ) => {
-    return httpInvoice.get<TBrandBase>(`brands/${brandId}/invoices`, {
+    return httpInvoice.get<TBrandBody>(`brands/${brandId}/invoices`, {
       params,
       headers: { Authorization: `Bearer ${sessionToken}` },
     });
@@ -54,7 +53,7 @@ const brandApi = {
     sessionToken: string,
     params?: any
   ) => {
-    return httpInvoice.get<TBrandBase>(`brands/${brandId}/organizations`, {
+    return httpInvoice.get<TBrandBody>(`brands/${brandId}/organizations`, {
       params,
       headers: { Authorization: `Bearer ${sessionToken}` },
     });

@@ -3,7 +3,7 @@ import { z } from "zod";
 export const InvoiceDetailSchema = z.object({
   receiptCode: z.string(),
   buyerCustomerCode: z.string(),
-  buyerTaxCode: z.string(),
+  buyerTaxCode: z.string().nullable(), // Nullable because it can be null in the JSON
   buyerName: z.string(),
   buyerAddress: z.string(),
   buyerFullName: z.string(),
@@ -24,13 +24,13 @@ export const InvoiceDetailSchema = z.object({
 export const InvoiceSchema = z.object({
   id: z.string(),
   invoiceCode: z.string(),
-  createdDate: z.string().datetime(),
-  lookupCode: z.string().nullable(), // Allow null value
+  createdDate: z.string(), // Assuming you handle datetime format in the application layer
+  lookupCode: z.string().nullable(), // Nullable because it can be null in the JSON
   type: z.number().int(),
   status: z.number().int(),
   paymentMethod: z.string(),
-  currencyUnit: z.string(), // Renamed from currencyCode
-  currencyExchangeRate: z.number(), // Renamed from exchangeRate
+  currencyUnit: z.string(), // Renamed from currencyUnit
+  currencyExchangeRate: z.number(), // Ensure it's a number
   totalTaxAmount: z.number(),
   totalAmountAfterTax: z.number(),
   totalSaleAmount: z.number(),
@@ -67,11 +67,7 @@ export const InvoiceSchema = z.object({
       taxAmount: z.number(),
     })
   ),
-  responsePartNer: z.object({
-    code: z.string(),
-    message: z.string(),
-    data: z.nullable(z.unknown()),
-  }),
+  responsePartNer: z.nullable(z.unknown()), // Nullable because it can be null in the JSON
 });
 
 export type TInvoice = z.TypeOf<typeof InvoiceSchema>;
