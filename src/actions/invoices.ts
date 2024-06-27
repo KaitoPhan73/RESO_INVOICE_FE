@@ -20,9 +20,9 @@ const InvoiceApi = {
       headers: { Authorization: `Bearer ${sessionToken}` },
     });
   },
-  updateInvoice: async (id: string, data: TInvoice, sessionToken: string) => {
-    return httpInvoice.put<TInvoice>(`invoices/${id}`, data, {
-      headers: { Authorization: `Bearer ${sessionToken}` },
+  updateStatusInvoice: async (id: string, params?: any) => {
+    return httpInvoice.patch<TInvoice>(`invoices/${id}/update-status`, {
+      params,
     });
   },
   getPartnerInvoiceHistoryByInvoiceId: async (

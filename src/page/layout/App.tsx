@@ -9,7 +9,7 @@ import SidebarComponent from "./SideBarComponent";
 const { Content, Sider } = Layout;
 
 const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const pathname = usePathname();

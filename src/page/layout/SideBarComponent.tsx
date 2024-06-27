@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Menu, MenuProps } from "antd";
 import SiderBarConfig from "./SiderBarConfig";
-import { getUserInfo } from "@/utils/utils";
 import { RoleEnum } from "@/enums/role";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -54,7 +53,6 @@ const SidebarComponent = ({
   const [user, setUser] = useState<TLoginResponse | undefined | null>();
   useEffect(() => {
     if (userRedux === null) {
-      console.log("cccccc");
       const fetchData = async () => {
         try {
           const res = await userApi.getUserFromServer();
@@ -70,8 +68,6 @@ const SidebarComponent = ({
   }, [userRedux]);
 
   let SiderConfigs: MenuItem[];
-  console.log("userRedux:", userRedux);
-  console.log("user:", user);
 
   switch (user?.role) {
     case RoleEnum.Brand:
