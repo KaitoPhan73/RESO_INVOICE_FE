@@ -3,7 +3,6 @@ import { TInvoiceReport } from "@/schemaValidations/invoice-report.schema";
 import { TInvoiceTemplateBody } from "@/schemaValidations/invoiceTemplate.schema";
 import { TOrganizationsBody } from "@/schemaValidations/organizations.schema";
 import { TStore } from "@/schemaValidations/store.schema";
-import { TBrandBase } from "@/types/Brand";
 import { TOrganizationsBase } from "@/types/Organization";
 import { TTableResponse } from "@/types/Table";
 

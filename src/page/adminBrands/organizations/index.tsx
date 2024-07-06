@@ -1,6 +1,7 @@
 "use client";
 import TableRender from "@/components/FeTable/TableRender";
 import { TOrganization } from "@/schemaValidations/organization.schema";
+import { CustomColumnType } from "@/types/TablePropsCustom";
 import { TableColumnsType, Tag } from "antd";
 import React from "react";
 
@@ -11,7 +12,7 @@ interface Props {
 
 export default function OrganizationsInBrandPage({ props, data }: Props) {
   console.log("dataaaa>:", data);
-  const columns: TableColumnsType<TOrganization> = [
+  const columns: CustomColumnType<TOrganization>[] = [
     {
       title: "Tên tổ chức",
       dataIndex: "name",
@@ -45,5 +46,6 @@ export default function OrganizationsInBrandPage({ props, data }: Props) {
     },
   ];
 
-  return <TableRender columns={columns} propsUrl={props} data={data} onDelete onEdit onCreate />;
+  return <TableRender columns={columns} propsUrl={props} data={data}       onDelete={() => {}}
+  onEdit onCreate />;
 }

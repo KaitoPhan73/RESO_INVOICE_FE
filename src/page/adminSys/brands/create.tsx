@@ -1,6 +1,6 @@
 "use client";
 import brandApi from "@/actions/brands";
-import { BrandBody, TBrandBody } from "@/schemaValidations/brand.schema";
+import { BrandBody, CreateBrandBody, TBrandBody, TCreateBrandBody } from "@/schemaValidations/brand.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
@@ -15,8 +15,8 @@ export default function CreateBrandPage() {
   const { PATH_ADMINSYSTEM } = PATHS;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
-  const methods = useForm<TBrandBody>({
-    resolver: zodResolver(BrandBody),
+  const methods = useForm<TCreateBrandBody>({
+    resolver: zodResolver(CreateBrandBody),
     defaultValues: {
       name: "",
       code: "",
@@ -26,9 +26,10 @@ export default function CreateBrandPage() {
       status: 0,
     },
   });
+
   const { handleSubmit } = methods;
 
-  const onSubmit = async (values: TBrandBody) => {
+  const onSubmit = async (values: TCreateBrandBody) => {
     try {
       const response = await brandApi.createBrand(values);
       console.log("values", values);

@@ -11,7 +11,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { FormProvider, useForm, Controller } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router"; // Use `useRouter` instead of `useRouter` from 'next/navigation'
 import {
   VisibilityOff,
   Visibility,
@@ -248,7 +248,6 @@ export default function LoginPage() {
                   {loading ? "Happy Code ..." : "Login"}
                 </Button>
 
-                {/* Hiển thị animation khi đang loading */}
                 {loading && (
                   <div
                     style={{

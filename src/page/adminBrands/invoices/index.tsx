@@ -1,28 +1,25 @@
 "use client";
 import TableRender from "@/components/FeTable/TableRender";
 import { TInvoice } from "@/schemaValidations/invoice.schema";
-import { formatDate, formattedDateTime } from "@/utils/formater";
-import { TableColumnsType, Tag } from "antd";
+import { CustomColumnType } from "@/types/TablePropsCustom";
+import { formatDate } from "@/utils/formater";
+import { Tag } from "antd";
 import React from "react";
 interface Props {
   props: any;
   data: any;
 }
 export default function InvoiceInBrandPage({ props, data }: Props) {
-  console.log("datta:", data);
-  const columns: TableColumnsType<TInvoice> = [
+  const columns: CustomColumnType<TInvoice>[] = [
     {
       title: "Ngày tạo",
       dataIndex: "createdDate",
       key: "createdDate",
-      render: (value: string) => <span>{formatDate(value, "vi")}</span>,
-      filterDropdown: "date",
-    },
-    {
-      title: "Ngày chỉnh sửa",
-      dataIndex: "updatedDate",
-      key: "updatedDate",
-      render: (value: string) => <span>{formatDate(value, "vi")}</span>,
+      render: (value: string) => formatDate(value),
+      filter: {
+        type: "date",
+        placeholder: "Chọn ngày tạo",
+      },
     },
     {
       title: "Trạng thái",
@@ -43,21 +40,25 @@ export default function InvoiceInBrandPage({ props, data }: Props) {
       title: "Phương thức thanh toán",
       dataIndex: "paymentMethod",
       key: "paymentMethod",
+      filter: {
+        type: "text",
+        placeholder: "Nhập phương thức thanh toán",
+      },
+    },
+    {
+      title: "Mã hóa đơn",
+      dataIndex: "invoiceCode",
+      key: "invoiceCode",
+    },
+    {
+      title: "Mã hóa đơn gốc",
+      dataIndex: "lookupCode",
+      key: "lookupCode",
     },
     {
       title: "Tỉ lệ quy đổi",
-      dataIndex: "exchangeRate",
-      key: "exchangeRate",
-    },
-    {
-      title: "Tỉ lệ giảm giá",
-      dataIndex: "discountRate",
-      key: "discountRate",
-    },
-    {
-      title: "Tỉ lệ VAT",
-      dataIndex: "vatrate",
-      key: "vatrate",
+      dataIndex: "currencyExchangeRate",
+      key: "currencyExchangeRate",
     },
     {
       title: "Tổng số luợng bán",
@@ -71,42 +72,21 @@ export default function InvoiceInBrandPage({ props, data }: Props) {
     },
     {
       title: "Tổng số tiền không bao gồm VAT",
-      dataIndex: "totalAmountWithoutVat",
-      key: "totalAmountWithoutVat",
-    },
-    {
-      title: "Tổng số tiền VAT",
-      dataIndex: "totalVatamount",
-      key: "totalVatamount",
+      dataIndex: "totalAmountWithoutTax",
+      key: "totalAmountWithoutTax",
     },
     {
       title: "Tổng số tiền",
       dataIndex: "totalAmount",
       key: "totalAmount",
     },
-    {
-      title: "Trạng thái thanh toán",
-      dataIndex: "paymentStatus",
-      key: "paymentStatus",
-      render: (value: number) =>
-        value === 0 ? (
-          <Tag color="volcano" key={value}>
-            Chờ xử lí
-          </Tag>
-        ) : (
-          <Tag color="green" key={value}>
-            Hoàn thành
-          </Tag>
-        ),
-    },
   ];
-
   return (
     <TableRender
       columns={columns}
-      propsUrl={props}
       data={data}
-      onDelete
+      propsUrl={props}
+      onDelete={() => {}}
       onEdit
       onCreate
     />

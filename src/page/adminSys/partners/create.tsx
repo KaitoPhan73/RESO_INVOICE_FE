@@ -9,8 +9,8 @@ import { Button, Grid } from "@mui/material";
 import PATHS from "@/route/paths";
 import { environmentList, typeList } from "./config";
 import {
-  PartnersBody,
-  TPartnersBody,
+  CreatePartnersBody,
+  TCreatePartnersBody,
 } from "@/schemaValidations/partners.schema";
 import { useSnackbar } from "notistack";
 import partnersApi from "@/actions/partners";
@@ -19,13 +19,13 @@ export default function CreatePartnersPage() {
   const { PATH_ADMINSYSTEM } = PATHS;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
-  const methods = useForm<TPartnersBody>({
-    resolver: zodResolver(PartnersBody),
+  const methods = useForm<TCreatePartnersBody>({
+    resolver: zodResolver(CreatePartnersBody),
     defaultValues: {
       name: "",
       description: "",
       apiUrl: "",
-      type: 1,
+      type: 0,
       environment: 0,
       schemaConfig: "",
       code: "",
@@ -35,7 +35,7 @@ export default function CreatePartnersPage() {
   });
   const { handleSubmit } = methods;
 
-  const onSubmit = async (values: TPartnersBody) => {
+  const onSubmit = async (values: TCreatePartnersBody) => {
     try {
       const response = await partnersApi.createPartners(values);
       console.log("values", values);
@@ -82,8 +82,9 @@ export default function CreatePartnersPage() {
           <InputField name="username" label="Tài khoản" fullWidth />
         </Grid>
         <Grid item xs={4}>
-          <InputField name="password" label="Mật khẩu" fullWidth />
+          <InputField name="password" label="Mật Khẩu" fullWidth />
         </Grid>
+        
 
         <Grid item xs={12}>
           <Button

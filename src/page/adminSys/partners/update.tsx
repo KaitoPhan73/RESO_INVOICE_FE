@@ -11,7 +11,6 @@ import { environmentList, typeList } from "./config";
 import {
   PartnersBody,
   TUpdatePartnersBody,
-  UpdatePartnersBody,
 } from "@/schemaValidations/partners.schema";
 import { useSnackbar } from "notistack";
 import partnersApi from "@/actions/partners";
@@ -25,7 +24,7 @@ export default function UpdatePartnersPage({ data }: Props) {
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TUpdatePartnersBody>({
-    resolver: zodResolver(UpdatePartnersBody),
+    resolver: zodResolver(PartnersBody),
     defaultValues: {
       ...data,
       additionalField: "", 
