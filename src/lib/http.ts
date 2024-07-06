@@ -189,7 +189,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
       body: any,
       options?: Omit<CustomOptions, "body"> | undefined
     ) {
-      return request<Response>("PUT", url, { ...options, body });
+      return request<Response>("PATCH", url, { ...options, body });
     },
     delete<Response>(
       url: string,
@@ -204,8 +204,6 @@ const httpServer = createHttpClient("");
 const httpMock = createHttpClient(
   "https://660bbdb3ccda4cbc75dd950a.mockapi.io/api"
 );
-const httpInvoice = createHttpClient(
-  "https://invoice.reso.vn/api/v1"
-);
+const httpInvoice = createHttpClient("https://invoice.reso.vn/api/v1");
 
 export { httpServer, httpMock, httpInvoice };

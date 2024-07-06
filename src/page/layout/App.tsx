@@ -13,6 +13,29 @@ const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const pathname = usePathname();
+
+  useEffect(() => {
+    // Function to determine if it's a desktop screen
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setCollapsed(false); // Desktop
+      } else {
+        setCollapsed(true); // Mobile or Tablet
+      }
+    };
+
+    // Set the initial collapsed state based on the screen size
+    handleResize();
+
+    // Add event listener to handle window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     const findOpenKeys = (items: any[], path: string): string[] => {
       for (let item of items) {

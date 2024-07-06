@@ -1,6 +1,6 @@
-"use client"
-import React, { useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
+"use client";
+import React, { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Grid,
   Paper,
@@ -9,25 +9,25 @@ import {
   Typography,
   IconButton,
   InputAdornment,
-} from '@mui/material';
-import { FormProvider, useForm, Controller } from 'react-hook-form';
-import { useRouter } from 'next/router'; // Use `useRouter` instead of `useRouter` from 'next/navigation'
+} from "@mui/material";
+import { FormProvider, useForm, Controller } from "react-hook-form";
 import {
   VisibilityOff,
   Visibility,
   AccountCircle,
   Lock,
-} from '@mui/icons-material';
-import { useSnackbar } from 'notistack';
-import '@dotlottie/player-component/dist/dotlottie-player.mjs'; // Import player-component
-import InputField from '@/components/form/InputField';
-import authApi from '@/actions/auth';
-import { LoginBody, TLoginBody } from '@/schemaValidations/auth.schema';
-import { useDispatch } from 'react-redux';
-import { setUser } from '@/redux/User/userSlice';
-import PATHS from '@/route/paths';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+} from "@mui/icons-material";
+import { useSnackbar } from "notistack";
+// import "@dotlottie/player-component/dist/dotlottie-player.mjs"; // Import player-component
+import InputField from "@/components/form/InputField";
+import authApi from "@/actions/auth";
+import { LoginBody, TLoginBody } from "@/schemaValidations/auth.schema";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/User/userSlice";
+import PATHS from "@/route/paths";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { useRouter } from "next/navigation";
 
 type Props = {
   postData: any;
@@ -49,8 +49,8 @@ export default function LoginPage() {
   const methods = useForm<TLoginBody>({
     resolver: zodResolver(LoginBody),
     defaultValues: {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     },
   });
   const { handleSubmit, control } = methods;
@@ -67,7 +67,7 @@ export default function LoginPage() {
       });
       if (response.status === 200) {
         dispatch(setUser(user));
-        enqueueSnackbar('Login successfully', { variant: 'success' });
+        enqueueSnackbar("Login successfully", { variant: "success" });
         if (user?.role === 0) {
           router.push(PATHS.PATH_BRAND.organizations);
         } else if (user?.role === 1) {
@@ -77,7 +77,7 @@ export default function LoginPage() {
         }
       }
     } catch (error: any) {
-      console.log('error', error);
+      console.log("error", error);
     } finally {
       setLoading(false);
     }
@@ -86,43 +86,41 @@ export default function LoginPage() {
   return (
     <div
       style={{
-        maxWidth: '400px',
-        width: '100%',
-        margin: '10px auto',
-        position: 'relative',
+        maxWidth: "400px",
+        width: "100%",
+        margin: "10px auto",
+        position: "relative",
       }}
     >
       <div
         className="top"
         style={{
-          background: '#131be1',
-          height: '300px',
-          position: 'relative',
+          background: "#131be1",
+          height: "300px",
+          position: "relative",
           backgroundImage: `url("/images/logo-deercoffee.jpg")`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
         <div
           className="logo"
           style={{
-            position: 'absolute',
-            maxWidth: '100px',
-            top: '28%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            WebkitTransform: 'translateX(-50%)',
+            position: "absolute",
+            maxWidth: "100px",
+            top: "28%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            WebkitTransform: "translateX(-50%)",
           }}
-        >
-          <img src="" alt="" width="100px" />
-        </div>
+        ></div>
       </div>
       <div
         className="bottom"
         style={{
-          background: '#eee',
-          borderRadius: '20px',
-          marginTop: '10px',
+          background: "#eee",
+          borderRadius: "20px",
+          marginTop: "10px",
         }}
       >
         <FormProvider {...methods}>
@@ -131,42 +129,42 @@ export default function LoginPage() {
               <Paper
                 className="form"
                 sx={{
-                  padding: '40px',
-                  maxWidth: '500px',
-                  margin: 'auto',
-                  borderRadius: '20px',
-                  boxShadow: '30px 20px 20px rgba(0, 0, 0, 0.1)',
-                  color: '#333',
-                  border: '1px solid #333',
+                  padding: "40px",
+                  maxWidth: "500px",
+                  margin: "auto",
+                  borderRadius: "20px",
+                  boxShadow: "30px 20px 20px rgba(0, 0, 0, 0.1)",
+                  color: "#333",
+                  border: "1px solid #333",
                 }}
               >
                 <h2
                   style={{
-                    textAlign: 'center',
-                    fontWeight: 'bold',
-                    fontFamily: 'initial',
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontFamily: "initial",
                   }}
                 >
                   Welcome you come back !!!
                 </h2>
                 <Typography
                   variant="subtitle2"
-                  sx={{ textAlign: 'center', marginTop: '16px' }}
+                  sx={{ textAlign: "center", marginTop: "16px" }}
                 >
-                  <Box
+                  {/* <Box
                     sx={{
-                      display: 'flex',
-                      alignItems: 'center',
+                      display: "flex",
+                      alignItems: "center",
                     }}
                   >
                     <Box
-                      sx={{ width: '100%', height: '1px', bgcolor: 'grey.500' }}
+                      sx={{ width: "100%", height: "1px", bgcolor: "grey.500" }}
                     />
-                    <Box sx={{ px: 1, fontWeight: 'bold' }}>OR</Box>
+                    <Box sx={{ px: 1, fontWeight: "bold" }}>OR</Box>
                     <Box
-                      sx={{ width: '100%', height: '1px', bgcolor: 'grey.500' }}
+                      sx={{ width: "100%", height: "1px", bgcolor: "grey.500" }}
                     />
-                  </Box>
+                  </Box> */}
                 </Typography>
 
                 <Controller
@@ -178,7 +176,7 @@ export default function LoginPage() {
                       label="Username"
                       placeholder="Username"
                       fullWidth
-                      sx={{ width: '100%', mb: 2 }}
+                      sx={{ width: "100%", mb: 2 }}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -197,10 +195,10 @@ export default function LoginPage() {
                     <InputField
                       {...field}
                       label="Password"
-                      type={showPassword ? 'text' : 'password'}
+                      type={showPassword ? "text" : "password"}
                       placeholder="Password"
                       fullWidth
-                      sx={{ width: '100%', mb: 2 }}
+                      sx={{ width: "100%", mb: 2 }}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -233,28 +231,28 @@ export default function LoginPage() {
                   fullWidth
                   onClick={handleSubmit(onSubmit)}
                   sx={{
-                    marginTop: '10px',
-                    marginBottom: '10px',
-                    borderRadius: '30px',
-                    background: '#f8c407',
-                    borderColor: '#f8c407',
-                    cursor: 'pointer',
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                    color: '#fff',
-                    transition: 'background-color 0.3s ease',
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    borderRadius: "30px",
+                    background: "#f8c407",
+                    borderColor: "#f8c407",
+                    cursor: "pointer",
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    color: "#fff",
+                    transition: "background-color 0.3s ease",
                   }}
                 >
-                  {loading ? 'Happy Code ...' : 'Login'}
+                  {loading ? "Happy Code ..." : "Login"}
                 </Button>
 
                 {loading && (
                   <div
                     style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
                     }}
                   >
                     {/* <dotlottie-player
@@ -275,4 +273,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
