@@ -11,7 +11,6 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { FormProvider, useForm, Controller } from "react-hook-form";
-import { useRouter } from "next/router"; // Use `useRouter` instead of `useRouter` from 'next/navigation'
 import {
   VisibilityOff,
   Visibility,
@@ -19,7 +18,7 @@ import {
   Lock,
 } from "@mui/icons-material";
 import { useSnackbar } from "notistack";
-import "@dotlottie/player-component/dist/dotlottie-player.mjs"; // Import player-component
+// import "@dotlottie/player-component/dist/dotlottie-player.mjs"; // Import player-component
 import InputField from "@/components/form/InputField";
 import authApi from "@/actions/auth";
 import { LoginBody, TLoginBody } from "@/schemaValidations/auth.schema";
@@ -28,6 +27,7 @@ import { setUser } from "@/redux/User/userSlice";
 import PATHS from "@/route/paths";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { useRouter } from "next/navigation";
 
 type Props = {
   postData: any;
@@ -113,9 +113,7 @@ export default function LoginPage() {
             transform: "translateX(-50%)",
             WebkitTransform: "translateX(-50%)",
           }}
-        >
-          <img src="" alt="" width="100px" />
-        </div>
+        ></div>
       </div>
       <div
         className="bottom"
@@ -153,7 +151,7 @@ export default function LoginPage() {
                   variant="subtitle2"
                   sx={{ textAlign: "center", marginTop: "16px" }}
                 >
-                  <Box
+                  {/* <Box
                     sx={{
                       display: "flex",
                       alignItems: "center",
@@ -166,7 +164,7 @@ export default function LoginPage() {
                     <Box
                       sx={{ width: "100%", height: "1px", bgcolor: "grey.500" }}
                     />
-                  </Box>
+                  </Box> */}
                 </Typography>
 
                 <Controller

@@ -378,7 +378,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
           <Card style={{ width: "100%" }}>
             <Page title="Thuế" spacing={2}>
               {fieldsTaxTypes.map((taxType, index) => (
-                <Card style={{ width: "100%" }}>
+                <Card style={{ width: "100%" }} key={index}>
                   <Grid item xs={12} key={index}>
                     <Grid container spacing={1} padding={1}>
                       <Grid item xs={4}>
