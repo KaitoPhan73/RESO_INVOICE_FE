@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
 import React from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
+import { invoiceStatusOptions } from "./config";
 type Props = {
   data: TInvoice;
 };
@@ -266,6 +267,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       label="Trạng thái"
                       fullWidth
                       showBorder
+                      options={invoiceStatusOptions}
                     />
                   </Grid>
                   <Grid item xs={12}>
