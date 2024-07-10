@@ -67,7 +67,19 @@ export const InvoiceSchema = z.object({
       taxAmount: z.number(),
     })
   ),
-  responsePartNer: z.nullable(z.unknown()), // Nullable because it can be null in the JSON
+  responsePartNer: z.object({
+    code: z.string(),
+    message: z.string(),
+    data: z.object({
+      requestId: z.string(),
+      invoiceNumber: z.string(),
+      invoiceSymbol: z.string(),
+      invoiceType: z.number(),
+      invoiceCreatedDate: z.string(),
+      taxAuthorityCode: z.string(),
+      lookupCode: z.string(),
+    }),
+  }),
 });
 
 export type TInvoice = z.TypeOf<typeof InvoiceSchema>;

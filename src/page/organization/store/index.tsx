@@ -16,10 +16,6 @@ export default function OrganizationsStorePage({ props, data }: Props) {
       dataIndex: "createdDate",
       key: "createdDate",
       render: (value: string) => new Date(value).toLocaleString(),
-      filter: {
-        type: "datetime",
-        placeholder: "Chọn ngày tạo",
-      },
     },
     {
       title: "Trạng thái",
