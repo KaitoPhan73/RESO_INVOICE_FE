@@ -18,3 +18,11 @@ export const formattedDate = (timestamp: any) => {
 export const formattedDateTime = (timestamp: any) => {
   return format(new Date(timestamp), "dd/MM/yyyy HH:mm");
 };
+
+export const formatPriceVND = (price: any) => {
+  return price.toLocaleString("vi-VN", {
+    style: "currency",
+    currency: "VND",
+    minimumFractionDigits: 0, // Không hiển thị phần thập phân
+  });
+};

@@ -1,10 +1,16 @@
 import { httpInvoice } from "@/lib/http";
 import { TInvoiceReport } from "@/schemaValidations/invoice-report.schema";
+import { TReportInvoicePaymentInDateSchemaResponse } from "@/schemaValidations/invoice.schema";
 import { TInvoiceTemplateBody } from "@/schemaValidations/invoiceTemplate.schema";
+import {
+  TOrganizationAccountsRequest,
+  TOrganizationAccountsResponse,
+} from "@/schemaValidations/organizationaccounts.schema";
 import { TOrganizationsBody } from "@/schemaValidations/organizations.schema";
 import { TStore } from "@/schemaValidations/store.schema";
 import { TOrganizationsBase } from "@/types/Organization";
 import { TTableResponse } from "@/types/Table";
+import { create } from "lodash";
 
 const organizationsApi = {
   getOrganizations: (sessionToken: string, params?: any) => {
@@ -25,6 +31,15 @@ const organizationsApi = {
       {
         headers: { Authorization: `Bearer ${sessionToken}` },
       }
+    );
+  },
+  createOrganizationAccount: (
+    id: string,
+    data: TOrganizationAccountsRequest
+  ) => {
+    return httpInvoice.post<TOrganizationAccountsResponse>(
+      `/organizations/${id}/users`,
+      data
     );
   },
   getInvoicesByOrganizationById: (
@@ -66,6 +81,18 @@ const organizationsApi = {
       `organizations/${organizationId}/invoice-report`,
       { params, headers: { Authorization: `Bearer ${sessionToken}` } }
     );
+  },
+  getInvoiceReportInDateByOrganizationId: (
+    organizationId: string,
+    sessionToken: string,
+    params?: any
+  ) => {
+    return httpInvoice.get<
+      TTableResponse<TReportInvoicePaymentInDateSchemaResponse>
+    >(`organizations/${organizationId}/invoice-payment-report-in-date`, {
+      params,
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
   },
 };
 

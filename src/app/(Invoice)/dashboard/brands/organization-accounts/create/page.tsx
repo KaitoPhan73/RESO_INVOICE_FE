@@ -1,9 +1,9 @@
 import brandApi from "@/actions/brands";
-import OrganizationAccountsPage from "@/page/adminBrands/organizationAccounts";
+import CreateOrganizationAccountPage from "@/page/adminBrands/organizationAccounts/create";
 import { cookies } from "next/headers";
 import React from "react";
 
-export default async function OrganizationAccounts(props: any) {
+export default async function createOrganizations(props: any) {
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     size: props.searchParams.size ? +props.searchParams.size : 10,
@@ -12,15 +12,14 @@ export default async function OrganizationAccounts(props: any) {
   const accessToken = cookieStore.get("accessToken")?.value;
   const storeUser = cookieStore.get("user")?.value;
   const brandId = JSON.parse(storeUser!).brandId;
-  const response = await brandApi.getOrganizationAccountsByBrandId(
+  const responseOrganizations = await brandApi.getOrganizationByBrandId(
     brandId,
     accessToken!,
     params
   );
-
   return (
-    <>
-      <OrganizationAccountsPage props={props} data={response.payload} />
-    </>
+    <CreateOrganizationAccountPage
+      organizations={responseOrganizations.payload.items}
+    />
   );
 }
