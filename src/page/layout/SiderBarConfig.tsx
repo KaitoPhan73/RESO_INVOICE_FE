@@ -131,9 +131,9 @@ const OrganizationSiderBarConfig = [
     icon: null,
   },
   {
-    label: <span style={{ fontSize: "18px", fontWeight: "lighter" }}>Organization System</span>,
-    key: "1",
-    icon: <ShopOutlined />,
+    label: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo cáo").label,
+    key: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo cáo").key,
+    icon: <LineChartOutlined />,
   },
   {
     label: (
@@ -160,14 +160,6 @@ const OrganizationSiderBarConfig = [
       customMenuItem(PATH_ORGANIZATION.stores, "Cửa hàng"),
       customMenuItem(PATH_ORGANIZATION.template, "template"),
     ],
-  },
-  {
-    label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Thống Kê</span>
-    ),
-    key: "sub3",
-    icon: <LineChartOutlined />,
-    children: [customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo cáo")],
   },
 ];
 

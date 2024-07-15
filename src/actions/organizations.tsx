@@ -23,6 +23,18 @@ const organizationsApi = {
       }
     );
   },
+
+  getStoreAccountsByOrganizationById: (
+    organizationId: string,
+    sessionToken: string,
+    params?: any
+  ) => {
+    return httpInvoice.get<TTableResponse<TStoreAccountsBase>>(
+      `organizations/${organizationId}/users`,
+      { params, headers: { Authorization: `Bearer ${sessionToken}` } }
+    );
+  },
+
   createOrganization: (data: TCreateOrganizationSchema) => {
     return httpInvoice.post<TCreateOrganizationSchema>("organizations", data);
   },
