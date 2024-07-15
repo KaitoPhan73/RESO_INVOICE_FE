@@ -1,29 +1,31 @@
-"use client"
-
+"use client";
 import TableRender from "@/components/FeTable/TableRender";
+import { TOrganization } from "@/schemaValidations/organization.schema";
 import { TPartnersBase } from "@/types/Partner";
 import { CustomColumnType } from "@/types/TablePropsCustom";
-import { TableColumnsType } from "antd";
-import { Tag } from "antd";
+import { TableColumnsType, Tag } from "antd";
 import React from "react";
+
 interface Props {
   props: any;
   data: any;
 }
-export default function PartnersPage({ props, data }: Props) {
+
+export default function PartnersInBrandPage({ props, data }: Props) {
+  console.log("dataaaa>:", data);
   const columns: CustomColumnType<TPartnersBase>[] = [
     {
-      title: "Name",
+      title: "Tên",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Description",
+      title: "Mô tả",
       dataIndex: "description",
       key: "description",
     },
     {
-      title: "API URL",
+      title: "API Url",
       dataIndex: "apiUrl",
       key: "apiUrl",
     },
@@ -31,6 +33,16 @@ export default function PartnersPage({ props, data }: Props) {
       title: "Type",
       dataIndex: "type",
       key: "type",
+      render: (value: number) =>
+        value === 0 ? (
+          <Tag color="geekblue" key={value}>
+            Không hoạt động
+          </Tag>
+        ) : (
+          <Tag color="green" key={value}>
+            Hoạt động
+          </Tag>
+        ),
     },
     {
       title: "Environment",
@@ -67,17 +79,7 @@ export default function PartnersPage({ props, data }: Props) {
       dataIndex: "schemaConfig",
       key: "schemaConfig",
     },
-  ]
+  ];
 
-
-  return (
-    <TableRender
-      propsUrl={props}
-      columns={columns}
-      data={data}
-      onDelete={() => {}}
-      onEdit
-      onCreate={() => {}}
-      />
-  );
+  return <TableRender columns={columns} propsUrl={props} data={data} />;
 }

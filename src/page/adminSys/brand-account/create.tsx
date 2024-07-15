@@ -1,15 +1,15 @@
-"use client"
-import { BrandAccountBody, BrandBody, TBrandAccountBody, TBrandBody } from "@/schemaValidations/brand.schema";
+"use client";
+import React from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
-import React, { useEffect, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { BrandAccountBody, TBrandAccountBody, TBrandBody } from "@/schemaValidations/brand.schema";
 import { InputField, SelectField } from "@/components/form";
-import { Button, Grid } from "@mui/material";
 import PATHS from "@/route/paths";
-import { statusList } from "./config";
 import brandApi from "@/actions/brands";
+import { statusList } from "./config";
 
 interface Props {
   props: any;
@@ -17,9 +17,10 @@ interface Props {
 }
 
 export default function CreateBrandAccountPage({ brands }: Props) {
-  const {PATH_ADMINSYSTEM} = PATHS;
+  const { PATH_ADMINSYSTEM } = PATHS;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
+
   const methods = useForm<TBrandAccountBody>({
     resolver: zodResolver(BrandAccountBody),
     defaultValues: {
@@ -33,22 +34,24 @@ export default function CreateBrandAccountPage({ brands }: Props) {
   });
 
   const options = brands.items.map((item: TBrandBody) => ({
-    label: item.name, value: item.brandId
-  }))
+    label: item.name,
+    value: item.id,
+  }));
+
+  console.log("Options:", options); 
 
   const { handleSubmit } = methods;
 
   const onSubmit = async (values: TBrandAccountBody) => {
     try {
       const response = await brandApi.createBrandAccount(values.brandId, values);
-      
-      console.log("values", values);
+      console.log("Submitted values:", values); 
       if (response.status === 201) {
         router.push(PATH_ADMINSYSTEM.brandaccount);
         enqueueSnackbar("Tạo thành công", { variant: "success" });
       }
     } catch (error: any) {
-      console.log("error", error);
+      console.log("Submission error:", error); 
       enqueueSnackbar("Tạo thất bại", { variant: "error" });
     }
   };
@@ -60,7 +63,7 @@ export default function CreateBrandAccountPage({ brands }: Props) {
         <Grid item xs={4}>
           <SelectField
             name="brandId"
-            label="Brand"
+            label="Brand Name"
             options={options}
             fullWidth
           />
@@ -72,7 +75,7 @@ export default function CreateBrandAccountPage({ brands }: Props) {
           <InputField name="name" label="Name" fullWidth />
         </Grid>
         <Grid item xs={4}>
-          <InputField name="password" label="password" fullWidth/>
+          <InputField name="password" label="Password" fullWidth/>
         </Grid>
         <Grid item xs={4}>
           <SelectField

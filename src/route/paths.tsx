@@ -24,6 +24,7 @@ const PATH_DASHBOARD = {
   organizationssystem: path(ROOT_DASHBOARD, "/organizations"),
   partners: path(ROOT_DASHBOARD, "/partners"),
   stores: path(ROOT_DASHBOARD, "/stores"),
+  storeaccounts: path(ROOT_DASHBOARD, "/organizations"),
 };
 
 const PATH_ADMINSYSTEM = {
@@ -43,6 +44,7 @@ const PATH_ORGANIZATION = {
   invoices: path(PATH_DASHBOARD.organizations, "/invoices"),
   invoicetemplate: path(PATH_DASHBOARD.organizations, "/templates"),
   template: path(PATH_DASHBOARD.template, "/template"),
+  storeaccounts: path(PATH_DASHBOARD.organizations, "/store-accounts"),
   reportInvoices: path(PATH_DASHBOARD.organizations, "/report-invoices"),
 };
 
@@ -51,6 +53,7 @@ const PATH_BRAND = {
   organizationaccounts: path(PATH_DASHBOARD.brands, "/organization-accounts"),
   invoices: path(PATH_DASHBOARD.brands, "/invoices"),
   organizations: path(PATH_DASHBOARD.brands, "/organizations"),
+  partners: path(PATH_DASHBOARD.brands, "/partners"),
 };
 
 const PATH_USER = {
