@@ -5,11 +5,16 @@ import { CustomColumnType } from "@/types/TablePropsCustom";
 import { formatDate } from "@/utils/formater";
 import { Tag } from "antd";
 import React from "react";
+import { invoiceStatusOptions } from "./config";
 interface Props {
   props: any;
   data: any;
 }
 export default function OrganizationsInvoicePage({ props, data }: Props) {
+  const customInvoiceStatusOptions = [
+    { value: "all", label: "Tất cả" },
+    ...invoiceStatusOptions,
+  ];
   const columns: CustomColumnType<TInvoice>[] = [
     {
       title: "Ngày tạo",
@@ -26,15 +31,21 @@ export default function OrganizationsInvoicePage({ props, data }: Props) {
       dataIndex: "status",
       key: "status",
       render: (value: number) =>
-        value === 0 ? (
-          <Tag color="geekblue" key={value}>
-            Chờ xử lý
-          </Tag>
-        ) : (
-          <Tag color="green" key={value}>
-            Hoàn thành
-          </Tag>
-        ),
+        invoiceStatusOptions.map((item) => {
+          if (item.value === value) {
+            return (
+              <Tag color="geekblue" key={item.value}>
+                {item.label}
+              </Tag>
+            );
+          }
+        }),
+
+      filter: {
+        type: "select",
+        placeholder: "Chọn trạng thái",
+        options: customInvoiceStatusOptions,
+      },
     },
     {
       title: "Phương thức thanh toán",

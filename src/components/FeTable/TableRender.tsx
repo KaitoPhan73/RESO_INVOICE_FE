@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { Table, Button } from "antd";
 import { CustomColumnType } from "@/types/TablePropsCustom";
@@ -54,10 +54,6 @@ const TableRender = <RecordType extends object>({
   const renderHeader = () => {
     const filteredColumns = columns.filter((column) => column.filter);
 
-    if (filteredColumns.length === 0) {
-      return null;
-    }
-
     return (
       <div
         style={{
@@ -75,19 +71,17 @@ const TableRender = <RecordType extends object>({
             </div>
           ))}
         </div>
-        {onCreate && (
-          <Button
-            icon={<PlusOutlined />}
-            type="primary"
-            onClick={() => router.push(`${pathname}/create`)}
-          >
-            Thêm mới
-          </Button>
-        )}
+        <Button
+          icon={<PlusOutlined />}
+          type="primary"
+          onClick={() => router.push(`${pathname}/create`)}
+        >
+          Thêm mới
+        </Button>
+
       </div>
     );
   };
-
   const updatedColumns: any = columns.map((column) => {
     // Clone column to avoid mutating original object
     let updatedColumn: CustomColumnType<RecordType> = { ...column };

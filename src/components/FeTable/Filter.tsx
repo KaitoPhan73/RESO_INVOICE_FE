@@ -42,7 +42,13 @@ const Filter = <RecordType extends object>({
           onChange={handleInputChange}
         />
       ) : column.filter && column.filter.type === "select" ? (
-        <Select defaultValue="" onChange={handleSelectChange}>
+        <Select
+          defaultValue=""
+          onChange={handleSelectChange}
+          showSearch
+          placeholder={column.filter.placeholder}
+          style={{ width: 150 }}
+        >
           {column.filter.options?.map((option) => (
             <Select.Option key={option.value} value={option.value}>
               {option.label}

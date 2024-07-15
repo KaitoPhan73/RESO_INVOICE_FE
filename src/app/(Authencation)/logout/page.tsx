@@ -4,7 +4,7 @@ import { setUser, setUserServer } from "@/redux/User/userSlice";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import '@dotlottie/player-component'; // Import the Lottie player component
+// import '@dotlottie/player-component'; // Import the Lottie player component
 
 function LogoutLogic() {
   const router = useRouter();
@@ -38,8 +38,15 @@ function LogoutLogic() {
   }, [router, pathname, dispatch]);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div style={{ textAlign: 'center' }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <div style={{ textAlign: "center" }}>
         {/* <dotlottie-player
           src="https://lottie.host/d4dd4311-b564-4771-83e3-06141e29eeb4/tQqrViPvvP.json"
           background="transparent"

@@ -11,6 +11,10 @@ export default async function Invoices(props: any) {
     createdDate: props.searchParams.createdDate
       ? props.searchParams.createdDate
       : getFormattedDate(),
+    ...(props.searchParams.status &&
+      props.searchParams.status !== "all" && {
+        status: props.searchParams.status,
+      }),
   };
   console.log("params", params);
   const cookieStore = cookies();

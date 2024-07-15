@@ -15,6 +15,11 @@ export default function OrganizationsInBrandPage({ props, data }: Props) {
   const columns: CustomColumnType<TOrganization>[] = [
     {
       title: "Tên tổ chức",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Tên tổ chức",
       dataIndex: "name",
       key: "name",
     },
@@ -46,6 +51,6 @@ export default function OrganizationsInBrandPage({ props, data }: Props) {
     },
   ];
 
-  return <TableRender columns={columns} propsUrl={props} data={data}       onDelete={() => {}}
-  onEdit onCreate />;
+  return <TableRender columns={columns} propsUrl={props} data={data} onDelete={() => { }}
+    onEdit onCreate />;
 }

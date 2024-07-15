@@ -16,9 +16,10 @@ export default async function OrganizationsInBrand(props: any) {
   const brandId = JSON.parse(storeUser!).brandId;
   const response = await brandApi.getOrganizationByBrandId(
     brandId,
-    accessToken!,
+    accessToken!, 
     params
   );
+  console.log("orrr:", response);
 
   return (
     <>

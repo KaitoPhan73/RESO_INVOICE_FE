@@ -31,14 +31,11 @@ export default function OrganizationAccountsPage({ props, data }: Props) {
       title: "Vai trò",
       dataIndex: "role",
       key: "role",
-      render: (value: number) => {
-        const roles = {
-          1: "Admin",
-          2: "User",
-          3: "Guest",
-        };
-        return RoleEnum[value] || "Unknown";
-      },
+      render: (value: number) => (
+        <Tag color={value === 0 ? 'volcano' : value === 1 ? 'geekblue' : 'green'} key={value}>
+          {RoleEnum[value] || "Unknown"}
+        </Tag>
+      ),
     },
     {
       title: "Trạng thái",
@@ -56,9 +53,9 @@ export default function OrganizationAccountsPage({ props, data }: Props) {
         ),
     },
     {
-      title: "Mã cửa hàng",
+      title: "Mã tổ chức",
       dataIndex: "organizationCode",
-      key: "storeCode",
+      key: "organizationCode",
     },
     {
       title: "Mã thương hiệu",

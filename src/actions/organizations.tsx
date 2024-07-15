@@ -1,24 +1,25 @@
 import { httpInvoice } from "@/lib/http";
 import { TInvoiceReport } from "@/schemaValidations/invoice-report.schema";
 import { TInvoiceTemplateBody } from "@/schemaValidations/invoiceTemplate.schema";
-import { TOrganizationsBody } from "@/schemaValidations/organizations.schema";
+import { TCreateOrganizationAccountBody, TOrganizationAccounts } from "@/schemaValidations/organizationaccounts.schema";
+import { TCreateOrganizationSchema, TOrganizationsBody } from "@/schemaValidations/organizations.schema";
 import { TStore } from "@/schemaValidations/store.schema";
 import { TStoreAccountsBase } from "@/schemaValidations/storeaccounts.schema";
 import { TOrganizationsBase } from "@/types/Organization";
 import { TTableResponse } from "@/types/Table";
 
 const organizationsApi = {
-  getOrganizations: (sessionToken: string, params?: any) => {
-    return httpInvoice.get<TTableResponse<TOrganizationsBase>>(
+  getOrganizations: (accessToken: string, params?: any) => {
+    return httpInvoice.get<TTableResponse<TOrganizationsBody>>(
       "organizations",
       {
         params,
-        headers: { Authorization: `Bearer ${sessionToken}` },
+        headers: { Authorization: `Bearer ${accessToken}` },
       }
     );
   },
-  createOrganizations: (data: TOrganizationsBody) => {
-    return httpInvoice.post<TOrganizationsBody>("organizations", data);
+  createOrganization: (data: TCreateOrganizationSchema) => {
+    return httpInvoice.post<TCreateOrganizationSchema>("organizations", data);
   },
   getOrganizationById: (organizationId: string, sessionToken: string) => {
     return httpInvoice.get<TTableResponse<TOrganizationsBase>>(
@@ -77,6 +78,9 @@ const organizationsApi = {
       `organizations/${organizationId}/users`,
       { params, headers: { Authorization: `Bearer ${sessionToken}` } }
     );
+  },
+  createOrganizationAccount: (organizationId: string, data: TCreateOrganizationAccountBody) => {
+    return httpInvoice.post<TCreateOrganizationAccountBody>(`organizations/${organizationId}/users`, data);
   },
 };
 

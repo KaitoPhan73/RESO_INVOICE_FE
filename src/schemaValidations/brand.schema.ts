@@ -1,10 +1,10 @@
 import z from "zod";
 export const BrandBody = z.object({
-  brandId: z.string(),
+  id: z.string(),
   name: z.string(),
   code: z.string(),
   status: z.number().int(),
-  taxCode: z.string(),
+  taxcode: z.string(),
   descriptions: z.string(),
   secretKey: z.string(),
 });

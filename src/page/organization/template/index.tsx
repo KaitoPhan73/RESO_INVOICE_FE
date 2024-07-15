@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useEffect, useReducer, useState } from "react";
+import React, { ChangeEvent, useEffect, useReducer } from "react";
 
 interface InvoiceFormProps {
   onClose: () => void;
@@ -10,7 +10,7 @@ interface InvoiceFormProps {
 interface Invoice {
   id: number;
   name: string;
-  attributes: {};
+  attributes: Record<string, any>; // Updated attributes type to allow any key-value pair
   senderEmail: string;
   recipientEmail: string;
   shippingAddress: string;
@@ -28,8 +28,10 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({
   setInvoices,
   selectedInvoice,
 }) => {
-  const initialState = {
+  const initialState: Invoice = {
+    id: 0,
     name: "",
+    attributes: {},
     senderEmail: "",
     recipientEmail: "",
     shippingAddress: "",
@@ -42,29 +44,26 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({
     total: 0,
   };
 
-  function reducer(
-    state = initialState,
-    { field, value }: { field: string; value: any },
-  ) {
-    return { ...state, [field]: value };
+  function reducer(state: Invoice, action: { field: string; value: any }) {
+    return { ...state, [action.field]: action.value };
   }
 
   const [formFields, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     if (selectedInvoice) {
-      for (const [key, value] of Object.entries(selectedInvoice?.attributes)) {
+      Object.entries(selectedInvoice.attributes).forEach(([key, value]) => {
         dispatch({ field: key, value });
-      }
+      });
     } else {
-      for (const [key, value] of Object.entries(initialState)) {
+      Object.entries(initialState).forEach(([key, value]) => {
         dispatch({ field: key, value });
-      }
+      });
     }
   }, [selectedInvoice]);
 
   const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     dispatch({ field: name, value });
@@ -79,6 +78,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({
   const handleSendInvoice = () => {
     try {
       const {
+        id,
         name,
         senderEmail,
         recipientEmail,
@@ -92,20 +92,32 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({
         total,
       } = formFields;
 
+      const updatedInvoice: Invoice = {
+        id: id || Math.floor(Math.random() * 1000), // Generate a random ID if not already set
+        name,
+        attributes: { ...formFields.attributes }, // Assuming attributes are updated separately
+        senderEmail,
+        recipientEmail,
+        shippingAddress,
+        date,
+        dueDate,
+        invoiceNote,
+        description,
+        qty,
+        rate,
+        total,
+      };
+
       if (selectedInvoice) {
         // Update an existing invoice
         setInvoices((prev) =>
           prev.map((inv) =>
-            inv.id === selectedInvoice.id ? { ...inv, ...formFields } : inv,
-          ),
+            inv.id === selectedInvoice.id ? updatedInvoice : inv
+          )
         );
       } else {
         // Create a new invoice
-        const newInvoice = {
-          id: Math.floor(Math.random() * 1000), // Generate a random ID
-          ...formFields,
-        };
-        // setInvoices((prev) => [...prev, newInvoice]);
+        setInvoices((prev) => [...prev, updatedInvoice]);
       }
 
       onClose();

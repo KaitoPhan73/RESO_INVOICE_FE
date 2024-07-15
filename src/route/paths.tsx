@@ -53,6 +53,7 @@ const PATH_BRAND = {
   organizationaccounts: path(PATH_DASHBOARD.brands, "/organization-accounts"),
   invoices: path(PATH_DASHBOARD.brands, "/invoices"),
   organizations: path(PATH_DASHBOARD.brands, "/organizations"),
+  partners: path(PATH_DASHBOARD.brands, "/partners"),
 };
 
 

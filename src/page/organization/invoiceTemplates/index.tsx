@@ -1,3 +1,4 @@
+"use client";
 import TableRender from "@/components/FeTable/TableRender";
 import { TInvoiceTemplateBody } from "@/schemaValidations/invoiceTemplate.schema";
 import { CustomColumnType } from "@/types/TablePropsCustom";
