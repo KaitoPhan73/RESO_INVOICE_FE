@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Menu, MenuProps } from "antd";
+import { Layout, Menu, MenuProps, Drawer } from "antd";
 import SiderBarConfig from "./SiderBarConfig";
 import { RoleEnum } from "@/enums/role";
 import { useSelector } from "react-redux";
@@ -22,6 +22,7 @@ interface SidebarProps {
   setOpenKeys: React.Dispatch<React.SetStateAction<string[]>>;
   selectedKeys: string[];
   setSelectedKeys: React.Dispatch<React.SetStateAction<string[]>>;
+  isMobile: boolean;
 }
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -48,9 +49,11 @@ const SidebarComponent = ({
   onOpenChange,
   setOpenKeys,
   setSelectedKeys,
+  isMobile,
 }: SidebarProps) => {
   const userRedux = useSelector((state: RootState) => state.user.userServer);
   const [user, setUser] = useState<TLoginResponse | undefined | null>();
+
   useEffect(() => {
     if (userRedux === null) {
       const fetchData = async () => {
@@ -92,7 +95,25 @@ const SidebarComponent = ({
 
   const items: MenuItem[] = SiderConfigs;
 
-  return (
+  return isMobile ? (
+    <Drawer
+      title="Menu"
+      placement="left"
+      onClose={() => setCollapsed(true)}
+      visible={!collapsed}
+      bodyStyle={{ padding: 0 }}
+    >
+      <Menu
+        theme="light"
+        mode="inline"
+        items={items}
+        selectedKeys={selectedKeys}
+        openKeys={openKeys}
+        onOpenChange={onOpenChange}
+        onClick={() => setCollapsed(true)} // Close drawer on menu item click
+      />
+    </Drawer>
+  ) : (
     <Sider
       theme="light"
       trigger={null}

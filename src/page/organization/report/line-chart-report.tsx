@@ -40,10 +40,10 @@ export function LineChartReport({ data }: Props) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Báo cáo hóa đơn</CardTitle>
-        <CardDescription>
+        <CardTitle>Biểu đồ theo ngày</CardTitle>
+        {/* <CardDescription>
           Showing total visitors for the last 6 months
-        </CardDescription>
+        </CardDescription> */}
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -68,7 +68,12 @@ export function LineChartReport({ data }: Props) {
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent formatter={formatTooltip} />}
+              content={
+                <ChartTooltipContent
+                  formatter={formatTooltip}
+                  labelFormatter={(label) => formattedDate(label)}
+                />
+              }
             />
 
             {(Object.keys(chartConfig) as Array<keyof typeof chartConfig>).map(
@@ -90,9 +95,9 @@ export function LineChartReport({ data }: Props) {
       <CardFooter>
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
-            <div className="flex items-center gap-2 leading-none text-muted-foreground">
+            {/* <div className="flex items-center gap-2 leading-none text-muted-foreground">
               January - June 2024
-            </div>
+            </div> */}
           </div>
         </div>
       </CardFooter>
