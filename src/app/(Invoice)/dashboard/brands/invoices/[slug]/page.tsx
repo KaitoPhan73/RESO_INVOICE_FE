@@ -1,5 +1,5 @@
 import InvoiceApi from "@/actions/invoices";
-import OrganizationsInvoiceDetailPage from "@/page/organization/invoices/detail";
+import BrandsInvoiceDetailPage from "@/page/adminBrands/invoices/detail";
 import OrganizationsPartnerInvoiceHistoryPage from "@/page/organization/invoices/detailComponent/partnerInvHistory";
 import ResponsePartnerPage from "@/page/organization/invoices/detailComponent/responsePartner";
 import { cookies } from "next/headers";
@@ -35,7 +35,7 @@ const InvoiceDetail = async ({ params }: { params: { slug: string } }) => {
       )}
 
       <div className="col-span-1 md:col-span-1 p-4 md:pt-0">
-        <OrganizationsInvoiceDetailPage data={response.payload} />
+        <BrandsInvoiceDetailPage data={response.payload} />
       </div>
     </div>
   );

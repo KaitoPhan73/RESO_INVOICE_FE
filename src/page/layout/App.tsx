@@ -87,6 +87,8 @@ const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const onOpenChange = (keys: any) => {
     setOpenKeys(keys);
   };
+
+  console.log("path", pathname);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();

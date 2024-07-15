@@ -22,6 +22,8 @@ export const LoginBody = z
 export type TLoginBody = z.TypeOf<typeof LoginBody>;
 export const LoginResponse = AuthBase;
 
-export type TLoginResponse = z.TypeOf<typeof LoginResponse>;
+export type TLoginResponse = z.TypeOf<typeof LoginResponse> & {
+  organizationId: string;
+  brandId: string;
+};
 export type TUserOrZero = TUser | 0;
-

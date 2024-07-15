@@ -45,7 +45,7 @@ const PATH_ORGANIZATION = {
   invoicetemplate: path(PATH_DASHBOARD.organizations, "/templates"),
   template: path(PATH_DASHBOARD.template, "/template"),
   storeaccounts: path(PATH_DASHBOARD.organizations, "/store-accounts"),
-
+  reportInvoices: path(PATH_DASHBOARD.organizations, "/report-invoices"),
 };
 
 const PATH_BRAND = {
@@ -55,7 +55,6 @@ const PATH_BRAND = {
   organizations: path(PATH_DASHBOARD.brands, "/organizations"),
   partners: path(PATH_DASHBOARD.brands, "/partners"),
 };
-
 
 const PATH_USER = {
   root: ROOT_USER,
@@ -82,7 +81,7 @@ const PATHS = {
   PATH_CHART,
   PATH_ORGANIZATION,
   PATH_BRAND,
-  PATH_ADMINSYSTEM
+  PATH_ADMINSYSTEM,
 };
 
 export default PATHS;

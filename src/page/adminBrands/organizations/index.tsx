@@ -38,7 +38,7 @@ export default function OrganizationsInBrandPage({ props, data }: Props) {
       dataIndex: "taxCode",
       key: "taxCode",
     },
-
+ 
     {
       title: "Tên thương hiệu",
       dataIndex: "brandName",
@@ -51,6 +51,14 @@ export default function OrganizationsInBrandPage({ props, data }: Props) {
     },
   ];
 
-  return <TableRender columns={columns} propsUrl={props} data={data} onDelete={() => { }}
-    onEdit onCreate />;
+  return (
+    <TableRender
+      columns={columns}
+      propsUrl={props}
+      data={data}
+      onDelete={() => {}}
+      onEdit
+      onCreate
+    />
+  );
 }

@@ -17,7 +17,6 @@ export default async function OrganizationAccounts(props: any) {
     accessToken!,
     params
   );
-  console.log("hiii: ",response);
 
   return (
     <>

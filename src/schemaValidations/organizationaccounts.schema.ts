@@ -1,29 +1,19 @@
 import { z } from "zod";
 
-export const OrganizationAccountsBody = z.object({
-  id: z.string(),
-  username: z.string(),
+export const OrganizationAccountsSchema = z.object({
+  username: z.string().min(1),
   name: z.string(),
-  role: z.number().int(),
-  status: z.number().int(),
+  role: z.number(),
+  status: z.string(),
   organizationId: z.string(),
-  organizationCode: z.string(),
+  password: z.string().min(1),
   brandId: z.string(),
-  brandCode: z.string(),
 });
 
-export type TOrganizationAccounts = z.infer<typeof OrganizationAccountsBody>;
+export type TOrganizationAccountsRequest = z.TypeOf<typeof OrganizationAccountsSchema>;
 
-
-export const CreateOrganizationAccountBody = z.object({
-  username: z.string(),
-  name: z.string(),
-  password: z.string(),
-  status: z.string(),  
-  role: z.number().int(),
-  brandId: z.string(),
-  organizationId: z.string(),
-
-});
-
-export type TCreateOrganizationAccountBody = z.infer<typeof CreateOrganizationAccountBody>;
+export type TOrganizationAccountsResponse = TOrganizationAccountsRequest & {
+  id: string;
+  organizationCode: string;
+  brandCode: string;
+};

@@ -1,12 +1,17 @@
 import { httpInvoice } from "@/lib/http";
 import { TInvoiceReport } from "@/schemaValidations/invoice-report.schema";
+import { TReportInvoicePaymentInDateSchemaResponse } from "@/schemaValidations/invoice.schema";
 import { TInvoiceTemplateBody } from "@/schemaValidations/invoiceTemplate.schema";
-import { TCreateOrganizationAccountBody, TOrganizationAccounts } from "@/schemaValidations/organizationaccounts.schema";
+import {
+  TOrganizationAccountsRequest,
+  TOrganizationAccountsResponse,
+} from "@/schemaValidations/organizationaccounts.schema";
 import { TCreateOrganizationSchema, TOrganizationsBody } from "@/schemaValidations/organizations.schema";
 import { TStore } from "@/schemaValidations/store.schema";
 import { TStoreAccountsBase } from "@/schemaValidations/storeaccounts.schema";
 import { TOrganizationsBase } from "@/types/Organization";
 import { TTableResponse } from "@/types/Table";
+import { create } from "lodash";
 
 const organizationsApi = {
   getOrganizations: (accessToken: string, params?: any) => {
@@ -27,6 +32,15 @@ const organizationsApi = {
       {
         headers: { Authorization: `Bearer ${sessionToken}` },
       }
+    );
+  },
+  createOrganizationAccount: (
+    id: string,
+    data: TOrganizationAccountsRequest
+  ) => {
+    return httpInvoice.post<TOrganizationAccountsResponse>(
+      `/organizations/${id}/users`,
+      data
     );
   },
   getInvoicesByOrganizationById: (
@@ -69,18 +83,17 @@ const organizationsApi = {
       { params, headers: { Authorization: `Bearer ${sessionToken}` } }
     );
   },
-  getStoreAccountsByOrganizationById: (
+  getInvoiceReportInDateByOrganizationId: (
     organizationId: string,
     sessionToken: string,
     params?: any
   ) => {
-    return httpInvoice.get<TTableResponse<TStoreAccountsBase>>(
-      `organizations/${organizationId}/users`,
-      { params, headers: { Authorization: `Bearer ${sessionToken}` } }
-    );
-  },
-  createOrganizationAccount: (organizationId: string, data: TCreateOrganizationAccountBody) => {
-    return httpInvoice.post<TCreateOrganizationAccountBody>(`organizations/${organizationId}/users`, data);
+    return httpInvoice.get<
+      TTableResponse<TReportInvoicePaymentInDateSchemaResponse>
+    >(`organizations/${organizationId}/invoice-payment-report-in-date`, {
+      params,
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
   },
 };
 

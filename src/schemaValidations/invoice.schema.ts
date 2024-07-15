@@ -83,3 +83,18 @@ export const InvoiceSchema = z.object({
 });
 
 export type TInvoice = z.TypeOf<typeof InvoiceSchema>;
+
+const ReportInvoicePaymentInDateSchema = z.object({
+  date: z.string(),
+  totalInvoiceReportInDate: z.string(),
+  totalTaxAmountReport: z.string(),
+  totalAmountAfterTaxReport: z.string(),
+  totalSaleAmountReport: z.string(),
+  totalDiscountAmountReport: z.string(),
+  totalAmountWithoutTaxReport: z.string(),
+  totalAmountReport: z.string(),
+});
+
+export type TReportInvoicePaymentInDateSchemaResponse = z.TypeOf<
+  typeof ReportInvoicePaymentInDateSchema
+>;

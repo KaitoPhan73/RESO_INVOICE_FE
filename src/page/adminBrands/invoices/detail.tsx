@@ -18,7 +18,7 @@ type Props = {
   data: TInvoice;
 };
 
-export default function OrganizationsInvoiceDetailPage({ data }: Props) {
+export default function BrandsInvoiceDetailPage({ data }: Props) {
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TInvoice>({

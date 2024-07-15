@@ -1,5 +1,10 @@
 import { httpInvoice } from "@/lib/http";
-import { TBrandAccountBody, TBrandBody, TCreateBrandBody } from "@/schemaValidations/brand.schema";
+import {
+  TBrandAccountBody,
+  TBrandBody,
+  TCreateBrandBody,
+} from "@/schemaValidations/brand.schema";
+import { TOrganizationAccountsResponse } from "@/schemaValidations/organizationaccounts.schema";
 import { TTableResponse } from "@/types/Table";
 
 const brandApi = {
@@ -66,10 +71,13 @@ const brandApi = {
     sessionToken: string,
     params?: any
   ) => {
-    return httpInvoice.get<TBrandBody>(`brands/${brandId}/organizations`, {
-      params,
-      headers: { Authorization: `Bearer ${sessionToken}` },
-    });
+    return httpInvoice.get<TTableResponse<TOrganizationAccountsResponse>>(
+      `brands/${brandId}/organizations`,
+      {
+        params,
+        headers: { Authorization: `Bearer ${sessionToken}` },
+      }
+    );
   },
 
   createBrand: (data: TCreateBrandBody) => {
@@ -78,7 +86,6 @@ const brandApi = {
   createBrandAccount: (brandId: string, data: TBrandAccountBody) => {
     return httpInvoice.post<TBrandAccountBody>(`brands/${brandId}/users`, data);
   },
-
 };
 
 export default brandApi;

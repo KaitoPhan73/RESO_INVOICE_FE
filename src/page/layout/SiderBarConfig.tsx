@@ -120,7 +120,7 @@ const BrandAdminSiderBarConfig = [
     label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Chart</span>,
     key: "sub3",
     icon: <LineChartOutlined />,
-    children: [customMenuItem(PATH_CHART.chart, "Chart")],
+    children: [customMenuItem(PATH_ORGANIZATION.reportInvoices, "Report")],
   },
 ];
 
@@ -144,8 +144,8 @@ const OrganizationSiderBarConfig = [
     key: "sub1",
     icon: <DesktopOutlined />,
     children: [
-      customMenuItem(PATH_ORGANIZATION.invoicetemplate, "Template"),
-      customMenuItem(PATH_ORGANIZATION.invoices, "Invoice"),
+      customMenuItem(PATH_ORGANIZATION.invoicetemplate, "Mẫu"),
+      customMenuItem(PATH_ORGANIZATION.invoices, "Hóa đơn"),
     ],
   },
   {
@@ -156,23 +156,19 @@ const OrganizationSiderBarConfig = [
     ),
     key: "sub2",
     icon: <CoffeeOutlined />,
-    children: [customMenuItem(PATH_ORGANIZATION.stores, "Stores"),
-    customMenuItem(PATH_ORGANIZATION.template, "Template"),
-    customMenuItem(PATH_ORGANIZATION.storeaccounts, "Accounts")],
-
+    children: [
+      customMenuItem(PATH_ORGANIZATION.stores, "Cửa hàng"),
+      customMenuItem(PATH_ORGANIZATION.template, "template"),
+    ],
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
-        Thống Kê
-      </span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Thống Kê</span>
     ),
     key: "sub3",
     icon: <LineChartOutlined />,
-    children: [customMenuItem(PATH_CHART.chart, "Chart")],
-
+    children: [customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo cáo")],
   },
-
 ];
 
 const SiderBarConfig = {
