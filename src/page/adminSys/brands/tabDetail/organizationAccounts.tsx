@@ -2,8 +2,6 @@
 
 import TableRender from "@/components/FeTable/TableRender";
 import { RoleEnum } from "@/enums/role";
-import { TOrganizationAccounts } from "@/schemaValidations/organizationaccounts.schema";
-import { TableColumnsType, Tag } from "antd";
 import React from "react";
 import { organizationAccountsColumns } from "./configColunms";
 

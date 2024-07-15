@@ -138,15 +138,6 @@ export default function LoginPage() {
                   border: "1px solid #333",
                 }}
               >
-                <h2
-                  style={{
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    fontFamily: "initial",
-                  }}
-                >
-                  Welcome you come back !!!
-                </h2>
                 <Typography
                   variant="subtitle2"
                   sx={{ textAlign: "center", marginTop: "16px" }}

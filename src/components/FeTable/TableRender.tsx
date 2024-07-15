@@ -54,10 +54,6 @@ const TableRender = <RecordType extends object>({
   const renderHeader = () => {
     const filteredColumns = columns.filter((column) => column.filter);
 
-    if (filteredColumns.length === 0) {
-      return null;
-    }
-
     return (
       <div
         style={{
