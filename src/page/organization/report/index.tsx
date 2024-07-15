@@ -32,6 +32,7 @@ import { TInvoiceReport } from "@/schemaValidations/invoice-report.schema";
 import { LineChartReport } from "./line-chart-report";
 import PieChartReport from "./pie-chart-report";
 import { DatePickerWithRange } from "@/components/ui/date-range-picker";
+import CardReports from "./card-report";
 
 type Props = {
   data: {
@@ -46,11 +47,15 @@ export function ReportInvoce({ data }: Props) {
       <div className="col-span-12">
         <DatePickerWithRange />
       </div>
-      <div className="col-span-12 md:col-span-6 lg:col-span-6">
-        <PieChartReport data={data.reportItems} />
-      </div>
       <div className="col-span-12">
+        <CardReports data={data.reportItems} />
+      </div>
+
+      <div className="col-span-12 ">
         <LineChartReport data={data.reportItems} />
+      </div>
+      <div className="col-span-12 lg:col-span-6">
+        <PieChartReport data={data.reportItems} />
       </div>
     </div>
   );

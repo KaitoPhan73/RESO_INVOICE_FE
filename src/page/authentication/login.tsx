@@ -73,7 +73,7 @@ export default function LoginPage() {
         } else if (user?.role === 1) {
           router.push(PATHS.PATH_ADMINSYSTEM.brands);
         } else if (user?.role === 2) {
-          router.push(PATHS.PATH_ORGANIZATION.invoices);
+          router.push(PATHS.PATH_ORGANIZATION.reportInvoices);
         }
       }
     } catch (error: any) {
