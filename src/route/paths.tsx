@@ -24,6 +24,7 @@ const PATH_DASHBOARD = {
   organizationssystem: path(ROOT_DASHBOARD, "/organizations"),
   partners: path(ROOT_DASHBOARD, "/partners"),
   stores: path(ROOT_DASHBOARD, "/stores"),
+  storeaccounts: path(ROOT_DASHBOARD, "/organizations"),
 };
 
 const PATH_ADMINSYSTEM = {
@@ -43,6 +44,7 @@ const PATH_ORGANIZATION = {
   invoices: path(PATH_DASHBOARD.organizations, "/invoices"),
   invoicetemplate: path(PATH_DASHBOARD.organizations, "/templates"),
   template: path(PATH_DASHBOARD.template, "/template"),
+  storeaccounts: path(PATH_DASHBOARD.organizations, "/store-accounts"),
 
 };
 

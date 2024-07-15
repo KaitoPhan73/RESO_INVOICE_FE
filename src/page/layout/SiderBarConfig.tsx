@@ -152,7 +152,8 @@ const OrganizationSiderBarConfig = [
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [customMenuItem(PATH_ORGANIZATION.stores, "Stores"),
-    customMenuItem(PATH_ORGANIZATION.template, "template")],
+    customMenuItem(PATH_ORGANIZATION.template, "Template"),
+    customMenuItem(PATH_ORGANIZATION.storeaccounts, "Accounts")],
 
   },
   {

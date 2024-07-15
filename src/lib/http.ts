@@ -205,7 +205,7 @@ const httpMock = createHttpClient(
   "https://660bbdb3ccda4cbc75dd950a.mockapi.io/api"
 );
 const httpInvoice = createHttpClient(
-  "https://invoice.reso.vn/api/v1"
+  "https://reso-invoice.onrender.com/api/v1"
 );
 
 export { httpServer, httpMock, httpInvoice };

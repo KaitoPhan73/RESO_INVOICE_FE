@@ -3,6 +3,7 @@ import { TInvoiceReport } from "@/schemaValidations/invoice-report.schema";
 import { TInvoiceTemplateBody } from "@/schemaValidations/invoiceTemplate.schema";
 import { TOrganizationsBody } from "@/schemaValidations/organizations.schema";
 import { TStore } from "@/schemaValidations/store.schema";
+import { TStoreAccountsBase } from "@/schemaValidations/storeaccounts.schema";
 import { TOrganizationsBase } from "@/types/Organization";
 import { TTableResponse } from "@/types/Table";
 
@@ -64,6 +65,16 @@ const organizationsApi = {
   ) => {
     return httpInvoice.get<TInvoiceReport>(
       `organizations/${organizationId}/invoice-report`,
+      { params, headers: { Authorization: `Bearer ${sessionToken}` } }
+    );
+  },
+  getStoreAccountsByOrganizationById: (
+    organizationId: string,
+    sessionToken: string,
+    params?: any
+  ) => {
+    return httpInvoice.get<TTableResponse<TStoreAccountsBase>>(
+      `organizations/${organizationId}/users`,
       { params, headers: { Authorization: `Bearer ${sessionToken}` } }
     );
   },

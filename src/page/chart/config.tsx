@@ -1,4 +1,4 @@
-// import { data } from "./data"; // Đảm bảo import data từ file chứa nó
+// import { data } from "./"; // Đảm bảo import data từ file chứa nó
 
 // export const config = {
 //   type: "line",
