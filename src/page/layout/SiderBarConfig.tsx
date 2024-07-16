@@ -59,8 +59,8 @@ const SystemAdminSiderBarConfig = [
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [
-      customMenuItem(PATH_ADMINSYSTEM.brands, "Management"),
-      customMenuItem(PATH_ADMINSYSTEM.brandaccount, "Accounts"),
+      customMenuItem(PATH_ADMINSYSTEM.brands, "Quản Lí"),
+      customMenuItem(PATH_ADMINSYSTEM.brandaccount, "Tài Khoản"),
       customMenuItem(PATH_ADMINSYSTEM.partners, "Partners"),
 
     ],
@@ -95,13 +95,13 @@ const BrandAdminSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Organizations</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Tổ Chức</span>
     ),
     key: "sub1",
     icon: <UserOutlined />,
     children: [
-      customMenuItem(PATH_BRAND.organizations, "Management"),
-      customMenuItem(PATH_BRAND.organizationaccounts, "Accounts"),
+      customMenuItem(PATH_BRAND.organizations, "Quản Lí"),
+      customMenuItem(PATH_BRAND.organizationaccounts, "Tài Khoản"),
       customMenuItem(PATH_BRAND.partners, "Partner"),
 
     ],
@@ -109,18 +109,18 @@ const BrandAdminSiderBarConfig = [
 
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Invoice</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Hóa Đơn</span>
     ),
     key: "sub2",
     icon: <FileOutlined />,
-    children: [customMenuItem(PATH_BRAND.invoices, "Management")],
+    children: [customMenuItem(PATH_BRAND.invoices, "Quản Lí")],
   },
 
   {
-    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Chart</span>,
+    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Doanh Thu</span>,
     key: "sub3",
     icon: <LineChartOutlined />,
-    children: [customMenuItem(PATH_ORGANIZATION.reportInvoices, "Report")],
+    children: [customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo Cáo")],
   },
 ];
 
@@ -158,7 +158,7 @@ const OrganizationSiderBarConfig = [
     icon: <CoffeeOutlined />,
     children: [
       customMenuItem(PATH_ORGANIZATION.stores, "Cửa hàng"),
-      customMenuItem(PATH_ORGANIZATION.template, "template"),
+      customMenuItem(PATH_ORGANIZATION.template, "Mẫu"),
     ],
   },
 ];
