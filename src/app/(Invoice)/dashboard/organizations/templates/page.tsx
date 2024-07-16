@@ -3,24 +3,19 @@ import OrganizationsInvoiceTemplatePage from "@/page/organization/invoiceTemplat
 import { cookies } from "next/headers";
 import React from "react";
 
-export default async function Templates(props: any) {
-  const params = {
-    page: props.searchParams.page ? +props.searchParams.page : 1,
-    size: props.searchParams.size ? +props.searchParams.size : 10,
-  };
+export default async function Templates({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
-  const storeUser = cookieStore.get("user")?.value;
-  const organizationId = JSON.parse(storeUser!).organizationId;
-  const response = await OrganizationsApi.getTemplatesByOrganizationById(
-    organizationId,
-    accessToken!,
-    params
-  );
+  const data = await OrganizationsApi.getTemplatesByOrganizationById(params.slug, accessToken);
+  
 
   return (
     <>
-      <OrganizationsInvoiceTemplatePage props={props} data={response.payload} />
+      <OrganizationsInvoiceTemplatePage data={data.payload} />
     </>
   );
 }
