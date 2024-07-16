@@ -18,7 +18,7 @@ type Props = {
   data: TInvoice;
 };
 
-export default function BrandsInvoiceDetailPage({ data }: Props) {
+export default function OrganizationsInvoiceDetailPage({ data }: Props) {
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const methods = useForm<TInvoice>({
@@ -80,6 +80,19 @@ export default function BrandsInvoiceDetailPage({ data }: Props) {
   return (
     <FormProvider {...methods}>
       <Grid container spacing={2}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={11} className="text-right">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={hanleSend}
+              disabled={data.status === 1}
+            >
+              Gửi
+            </Button>
+          </Grid>
+        </Grid>
+
         <Grid item xs={12} md={6} lg={6}>
           <Card style={{ width: "100%" }}>
             <Grid container item xs={12} spacing={1}>
@@ -245,6 +258,7 @@ export default function BrandsInvoiceDetailPage({ data }: Props) {
                       showBorder
                     />
                   </Grid>
+
                   <Grid item xs={4}>
                     <TyphoField
                       name="lookupCode"
@@ -497,16 +511,7 @@ export default function BrandsInvoiceDetailPage({ data }: Props) {
             </Page>
           </Card>
         </Grid>
-        <Grid item xs={3}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={hanleSend}
-            // disable={data.status === 2}
-          >
-            Gửi
-          </Button>
-        </Grid>
+
       </Grid>
     </FormProvider>
   );

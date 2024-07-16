@@ -1,5 +1,5 @@
 import InvoiceApi from "@/actions/invoices";
-import BrandsInvoiceDetailPage from "@/page/adminBrands/invoices/detail";
+import OrganizationsInvoiceDetailPage from "@/page/organization/invoices/detail";
 import OrganizationsPartnerInvoiceHistoryPage from "@/page/organization/invoices/detailComponent/partnerInvHistory";
 import ResponsePartnerPage from "@/page/organization/invoices/detailComponent/responsePartner";
 import { cookies } from "next/headers";
@@ -18,26 +18,28 @@ const InvoiceDetail = async ({ params }: { params: { slug: string } }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
       {response.payload.status === 1 ? (
-        <div
-          className="col-span-2 md:col-span-2 p-4 md:pb-0 mb-8"
-          style={{ marginBottom: "1rem" }}
-        >
-          <OrganizationsPartnerInvoiceHistoryPage
-            data={reponsePartner!.payload}
-          />
+        <div className="col-span-3 md:col-span-3 p-4 mb-8">
+          <OrganizationsPartnerInvoiceHistoryPage data={reponsePartner!.payload} />
         </div>
       ) : (
-        <div className="col-span-2 md:col-span-2 p-4 md:pb-0 mb-8">
+        <div className="col-span-3 md:col-span-3 p-4 mb-8">
           <ResponsePartnerPage data={response.payload.responsePartNer} />
         </div>
       )}
 
-      <div className="col-span-1 md:col-span-1 p-4 md:pt-0">
-        <BrandsInvoiceDetailPage data={response.payload} />
+      <div className="col-span-3 md:col-span-3 p-4 mb-8">
+        <OrganizationsInvoiceDetailPage data={response.payload} />
       </div>
+
+
+      <div className="col-span-3 md:col-span-3 p-4 mb-8"></div>
     </div>
   );
 };
 export default InvoiceDetail;
+
+
+
+
