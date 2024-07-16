@@ -10,9 +10,8 @@ export default async function Invoices(props: any) {
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     size: props.searchParams.size ? +props.searchParams.size : 10,
-    createdDate: props.searchParams.createdDate
-      ? props.searchParams.createdDate
-      : getFormattedDate(),
+    createdDate:
+      props.searchParams.createdDate && props.searchParams.createdDate,
     ...(props.searchParams.status &&
       props.searchParams.status !== "all" && {
         status: props.searchParams.status,

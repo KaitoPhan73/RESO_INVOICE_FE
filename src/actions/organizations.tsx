@@ -66,15 +66,16 @@ const organizationsApi = {
     );
   },
   getTemplatesByOrganizationById: (
-    organizationId: string,
-    sessionToken: string,
+    id: string,
+    accessToken?: string,
     params?: any
   ) => {
     return httpInvoice.get<TTableResponse<TInvoiceTemplateBody>>(
-      `organizations/${organizationId}/templates`,
-      { params, headers: { Authorization: `Bearer ${sessionToken}` } }
+      `invoice-templates/${id}`,
+      { params, headers: { Authorization: `Bearer ${accessToken}` } }
     );
   },
+
   getStoresByOrganizationById: (
     organizationId: string,
     sessionToken: string,

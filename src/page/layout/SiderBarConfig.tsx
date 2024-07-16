@@ -158,7 +158,7 @@ const OrganizationSiderBarConfig = [
     icon: <CoffeeOutlined />,
     children: [
       customMenuItem(PATH_ORGANIZATION.stores, "Cửa hàng"),
-      customMenuItem(PATH_ORGANIZATION.template, "Mẫu"),
+      // customMenuItem(PATH_ORGANIZATION.template, "Mẫu"),
     ],
   },
 ];
