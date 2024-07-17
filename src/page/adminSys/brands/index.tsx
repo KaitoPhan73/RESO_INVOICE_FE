@@ -12,11 +12,7 @@ interface Props {
 
 export default function BrandPage({ props, data }: Props) {
   const columns: CustomColumnType<TBrandBody>[] = [
-    {
-      title: "id",
-      dataIndex: "brandId",
-      key: "id",
-    },
+
     {
       title: "Tên",
       dataIndex: "name",
@@ -28,8 +24,8 @@ export default function BrandPage({ props, data }: Props) {
       key: "code",
     },
     {
-      title: "MST",
-      dataIndex: "taxCode",
+      title: "Mã số thuế",
+      dataIndex: "taxcode",
       key: "taxcode",
     },
     {
@@ -51,6 +47,11 @@ export default function BrandPage({ props, data }: Props) {
             Hoàn thành
           </Tag>
         ),
+    },
+    {
+      title: "Mã bí mật",
+      dataIndex: "secretKey",
+      key: "secretKey",
     },
   ];
 

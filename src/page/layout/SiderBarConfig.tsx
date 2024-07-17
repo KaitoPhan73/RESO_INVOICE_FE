@@ -8,6 +8,8 @@ import {
   CoffeeOutlined,
   AppstoreAddOutlined,
   LineChartOutlined,
+  BranchesOutlined,
+  ShopOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
 import Image from "next/image";
@@ -46,37 +48,38 @@ const SystemAdminSiderBarConfig = [
     icon: null,
   },
   {
-    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Home</span>,
+    label: <span style={{ fontSize: "18px", fontWeight: "lighter" }}>Admin System</span>,
     key: "1",
-    icon: <PieChartOutlined />,
+    icon: <ShopOutlined />,
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>DashBoard</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Brands</span>
     ),
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [
+      customMenuItem(PATH_ADMINSYSTEM.brands, "Quản Lí"),
+      customMenuItem(PATH_ADMINSYSTEM.brandaccount, "Tài Khoản"),
       customMenuItem(PATH_ADMINSYSTEM.partners, "Partners"),
-      customMenuItem(PATH_ADMINSYSTEM.brands, "Brand"),
-      customMenuItem(PATH_ADMINSYSTEM.brandaccount, "Brand Account Management"),
+
     ],
   },
-  {
-    label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
-        Brands Detail
-      </span>
-    ),
-    key: "sub3",
-    icon: <CoffeeOutlined />,
-    children: [
-      customMenuItem(PATH_ADMINSYSTEM.inventoryitemssystem, "Inventory Items"),
-      customMenuItem(PATH_ADMINSYSTEM.invoicessystem, "Invoices"),
-      customMenuItem(PATH_ADMINSYSTEM.organizationssystem, "Organizations"),
-      customMenuItem(PATH_ADMINSYSTEM.userssystem, "Users"),
-    ],
-  },
+  // {
+  //   label: (
+  //     <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+  //       Brands Detail
+  //     </span>
+  //   ),
+  //   key: "sub3",
+  //   icon: <CoffeeOutlined />,
+  //   children: [
+  //     customMenuItem(PATH_ADMINSYSTEM.invoicessystem, "Invoices"),
+  //     customMenuItem(PATH_ADMINSYSTEM.organizationssystem, "Organizations"),
+  //     customMenuItem(PATH_ADMINSYSTEM.brandaccount, "Organization Account"),
+  //     customMenuItem(PATH_ADMINSYSTEM.userssystem, "Users"),
+  //   ],
+  // },
 ];
 
 const BrandAdminSiderBarConfig = [
@@ -86,36 +89,38 @@ const BrandAdminSiderBarConfig = [
     icon: null,
   },
   {
-    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Home</span>,
+    label: <span style={{ fontSize: "18px", fontWeight: "lighter" }}>Brand System</span>,
     key: "1",
-    icon: <PieChartOutlined />,
+    icon: <ShopOutlined />,
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Organization</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Tổ Chức</span>
     ),
     key: "sub1",
     icon: <UserOutlined />,
     children: [
-      customMenuItem(PATH_BRAND.organizationaccounts, "Accounts"),
-      customMenuItem(PATH_BRAND.organizations, "Management"),
+      customMenuItem(PATH_BRAND.organizations, "Quản Lí"),
+      customMenuItem(PATH_BRAND.organizationaccounts, "Tài Khoản"),
+      customMenuItem(PATH_BRAND.partners, "Partner"),
+
     ],
   },
 
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Invoice</span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Hóa Đơn</span>
     ),
     key: "sub2",
     icon: <FileOutlined />,
-    children: [customMenuItem(PATH_BRAND.invoices, "Management")],
+    children: [customMenuItem(PATH_BRAND.invoices, "Quản Lí")],
   },
 
   {
-    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Chart</span>,
+    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Doanh Thu</span>,
     key: "sub3",
     icon: <LineChartOutlined />,
-    children: [customMenuItem(PATH_ORGANIZATION.reportInvoices, "Report")],
+    children: [customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo Cáo")],
   },
 ];
 
@@ -153,7 +158,7 @@ const OrganizationSiderBarConfig = [
     icon: <CoffeeOutlined />,
     children: [
       customMenuItem(PATH_ORGANIZATION.stores, "Cửa hàng"),
-      customMenuItem(PATH_ORGANIZATION.template, "template"),
+      // customMenuItem(PATH_ORGANIZATION.template, "Mẫu"),
     ],
   },
 ];

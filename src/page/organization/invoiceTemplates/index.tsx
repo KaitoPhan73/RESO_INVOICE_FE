@@ -5,11 +5,9 @@ import { CustomColumnType } from "@/types/TablePropsCustom";
 import { TableColumnsType } from "antd";
 import React from "react";
 interface Props {
-  props: any;
   data: any;
 }
 export default function OrganizationsInvoiceTemplatePage({
-  props,
   data,
 }: Props) {
   const columns: CustomColumnType<TInvoiceTemplateBody>[] = [
@@ -47,7 +45,7 @@ export default function OrganizationsInvoiceTemplatePage({
   return (
     <TableRender
       columns={columns}
-      propsUrl={props}
+      propsUrl={() => {}}
       data={data}
       onDelete={() => {}}
       onEdit

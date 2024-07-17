@@ -71,19 +71,17 @@ const TableRender = <RecordType extends object>({
             </div>
           ))}
         </div>
-        {onCreate && (
-          <Button
-            icon={<PlusOutlined />}
-            type="primary"
-            onClick={() => router.push(`${pathname}/create`)}
-          >
-            Thêm mới
-          </Button>
-        )}
+        <Button
+          icon={<PlusOutlined />}
+          type="primary"
+          onClick={() => router.push(`${pathname}/create`)}
+        >
+          Thêm mới
+        </Button>
+
       </div>
     );
   };
-
   const updatedColumns: any = columns.map((column) => {
     // Clone column to avoid mutating original object
     let updatedColumn: CustomColumnType<RecordType> = { ...column };

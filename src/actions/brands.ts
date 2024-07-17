@@ -33,6 +33,19 @@ const brandApi = {
       }
     );
   },
+  getPartnersByBrandId: (
+    brandId: string,
+    sessionToken: string,
+    params?: any
+  ) => {
+    return httpInvoice.get<TBrandBody>(
+      `brands/${brandId}/partners`,
+      {
+        params,
+        headers: { Authorization: `Bearer ${sessionToken}` },
+      }
+    );
+  },
   // getInventoryItemsByBrandId: (
   //   brandId: string,
   //   sessionToken: string,

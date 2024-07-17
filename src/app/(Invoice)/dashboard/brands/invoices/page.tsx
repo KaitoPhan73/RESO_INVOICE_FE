@@ -1,13 +1,23 @@
 import brandApi from "@/actions/brands";
+import OrganizationsApi from "@/actions/organizations";
 import InvoiceInBrandPage from "@/page/adminBrands/invoices";
+import OrganizationsInvoicePage from "@/page/organization/invoices";
+import { getFormattedDate } from "@/utils/utils";
 import { cookies } from "next/headers";
 import React from "react";
 
-export default async function InvoicesInBrand(props: any) {
+export default async function Invoices(props: any) {
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     size: props.searchParams.size ? +props.searchParams.size : 10,
+    createdDate:
+      props.searchParams.createdDate && props.searchParams.createdDate,
+    ...(props.searchParams.status &&
+      props.searchParams.status !== "all" && {
+        status: props.searchParams.status,
+      }),
   };
+  console.log("params", params);
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
   const storeUser = cookieStore.get("user")?.value;
@@ -17,8 +27,6 @@ export default async function InvoicesInBrand(props: any) {
     accessToken!,
     params
   );
-  console.log("invoice:", response);
-
   return (
     <>
       <InvoiceInBrandPage props={props} data={response.payload} />

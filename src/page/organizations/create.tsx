@@ -32,16 +32,16 @@ export default function CreateOrganizationPage() {
   const { handleSubmit } = methods;
 
   const onSubmit = async (values: TOrganizationsBody) => {
-    try {
-      const response = await organizationApi.createOrganizations(values);
-      console.log("values", values);
-      if (response.status === 201) {
-        router.push(PATH_DASHBOARD.organizations);
-        enqueueSnackbar("Tạo thành công", { variant: "success" });
-      }
-    } catch (error: any) {
-      console.log("error", error);
-    }
+    // try {
+    //   const response = await organizationApi.createOrganizations(values);
+    //   console.log("values", values);
+    //   if (response.status === 201) {
+    //     router.push(PATH_DASHBOARD.organizations);
+    //     enqueueSnackbar("Tạo thành công", { variant: "success" });
+    //   }
+    // } catch (error: any) {
+    //   console.log("error", error);
+    // }
   };
   return (
     <FormProvider {...methods}>

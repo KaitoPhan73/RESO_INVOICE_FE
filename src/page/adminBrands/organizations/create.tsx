@@ -5,37 +5,47 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
-import { CreateBrandBody, TCreateBrandBody } from "@/schemaValidations/brand.schema";
 import { InputField, SelectField } from "@/components/form";
 import PATHS from "@/route/paths";
-import brandApi from "@/actions/brands";
-import { statusList } from "./config";
+import { CreateOrganizationSchema, TCreateOrganizationSchema } from "@/schemaValidations/organizations.schema";
+import organizationsApi from "@/actions/organizations";
+import { TBrandBody } from "@/schemaValidations/brand.schema";
 
-export default function CreateBrandPage() {
-  const { PATH_ADMINSYSTEM } = PATHS;
+// interface Props {
+//   props: any;
+//   brands: any;
+// }
+
+export default function CreateOrganizationinBrandPage() {
+  const { PATH_BRAND } = PATHS;
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
-  const methods = useForm<TCreateBrandBody>({
-    resolver: zodResolver(CreateBrandBody),
+  const methods = useForm<TCreateOrganizationSchema>({
+    resolver: zodResolver(CreateOrganizationSchema),
     defaultValues: {
       name: "",
-      code: "",
-      status: 1,
+      address: "",
+      representative: "",
       taxCode: "",
-      descriptions: "",
-      secretKey: "",
+      code: "",
+      // brandName: "",
     },
   });
 
+  // const option = brands.items.map((item: TBrandBody) => ({
+  //   label: item.name,
+  //   value: item.id,
+  // }));
+
   const { handleSubmit } = methods;
 
-  const onSubmit = async (values: TCreateBrandBody) => {
+  const onSubmit = async (values: TCreateOrganizationSchema) => {
     try {
       console.log("Submitting values:", values);
-      const response = await brandApi.createBrand(values);
+      const response = await organizationsApi.createOrganization(values);
       console.log("values", values);
       if (response.status === 201) {
-        router.push(PATH_ADMINSYSTEM.brands);
+        router.push(PATH_BRAND.organizations);
         enqueueSnackbar("Tạo thành công", { variant: "success" });
       }
     } catch (error: any) {
@@ -51,20 +61,25 @@ export default function CreateBrandPage() {
           <InputField name="name" label="Tên" fullWidth />
         </Grid>
         <Grid item xs={4}>
-          <InputField name="code" label="Mã" fullWidth />
+          <InputField name="address" label="Địa chỉ" fullWidth />
         </Grid>
         <Grid item xs={4}>
-          <SelectField name="status" label="Trạng thái" options={statusList} fullWidth />
+          <InputField name="representative" label="Người đại diện" fullWidth />
         </Grid>
         <Grid item xs={4}>
           <InputField name="taxCode" label="Mã số thuế" fullWidth />
         </Grid>
         <Grid item xs={4}>
-          <InputField name="descriptions" label="Mô tả" fullWidth />
+          <InputField name="code" label="Mã" fullWidth />
         </Grid>
-        <Grid item xs={4}>
-          <InputField name="secretKey" label="Mã bí mật" fullWidth />
-        </Grid>
+        {/* <Grid item xs={4}>
+          <SelectField
+            name="brandId"
+            label="Brand Name"
+            options={option}
+            fullWidth
+          />
+        </Grid> */}
         <Button
           type="submit"
           variant="contained"

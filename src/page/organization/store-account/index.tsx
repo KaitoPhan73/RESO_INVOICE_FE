@@ -2,7 +2,7 @@
 import TableRender from "@/components/FeTable/TableRender";
 import { TInvoice } from "@/schemaValidations/invoice.schema";
 import { TStore } from "@/schemaValidations/store.schema";
-import { TStoresBase } from "@/types/Strore";
+import { TStoreAccountsBase } from "@/schemaValidations/storeaccounts.schema";
 import { CustomColumnType } from "@/types/TablePropsCustom";
 import { Tag } from "antd";
 import React from "react";
@@ -10,54 +10,54 @@ interface Props {
   props: any;
   data: any;
 }
-export default function OrganizationsStorePage({ props, data }: Props) {
-  const columns: CustomColumnType<TStoresBase>[] = [
+export default function StoreAccountsPage({ props, data }: Props) {
+  console.log("dataaaaaS", data);
+  const columns: CustomColumnType<TStoreAccountsBase>[] = [
+    {
+      title: "Tên đăng nhập",
+      dataIndex: "username",
+      key: "username",
+    },
     {
       title: "Tên",
       dataIndex: "name",
       key: "name",
     },
-    {
-      title: "Tên ngắn",
-      dataIndex: "shortName",
-      key: "shortName",
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
-    {
-      title: "Điện Thoại",
-      dataIndex: "phone",
-      key: "phone",
-    },
-    {
-      title: "Mã",
-      dataIndex: "code",
-      key: "code",
-    },
-    {
-      title: "Địa chỉ",
-      dataIndex: "address",
-      key: "address",
-    },
+    // {
+    //   title: "Mật khẩu",
+    //   dataIndex: "",
+    //   key: "password",
+    // },
     {
       title: "Trạng thái",
       dataIndex: "status",
       key: "status",
+    },
+    {
+      title: "Vai trò",
+      dataIndex: "roleId",
+      key: "roleId",
       render: (value: number) =>
         value === 0 ? (
-          <Tag color="geekblue" key={value}>
-            Chờ xử lý
+          <Tag color="blue" key={value}>
+            Admin
           </Tag>
         ) : (
           <Tag color="green" key={value}>
-            Hoàn thành
+            User
           </Tag>
         ),
     },
-
+    {
+      title: "ID thương hiệu",
+      dataIndex: "brandId",
+      key: "brandId",
+    },
+    {
+      title: "ID tổ chức",
+      dataIndex: "organizationId",
+      key: "organizationId",
+    }
   ];
 
   return (

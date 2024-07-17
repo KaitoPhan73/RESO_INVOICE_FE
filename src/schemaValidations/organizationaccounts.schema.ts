@@ -10,9 +10,8 @@ export const OrganizationAccountsSchema = z.object({
   brandId: z.string(),
 });
 
-export type TOrganizationAccountsRequest = z.TypeOf<
-  typeof OrganizationAccountsSchema
->;
+export type TOrganizationAccountsRequest = z.TypeOf<typeof OrganizationAccountsSchema>;
+
 export type TOrganizationAccountsResponse = TOrganizationAccountsRequest & {
   id: string;
   organizationCode: string;

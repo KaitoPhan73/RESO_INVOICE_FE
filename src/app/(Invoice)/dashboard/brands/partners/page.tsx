@@ -1,7 +1,5 @@
 import brandApi from "@/actions/brands";
-import OrganizationsApi from "@/actions/organizations";
-import OrganizationsInBrandPage from "@/page/adminBrands/organizations";
-import OrganizationsInvoicePage from "@/page/organization/invoices";
+import PartnersInBrandPage from "@/page/adminBrands/partners";
 import { cookies } from "next/headers";
 import React from "react";
 
@@ -14,7 +12,7 @@ export default async function OrganizationsInBrand(props: any) {
   const accessToken = cookieStore.get("accessToken")?.value;
   const storeUser = cookieStore.get("user")?.value;
   const brandId = JSON.parse(storeUser!).brandId;
-  const response = await brandApi.getOrganizationByBrandId(
+  const response = await brandApi.getPartnersByBrandId(
     brandId,
     accessToken!, 
     params
@@ -23,7 +21,7 @@ export default async function OrganizationsInBrand(props: any) {
 
   return (
     <>
-      <OrganizationsInBrandPage props={props} data={response.payload} />
+      <PartnersInBrandPage props={props} data={response.payload} />
     </>
   );
 }

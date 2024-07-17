@@ -54,6 +54,7 @@ export default function LoginPage() {
     },
   });
   const { handleSubmit, control } = methods;
+  console.log("userOKKK", user);
   const onSubmit = async (values: TLoginBody) => {
     if (loading) return;
     setLoading(true);
@@ -237,6 +238,7 @@ export default function LoginPage() {
                   {loading ? "Happy Code ..." : "Login"}
                 </Button>
 
+                {/* Hiển thị animation khi đang loading */}
                 {loading && (
                   <div
                     style={{

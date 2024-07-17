@@ -6,24 +6,37 @@ import {
   TOrganizationAccountsRequest,
   TOrganizationAccountsResponse,
 } from "@/schemaValidations/organizationaccounts.schema";
-import { TOrganizationsBody } from "@/schemaValidations/organizations.schema";
+import { TCreateOrganizationSchema, TOrganizationsBody } from "@/schemaValidations/organizations.schema";
 import { TStore } from "@/schemaValidations/store.schema";
+import { TStoreAccountsBase } from "@/schemaValidations/storeaccounts.schema";
 import { TOrganizationsBase } from "@/types/Organization";
 import { TTableResponse } from "@/types/Table";
 import { create } from "lodash";
 
 const organizationsApi = {
-  getOrganizations: (sessionToken: string, params?: any) => {
-    return httpInvoice.get<TTableResponse<TOrganizationsBase>>(
+  getOrganizations: (accessToken: string, params?: any) => {
+    return httpInvoice.get<TTableResponse<TOrganizationsBody>>(
       "organizations",
       {
         params,
-        headers: { Authorization: `Bearer ${sessionToken}` },
+        headers: { Authorization: `Bearer ${accessToken}` },
       }
     );
   },
-  createOrganizations: (data: TOrganizationsBody) => {
-    return httpInvoice.post<TOrganizationsBody>("organizations", data);
+
+  getStoreAccountsByOrganizationById: (
+    organizationId: string,
+    sessionToken: string,
+    params?: any
+  ) => {
+    return httpInvoice.get<TTableResponse<TStoreAccountsBase>>(
+      `organizations/${organizationId}/users`,
+      { params, headers: { Authorization: `Bearer ${sessionToken}` } }
+    );
+  },
+
+  createOrganization: (data: TCreateOrganizationSchema) => {
+    return httpInvoice.post<TCreateOrganizationSchema>("organizations", data);
   },
   getOrganizationById: (organizationId: string, sessionToken: string) => {
     return httpInvoice.get<TTableResponse<TOrganizationsBase>>(
@@ -53,15 +66,16 @@ const organizationsApi = {
     );
   },
   getTemplatesByOrganizationById: (
-    organizationId: string,
-    sessionToken: string,
+    id: string,
+    accessToken?: string,
     params?: any
   ) => {
     return httpInvoice.get<TTableResponse<TInvoiceTemplateBody>>(
-      `organizations/${organizationId}/templates`,
-      { params, headers: { Authorization: `Bearer ${sessionToken}` } }
+      `invoice-templates/${id}`,
+      { params, headers: { Authorization: `Bearer ${accessToken}` } }
     );
   },
+
   getStoresByOrganizationById: (
     organizationId: string,
     sessionToken: string,
