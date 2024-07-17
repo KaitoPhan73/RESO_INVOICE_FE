@@ -2,7 +2,7 @@
 import TableRender from "@/components/FeTable/TableRender";
 import { TInvoice } from "@/schemaValidations/invoice.schema";
 import { CustomColumnType } from "@/types/TablePropsCustom";
-import { formatDate } from "@/utils/formater";
+import { formatDate, formatPriceVND } from "@/utils/formater";
 import { Tag } from "antd";
 import React from "react";
 import { invoiceStatusOptions } from "./config";
@@ -16,6 +16,26 @@ export default function OrganizationsInvoicePage({ props, data }: Props) {
     ...invoiceStatusOptions,
   ];
   const columns: CustomColumnType<TInvoice>[] = [
+    {
+      title: "Mã hóa đơn",
+      dataIndex: "invoiceCode",
+      key: "invoiceCode",
+    },
+
+    {
+      title: "Mã hóa đơn gốc",
+      dataIndex: "lookupCode",
+      key: "lookupCode",
+    },
+    {
+      title: "Phương thức thanh toán",
+      dataIndex: "paymentMethod",
+      key: "paymentMethod",
+      filter: {
+        type: "text",
+        placeholder: "Nhập phương thức thanh toán",
+      },
+    },
     {
       title: "Ngày tạo",
       dataIndex: "createdDate",
@@ -47,49 +67,36 @@ export default function OrganizationsInvoicePage({ props, data }: Props) {
         options: customInvoiceStatusOptions,
       },
     },
+
+    // {
+    //   title: "Tỉ lệ quy đổi (VND)",
+    //   dataIndex: "currencyExchangeRate",
+    //   key: "currencyExchangeRate",
+    //   render: (value: string) => formatPriceVND(value),
+    // },
     {
-      title: "Phương thức thanh toán",
-      dataIndex: "paymentMethod",
-      key: "paymentMethod",
-      filter: {
-        type: "text",
-        placeholder: "Nhập phương thức thanh toán",
-      },
-    },
-    {
-      title: "Mã hóa đơn",
-      dataIndex: "invoiceCode",
-      key: "invoiceCode",
-    },
-    {
-      title: "Mã hóa đơn gốc",
-      dataIndex: "lookupCode",
-      key: "lookupCode",
-    },
-    {
-      title: "Tỉ lệ quy đổi",
-      dataIndex: "currencyExchangeRate",
-      key: "currencyExchangeRate",
-    },
-    {
-      title: "Tổng số luợng bán",
+      title: "Tổng số luợng bán (VND)",
       dataIndex: "totalSaleAmount",
       key: "totalSaleAmount",
+      render: (value: string) => formatPriceVND(value),
     },
     {
-      title: "Tổng số tiền giảm giá",
+      title: "Tổng số tiền giảm giá (VND)",
       dataIndex: "totalDiscountAmount",
       key: "totalDiscountAmount",
+      render: (value: string) => formatPriceVND(value),
     },
     {
-      title: "Tổng số tiền không bao gồm VAT",
+      title: "Tổng số tiền không bao gồm VAT (VND)",
       dataIndex: "totalAmountWithoutTax",
       key: "totalAmountWithoutTax",
+      render: (value: string) => formatPriceVND(value),
     },
     {
-      title: "Tổng số tiền",
+      title: "Tổng số tiền (VND)",
       dataIndex: "totalAmount",
       key: "totalAmount",
+      render: (value: string) => formatPriceVND(value),
     },
   ];
   return (
@@ -97,9 +104,8 @@ export default function OrganizationsInvoicePage({ props, data }: Props) {
       columns={columns}
       data={data}
       propsUrl={props}
-      onDelete={() => {}}
+      // onDelete={() => {}}
       onEdit
-      onCreate
     />
   );
 }

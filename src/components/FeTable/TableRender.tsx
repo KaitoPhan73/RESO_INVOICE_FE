@@ -71,14 +71,15 @@ const TableRender = <RecordType extends object>({
             </div>
           ))}
         </div>
-        <Button
-          icon={<PlusOutlined />}
-          type="primary"
-          onClick={() => router.push(`${pathname}/create`)}
-        >
-          Thêm mới
-        </Button>
-
+        {onCreate && (
+          <Button
+            icon={<PlusOutlined />}
+            type="primary"
+            onClick={() => router.push(`${pathname}/create`)}
+          >
+            Thêm mới
+          </Button>
+        )}
       </div>
     );
   };
