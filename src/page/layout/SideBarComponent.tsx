@@ -110,7 +110,7 @@ const SidebarComponent = ({
         selectedKeys={selectedKeys}
         openKeys={openKeys}
         onOpenChange={onOpenChange}
-        onClick={() => setCollapsed(true)} // Close drawer on menu item click
+        onClick={() => setCollapsed(true)}
       />
     </Drawer>
   ) : (

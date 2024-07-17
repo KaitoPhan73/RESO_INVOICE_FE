@@ -2,7 +2,7 @@
 import TableRender from "@/components/FeTable/TableRender";
 import { TInvoice } from "@/schemaValidations/invoice.schema";
 import { CustomColumnType } from "@/types/TablePropsCustom";
-import { formatDate } from "@/utils/formater";
+import { formatDate, formatPriceVND } from "@/utils/formater";
 import { Tag } from "antd";
 import React from "react";
 import { invoiceStatusOptions } from "./config";
@@ -17,6 +17,16 @@ export default function InvoiceInBrandPage({ props, data }: Props) {
   ];
   const columns: CustomColumnType<TInvoice>[] = [
     {
+      title: "Mã hóa đơn",
+      dataIndex: "invoiceCode",
+      key: "invoiceCode",
+    },
+    {
+      title: "Mã hóa đơn gốc",
+      dataIndex: "lookupCode",
+      key: "lookupCode",
+    },
+    {
       title: "Ngày tạo",
       dataIndex: "createdDate",
       key: "createdDate",
@@ -25,6 +35,50 @@ export default function InvoiceInBrandPage({ props, data }: Props) {
         type: "date",
         placeholder: "Chọn ngày tạo",
       },
+    },
+    {
+      title: "Phương thức thanh toán",
+      dataIndex: "paymentMethod",
+      key: "paymentMethod",
+      filter: {
+        type: "text",
+        placeholder: "Nhập phương thức thanh toán",
+      },
+    },
+
+    // {
+    //   title: "Tỉ lệ quy đổi",
+    //   dataIndex: "currencyExchangeRate",
+    //   key: "currencyExchangeRate",
+    // },
+    {
+      title: "Tổng số luợng bán",
+      dataIndex: "totalSaleAmount",
+      key: "totalSaleAmount",
+      render: (text, record) => (
+        <span>{formatPriceVND(record.totalSaleAmount)}</span>
+      ),
+    },
+    {
+      title: "Tổng số tiền giảm giá",
+      dataIndex: "totalDiscountAmount",
+      key: "totalDiscountAmount",
+      render: (text, record) => (
+        <span>{formatPriceVND(record.totalDiscountAmount)}</span>
+      ),
+    },
+    {
+      title: "Tổng số tiền không bao gồm VAT",
+      dataIndex: "totalAmountWithoutTax",
+      key: "totalAmountWithoutTax",
+      render: (text, record) => (
+        <span>{formatPriceVND(record.totalAmountWithoutTax)}</span>
+      ),
+    },
+    {
+      title: "Tổng số tiền",
+      dataIndex: "totalAmount",
+      key: "totalAmount",
     },
     {
       title: "Trạng thái",
@@ -39,57 +93,13 @@ export default function InvoiceInBrandPage({ props, data }: Props) {
               </Tag>
             );
           }
+          return null;
         }),
-
       filter: {
         type: "select",
         placeholder: "Chọn trạng thái",
         options: customInvoiceStatusOptions,
       },
-    },
-    {
-      title: "Phương thức thanh toán",
-      dataIndex: "paymentMethod",
-      key: "paymentMethod",
-      filter: {
-        type: "text",
-        placeholder: "Nhập phương thức thanh toán",
-      },
-    },
-    {
-      title: "Mã hóa đơn",
-      dataIndex: "invoiceCode",
-      key: "invoiceCode",
-    },
-    {
-      title: "Mã hóa đơn gốc",
-      dataIndex: "lookupCode",
-      key: "lookupCode",
-    },
-    {
-      title: "Tỉ lệ quy đổi",
-      dataIndex: "currencyExchangeRate",
-      key: "currencyExchangeRate",
-    },
-    {
-      title: "Tổng số luợng bán",
-      dataIndex: "totalSaleAmount",
-      key: "totalSaleAmount",
-    },
-    {
-      title: "Tổng số tiền giảm giá",
-      dataIndex: "totalDiscountAmount",
-      key: "totalDiscountAmount",
-    },
-    {
-      title: "Tổng số tiền không bao gồm VAT",
-      dataIndex: "totalAmountWithoutTax",
-      key: "totalAmountWithoutTax",
-    },
-    {
-      title: "Tổng số tiền",
-      dataIndex: "totalAmount",
-      key: "totalAmount",
     },
   ];
   return (

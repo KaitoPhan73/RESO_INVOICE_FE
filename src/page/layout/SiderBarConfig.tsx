@@ -61,7 +61,7 @@ const SystemAdminSiderBarConfig = [
     children: [
       customMenuItem(PATH_ADMINSYSTEM.brands, "Quản Lí"),
       customMenuItem(PATH_ADMINSYSTEM.brandaccount, "Tài Khoản"),
-      customMenuItem(PATH_ADMINSYSTEM.partners, "Partners"),
+      customMenuItem(PATH_ADMINSYSTEM.partners, "Đối Tác"),
 
     ],
   },
@@ -102,7 +102,7 @@ const BrandAdminSiderBarConfig = [
     children: [
       customMenuItem(PATH_BRAND.organizations, "Quản Lí"),
       customMenuItem(PATH_BRAND.organizationaccounts, "Tài Khoản"),
-      customMenuItem(PATH_BRAND.partners, "Partner"),
+      customMenuItem(PATH_BRAND.partners, "Đối Tác"),
 
     ],
   },
@@ -137,7 +137,7 @@ const OrganizationSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+      <span style={{ fontSize: "", fontWeight: "bold" }}>
         Quản lí hóa đơn
       </span>
     ),
@@ -150,7 +150,7 @@ const OrganizationSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+      <span style={{ fontSize: "", fontWeight: "bold" }}>
         Quản lí cửa hàng
       </span>
     ),
