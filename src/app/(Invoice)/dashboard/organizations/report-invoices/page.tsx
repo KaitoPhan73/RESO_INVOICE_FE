@@ -12,26 +12,29 @@ const page = async (props: any) => {
     fromDate: props.searchParams.fromDate && props.searchParams.fromDate,
     toDate: props.searchParams.toDate && props.searchParams.toDate,
   };
-
-  console.log("props.searchParams.fromDate ", props.searchParams.fromDate);
-  console.log("props.searchParams.toDate ", props.searchParams.toDate);
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
   const storeUser = cookieStore.get("user")?.value;
   const organizationId = JSON.parse(storeUser!).organizationId;
-  const responseAll =
+  const responseInvoicePaymentReport =
     await organizationsApi.getInvoiceReportInDateByOrganizationId(
       organizationId,
       accessToken!,
       params
     );
-  //   const responseTotal = organizationsApi.getInvoiceReportByOrganizationId(
-  //     organizationId,
-  //     accessToken!
-  //   );
+  const responseInvoiceReport =
+    organizationsApi.getInvoiceReportByOrganizationId(
+      organizationId,
+      accessToken!,
+      params
+    );
+  const [invoicePaymentReport, invoiceReport] = await Promise.all([
+    responseInvoicePaymentReport,
+    responseInvoiceReport,
+  ]);
   const data = {
-    reportItems: responseAll.payload,
-    // reportTotal: responseAll.payload,
+    reportItems: invoicePaymentReport.payload,
+    reportInvoice: invoiceReport.payload,
   };
   return <ReportInvoce data={data} />;
 };

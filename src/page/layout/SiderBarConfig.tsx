@@ -48,21 +48,22 @@ const SystemAdminSiderBarConfig = [
     icon: null,
   },
   {
-    label: <span style={{ fontSize: "18px", fontWeight: "lighter" }}>Admin System</span>,
+    label: (
+      <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
+        Admin System
+      </span>
+    ),
     key: "1",
     icon: <ShopOutlined />,
   },
   {
-    label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Brands</span>
-    ),
+    label: <span style={{ fontSize: "", fontWeight: "bold" }}>Brands</span>,
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [
       customMenuItem(PATH_ADMINSYSTEM.brands, "Quản Lí"),
       customMenuItem(PATH_ADMINSYSTEM.brandaccount, "Tài Khoản"),
       customMenuItem(PATH_ADMINSYSTEM.partners, "Đối Tác"),
-
     ],
   },
   // {
@@ -89,13 +90,17 @@ const BrandAdminSiderBarConfig = [
     icon: null,
   },
   {
-    label: <span style={{ fontSize: "18px", fontWeight: "lighter" }}>Brand System</span>,
+    label: (
+      <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
+        Brand System
+      </span>
+    ),
     key: "1",
     icon: <ShopOutlined />,
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Tổ Chức</span>
+      <span style={{ fontSize: "", fontWeight: "bold" }}>Tổ Chức</span>
     ),
     key: "sub1",
     icon: <UserOutlined />,
@@ -103,13 +108,12 @@ const BrandAdminSiderBarConfig = [
       customMenuItem(PATH_BRAND.organizations, "Quản Lí"),
       customMenuItem(PATH_BRAND.organizationaccounts, "Tài Khoản"),
       customMenuItem(PATH_BRAND.partners, "Đối Tác"),
-
     ],
   },
 
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Hóa Đơn</span>
+      <span style={{ fontSize: "", fontWeight: "bold" }}>Hóa Đơn</span>
     ),
     key: "sub2",
     icon: <FileOutlined />,
@@ -117,7 +121,9 @@ const BrandAdminSiderBarConfig = [
   },
 
   {
-    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Doanh Thu</span>,
+    label: (
+      <span style={{ fontSize: "", fontWeight: "bold" }}>Doanh Thu</span>
+    ),
     key: "sub3",
     icon: <LineChartOutlined />,
     children: [customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo Cáo")],
@@ -131,9 +137,9 @@ const OrganizationSiderBarConfig = [
     icon: null,
   },
   {
-    label: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo cáo").label,
-    key: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo cáo").key,
-    icon: <LineChartOutlined />,
+    label: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Tổ Chức").label,
+    key: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Tổ Chức").key,
+    icon: <UserOutlined />,
   },
   {
     label: (
@@ -144,7 +150,7 @@ const OrganizationSiderBarConfig = [
     key: "sub1",
     icon: <DesktopOutlined />,
     children: [
-      customMenuItem(PATH_ORGANIZATION.invoicetemplate, "Mẫu"),
+      // customMenuItem(PATH_ORGANIZATION.invoicetemplate, "Mẫu"),
       customMenuItem(PATH_ORGANIZATION.invoices, "Hóa đơn"),
     ],
   },
@@ -156,10 +162,7 @@ const OrganizationSiderBarConfig = [
     ),
     key: "sub2",
     icon: <CoffeeOutlined />,
-    children: [
-      customMenuItem(PATH_ORGANIZATION.stores, "Cửa hàng"),
-      // customMenuItem(PATH_ORGANIZATION.template, "Mẫu"),
-    ],
+    children: [customMenuItem(PATH_ORGANIZATION.stores, "Cửa hàng")],
   },
 ];
 

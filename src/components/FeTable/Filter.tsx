@@ -33,9 +33,6 @@ const Filter = <RecordType extends object>({
 
   return (
     <div>
-      {/* <span>
-        {typeof column.title === "function" ? column.title({}) : column.title}:
-      </span> */}
       {column.filter && column.filter.type === "text" ? (
         <Input
           placeholder={column.filter.placeholder}
@@ -43,7 +40,6 @@ const Filter = <RecordType extends object>({
         />
       ) : column.filter && column.filter.type === "select" ? (
         <Select
-          defaultValue=""
           onChange={handleSelectChange}
           showSearch
           placeholder={column.filter.placeholder}
@@ -58,6 +54,7 @@ const Filter = <RecordType extends object>({
       ) : column.filter &&
         (column.filter.type === "date" || column.filter.type === "datetime") ? (
         <DatePicker
+          placeholder={column.filter.placeholder}
           onChange={(date, dateString) =>
             onFilterChange(column.dataIndex as string, dateString)
           }

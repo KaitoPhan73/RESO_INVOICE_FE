@@ -14,7 +14,9 @@ const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
-
+  const layoutStyle = {
+    marginLeft: isMobile ? 0 : collapsed ? 80 : 200,
+  };
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -85,7 +87,7 @@ const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   } = theme.useToken();
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout hasSider>
       <SidebarComponent
         collapsed={collapsed}
         onOpenChange={onOpenChange}
@@ -96,7 +98,7 @@ const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         setSelectedKeys={setSelectedKeys}
         isMobile={isMobile}
       />
-      <Layout>
+      <Layout style={layoutStyle}>
         <HeaderCustom
           style={{ padding: 0, background: colorBgContainer }}
           collapsed={collapsed}
