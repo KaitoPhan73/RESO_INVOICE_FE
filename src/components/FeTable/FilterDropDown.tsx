@@ -15,7 +15,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
   onFilterChange,
 }) => {
   if (filterType !== "sorter") {
-    return null; // Không render gì nếu filterType không phải "sorter"
+    return null;
   }
 
   return (

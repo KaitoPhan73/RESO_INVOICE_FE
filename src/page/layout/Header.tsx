@@ -26,7 +26,7 @@ const HeaderCustom = ({ style, setCollapsed, collapsed }: Props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setFlashing(!flashing);
-    }, 500); 
+    }, 500);
 
     return () => clearInterval(interval);
   }, [flashing]);
@@ -50,13 +50,7 @@ const HeaderCustom = ({ style, setCollapsed, collapsed }: Props) => {
             }}
           />
         </Col>
-        <Col>
-          <Avatar
-            size={50}
-            icon={<UserOutlined />}
-            src={flashing ? "/images/khai.jpg" : "/images/khai.jpg"}
-          />
-        </Col>
+
         <Col>
           <Button type="text" icon={<LogoutOutlined />} onClick={handleLogout}>
             Logout

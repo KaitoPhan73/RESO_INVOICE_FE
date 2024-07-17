@@ -96,13 +96,7 @@ const SidebarComponent = ({
   const items: MenuItem[] = SiderConfigs;
 
   return isMobile ? (
-    <Drawer
-      title="Menu"
-      placement="left"
-      onClose={() => setCollapsed(true)}
-      visible={!collapsed}
-      bodyStyle={{ padding: 0 }}
-    >
+    <Drawer title="Menu" placement="left" onClose={() => setCollapsed(true)}>
       <Menu
         theme="light"
         mode="inline"
@@ -120,6 +114,14 @@ const SidebarComponent = ({
       collapsible
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
+      style={{
+        overflow: "auto",
+        height: "100vh",
+        position: "fixed",
+        left: 0,
+        top: 0,
+        bottom: 0,
+      }}
     >
       <div className="demo-logo-vertical" />
       <Menu
@@ -129,6 +131,7 @@ const SidebarComponent = ({
         selectedKeys={selectedKeys}
         openKeys={openKeys}
         onOpenChange={onOpenChange}
+        // style={{ width: collapsed ? 80 : 220 }}
       />
     </Sider>
   );
