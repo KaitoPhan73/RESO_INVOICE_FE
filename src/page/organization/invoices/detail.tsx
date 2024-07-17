@@ -6,7 +6,7 @@ import {
   InvoiceDetailSchema,
   TInvoice,
 } from "@/schemaValidations/invoice.schema";
-import { formattedDateTime } from "@/utils/formater";
+import { formatDate, formatPriceVND, formattedDateTime } from "@/utils/formater";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Card, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -14,6 +14,7 @@ import { useSnackbar } from "notistack";
 import React from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { invoiceStatusOptions } from "./config";
+import { Tag } from "antd";
 type Props = {
   data: TInvoice;
 };
@@ -219,8 +220,9 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                 </Grid>
                 <Grid item xs={6}>
                   <TyphoField
-                    name="invoiceDetail.totalAmount"
-                    label="Tổng số tiền"
+                    name="invoiceDetail.totalAmount "
+                    convert={formatPriceVND}
+                    label="Tổng số tiền (VND)"
                     fullWidth
                     showBorder
                   />
@@ -228,7 +230,8 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                 <Grid item xs={6}>
                   <TyphoField
                     name="invoiceDetail.discountAmount"
-                    label="Số tiền chiết khấu"
+                    convert={formatPriceVND}
+                    label="Số tiền chiết khấu (VND)"
                     fullWidth
                     showBorder
                   />
@@ -236,6 +239,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                 <Grid item xs={6}>
                   <TyphoField
                     name="invoiceDetail.finalAmount"
+                    convert={formatPriceVND}
                     label="Số tiền cuối cùng"
                     fullWidth
                     showBorder
@@ -342,6 +346,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                   <TyphoField
                     name="totalTaxAmount"
                     label="Tổng số tiền thuế"
+                    convert={formatPriceVND}
                     fullWidth
                     showBorder
                   />
@@ -350,6 +355,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                   <TyphoField
                     name="totalAmountAfterTax"
                     label="Tổng số tiền sau thuế"
+                    convert={formatPriceVND}
                     fullWidth
                     showBorder
                   />
@@ -358,6 +364,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                   <TyphoField
                     name="totalSaleAmount"
                     label="Tổng số tiền bán hàng"
+                    convert={formatPriceVND}
                     fullWidth
                     showBorder
                   />
@@ -366,6 +373,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                   <TyphoField
                     name="totalDiscountAmount"
                     label="Tổng số tiền chiết khấu"
+                    convert={formatPriceVND}
                     fullWidth
                     showBorder
                   />
@@ -374,6 +382,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                   <TyphoField
                     name="totalAmountWithoutTax"
                     label="Tổng số tiền trước thuế"
+                    convert={formatPriceVND}
                     fullWidth
                     showBorder
                   />
@@ -382,6 +391,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                   <TyphoField
                     name="totalAmount"
                     label="Tổng số tiền"
+                    convert={formatPriceVND}
                     fullWidth
                     showBorder
                   />
@@ -408,6 +418,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       <Grid item xs={4}>
                         <TyphoField
                           name={`taxTypes.${index}.amountWithoutTax`}
+                          convert={formatPriceVND}
                           label="Số tiền trước thuế"
                           fullWidth
                           showBorder
@@ -416,6 +427,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       <Grid item xs={4}>
                         <TyphoField
                           name={`taxTypes.${index}.taxAmount`}
+                          convert={formatPriceVND}
                           label="Số tiền thuế"
                           fullWidth
                           showBorder
@@ -443,7 +455,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       <Grid item xs={3}>
                         <TyphoField
                           name={`items.${index}.ordinalNumber`}
-                          label="Ordinal Number"
+                          label="Số Thứ Tự"
                           fullWidth
                           showBorder
                         />
@@ -451,7 +463,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       <Grid item xs={3}>
                         <TyphoField
                           name={`items.${index}.code`}
-                          label="Code"
+                          label="Mã"
                           fullWidth
                           showBorder
                         />
@@ -459,7 +471,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       <Grid item xs={3}>
                         <TyphoField
                           name={`items.${index}.name`}
-                          label="Name"
+                          label="Tên"
                           fullWidth
                           showBorder
                         />
@@ -467,7 +479,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       <Grid item xs={3}>
                         <TyphoField
                           name={`items.${index}.quantity`}
-                          label="Quantity"
+                          label="Số Lượng"
                           fullWidth
                           showBorder
                         />
@@ -475,7 +487,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       <Grid item xs={3}>
                         <TyphoField
                           name={`items.${index}.unit`}
-                          label="Unit"
+                          label="Đơn Vị"
                           fullWidth
                           showBorder
                         />
@@ -483,7 +495,8 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       <Grid item xs={3}>
                         <TyphoField
                           name={`items.${index}.price`}
-                          label="Price"
+                          convert={formatPriceVND}
+                          label="Giá"
                           fullWidth
                           showBorder
                         />
@@ -491,7 +504,8 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       <Grid item xs={3}>
                         <TyphoField
                           name={`items.${index}.taxAmount`}
-                          label="Tax Amount"
+                          convert={formatPriceVND}
+                          label="Số Tiền Thuế"
                           fullWidth
                           showBorder
                         />
@@ -499,7 +513,8 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
                       <Grid item xs={3}>
                         <TyphoField
                           name={`items.${index}.amountAfterTax`}
-                          label="Amount After Tax"
+                          convert={formatPriceVND}
+                          label="Số Tiền Sau Thuế"
                           fullWidth
                           showBorder
                         />

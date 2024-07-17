@@ -32,4 +32,4 @@ export default async function Invoices(props: any) {
       <InvoiceInBrandPage props={props} data={response.payload} />
     </>
   );
-}
+} 

@@ -57,13 +57,13 @@ const SystemAdminSiderBarConfig = [
     icon: <ShopOutlined />,
   },
   {
-    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Brands</span>,
+    label: <span style={{ fontSize: "", fontWeight: "bold" }}>Brands</span>,
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [
       customMenuItem(PATH_ADMINSYSTEM.brands, "Quản Lí"),
       customMenuItem(PATH_ADMINSYSTEM.brandaccount, "Tài Khoản"),
-      customMenuItem(PATH_ADMINSYSTEM.partners, "Partners"),
+      customMenuItem(PATH_ADMINSYSTEM.partners, "Đối Tác"),
     ],
   },
   // {
@@ -100,20 +100,20 @@ const BrandAdminSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Tổ Chức</span>
+      <span style={{ fontSize: "", fontWeight: "bold" }}>Tổ Chức</span>
     ),
     key: "sub1",
     icon: <UserOutlined />,
     children: [
       customMenuItem(PATH_BRAND.organizations, "Quản Lí"),
       customMenuItem(PATH_BRAND.organizationaccounts, "Tài Khoản"),
-      customMenuItem(PATH_BRAND.partners, "Partner"),
+      customMenuItem(PATH_BRAND.partners, "Đối Tác"),
     ],
   },
 
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Hóa Đơn</span>
+      <span style={{ fontSize: "", fontWeight: "bold" }}>Hóa Đơn</span>
     ),
     key: "sub2",
     icon: <FileOutlined />,
@@ -122,7 +122,7 @@ const BrandAdminSiderBarConfig = [
 
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Doanh Thu</span>
+      <span style={{ fontSize: "", fontWeight: "bold" }}>Doanh Thu</span>
     ),
     key: "sub3",
     icon: <LineChartOutlined />,
@@ -137,13 +137,13 @@ const OrganizationSiderBarConfig = [
     icon: null,
   },
   {
-    label: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo cáo").label,
-    key: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo cáo").key,
-    icon: <LineChartOutlined />,
+    label: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Tổ Chức").label,
+    key: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Tổ Chức").key,
+    icon: <UserOutlined />,
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+      <span style={{ fontSize: "", fontWeight: "bold" }}>
         Quản lí hóa đơn
       </span>
     ),
@@ -156,7 +156,7 @@ const OrganizationSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+      <span style={{ fontSize: "", fontWeight: "bold" }}>
         Quản lí cửa hàng
       </span>
     ),
