@@ -11,7 +11,7 @@ import PieChartInvoiceReport from "./pie-chart-invoice-report";
 type Props = {
   data: {
     reportItems: TTableResponse<TReportInvoicePaymentInDateSchemaResponse>;
-    reportInvoice: TInvoiceReport;
+    // reportInvoice: TInvoiceReport;
   };
 };
 
@@ -31,9 +31,9 @@ export function ReportInvoce({ data }: Props) {
       <div className="col-span-12 lg:col-span-6">
         <PieChartReport data={data.reportItems} />
       </div>
-      <div className="col-span-12 lg:col-span-6">
+      {/* <div className="col-span-12 lg:col-span-6">
         <PieChartInvoiceReport data={data.reportInvoice} />
-      </div>
+      </div> */}
     </div>
   );
 }

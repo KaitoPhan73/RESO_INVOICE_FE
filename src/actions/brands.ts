@@ -4,6 +4,7 @@ import {
   TBrandBody,
   TCreateBrandBody,
 } from "@/schemaValidations/brand.schema";
+import { TReportInvoicePaymentInDateSchemaResponse } from "@/schemaValidations/invoice.schema";
 import { TOrganizationAccountsResponse } from "@/schemaValidations/organizationaccounts.schema";
 import { TTableResponse } from "@/types/Table";
 
@@ -38,13 +39,10 @@ const brandApi = {
     sessionToken: string,
     params?: any
   ) => {
-    return httpInvoice.get<TBrandBody>(
-      `brands/${brandId}/partners`,
-      {
-        params,
-        headers: { Authorization: `Bearer ${sessionToken}` },
-      }
-    );
+    return httpInvoice.get<TBrandBody>(`brands/${brandId}/partners`, {
+      params,
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
   },
   // getInventoryItemsByBrandId: (
   //   brandId: string,
@@ -78,6 +76,18 @@ const brandApi = {
         headers: { Authorization: `Bearer ${sessionToken}` },
       }
     );
+  },
+  getInvoiceReportInDateByBrandId: (
+    brandId: string,
+    sessionToken: string,
+    params?: any
+  ) => {
+    return httpInvoice.get<
+      TTableResponse<TReportInvoicePaymentInDateSchemaResponse>
+    >(`brands/${brandId}/invoice-payment-report-in-date`, {
+      params,
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
   },
 
   createBrand: (data: TCreateBrandBody) => {

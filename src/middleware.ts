@@ -30,11 +30,11 @@ export function middleware(request: NextRequest) {
     let destinationUrl;
 
     if (user?.role === 0) {
-      destinationUrl = PATH_BRAND.organizations;
+      destinationUrl = PATH_BRAND.reportInvoices;
     } else if (user?.role === 1) {
       destinationUrl = PATH_ADMINSYSTEM.brands;
     } else if (user?.role === 2) {
-      destinationUrl = PATH_ORGANIZATION.invoices;
+      destinationUrl = PATH_ORGANIZATION.reportInvoices;
     }
     if (destinationUrl) {
       return NextResponse.redirect(new URL(destinationUrl, request.url));
