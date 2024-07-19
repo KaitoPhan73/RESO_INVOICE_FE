@@ -90,18 +90,13 @@ const BrandAdminSiderBarConfig = [
     icon: null,
   },
   {
-    label: customMenuItem(PATH_BRAND.reportInvoices, "Báo cáo").label,
-    key: customMenuItem(PATH_BRAND.reportInvoices, "Báo cáo").key,
-    icon: <LineChartOutlined />,
-  },
-  {
     label: (
-      <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
-        Brand System
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+        <Link href={PATH_BRAND.reportInvoices}>Báo cáo</Link>
       </span>
     ),
-    key: "1",
-    icon: <ShopOutlined />,
+    key: PATH_BRAND.reportInvoices,
+    icon: <LineChartOutlined />,
   },
   {
     label: (
@@ -124,15 +119,6 @@ const BrandAdminSiderBarConfig = [
     icon: <FileOutlined />,
     children: [customMenuItem(PATH_BRAND.invoices, "Quản Lí")],
   },
-
-  {
-    label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Doanh Thu</span>
-    ),
-    key: "sub3",
-    icon: <LineChartOutlined />,
-    children: [customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo Cáo")],
-  },
 ];
 
 const OrganizationSiderBarConfig = [
@@ -142,8 +128,12 @@ const OrganizationSiderBarConfig = [
     icon: null,
   },
   {
-    label: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo cáo").label,
-    key: customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo cáo").key,
+    label: (
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
+        <Link href={PATH_ORGANIZATION.reportInvoices}>Báo cáo</Link>
+      </span>
+    ),
+    key: PATH_BRAND.reportInvoices,
     icon: <LineChartOutlined />,
   },
   {
