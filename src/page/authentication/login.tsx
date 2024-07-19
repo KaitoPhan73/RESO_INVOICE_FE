@@ -70,7 +70,7 @@ export default function LoginPage() {
         dispatch(setUser(user));
         enqueueSnackbar("Login successfully", { variant: "success" });
         if (user?.role === 0) {
-          router.push(PATHS.PATH_BRAND.organizations);
+          router.push(PATHS.PATH_BRAND.reportInvoices);
         } else if (user?.role === 1) {
           router.push(PATHS.PATH_ADMINSYSTEM.brands);
         } else if (user?.role === 2) {

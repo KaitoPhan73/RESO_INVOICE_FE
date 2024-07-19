@@ -70,7 +70,7 @@ export function LineChartReport({ data }: Props) {
               cursor={false}
               content={
                 <ChartTooltipContent
-                  formatter={formatTooltip}
+                  // formatter={formatTooltip}
                   labelFormatter={(label) => formattedDate(label)}
                 />
               }

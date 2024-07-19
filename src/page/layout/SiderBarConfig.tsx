@@ -90,6 +90,11 @@ const BrandAdminSiderBarConfig = [
     icon: null,
   },
   {
+    label: customMenuItem(PATH_BRAND.reportInvoices, "Báo cáo").label,
+    key: customMenuItem(PATH_BRAND.reportInvoices, "Báo cáo").key,
+    icon: <LineChartOutlined />,
+  },
+  {
     label: (
       <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
         Brand System
