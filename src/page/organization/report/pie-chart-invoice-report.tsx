@@ -122,11 +122,11 @@ export default function PieChartInvoiceReport({ data }: Props) {
             />
           </PieChart>
         </ChartContainer>
-        <div className="grid grid-cols-3 lg:grid-cols-1 md:grid-cols-1 lg:flex-col md:flex-col items-start mt-4">
+        <div className="grid grid-cols-3 lg:grid-cols-1 md:grid-cols-1 lg:flex-col md:flex-col items-start mt-4 overflow-y-auto h-56">
           {chartData.map((entry, index) => (
             <div
               key={`legend-${index}`}
-              className="flex items-center mb-2 col-span-1 w-full overflow-hidden"
+              className="flex items-center mb-2 col-span-1 w-full"
             >
               <span
                 className="inline-block w-4 h-4 rounded-full mr-2 flex-shrink-0"

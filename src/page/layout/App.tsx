@@ -70,7 +70,6 @@ const SilderBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       }
       return "";
     };
-
     const selectedKey = findSelectedKey(items, pathname);
     setSelectedKeys([selectedKey]);
 

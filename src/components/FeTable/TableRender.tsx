@@ -107,9 +107,7 @@ const TableRender = <RecordType extends object>({
           type="link"
           icon={<ReloadOutlined style={{ fontSize: "18px", color: "green" }} />}
           onClick={() => onDelete(String(record[finalRowKey]))}
-        >
-          Xóa
-        </Button>
+        />
       ),
     });
   }
@@ -125,9 +123,7 @@ const TableRender = <RecordType extends object>({
           type="link"
           icon={<EyeOutlined style={{ fontSize: "25px" }} />}
           onClick={() => router.push(`${pathname}/${record[finalRowKey]}`)}
-        >
-          Chỉnh sửa
-        </Button>
+        />
       ),
     });
   }
@@ -156,7 +152,7 @@ const TableRender = <RecordType extends object>({
           return (
             <div>
               {" "}
-              {range[0]}-{range[1]} trên {total} rows
+              {range[0]}-{range[1]} trên {total} bản ghi
             </div>
           );
         },
