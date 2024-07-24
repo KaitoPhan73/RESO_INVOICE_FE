@@ -2,7 +2,7 @@
 import { Form, Table } from "antd";
 import React from "react";
 import { useAntdTable } from "ahooks";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
@@ -114,7 +114,7 @@ const CustomTable = ({
       fixed: "right",
       render: (_: any, record: any) => (
         <a onClick={() => router.push(pathname!.concat(`/${record[rowKey!]}`))}>
-          <EditOutlined style={{ fontSize: "32px" }} />
+          <EyeOutlined style={{ fontSize: "32px" }} />
         </a>
       ),
     });
