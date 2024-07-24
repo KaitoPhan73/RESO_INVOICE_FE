@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Table, Button } from "antd";
 import { CustomColumnType } from "@/types/TablePropsCustom";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ReloadOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { ReloadOutlined, EditOutlined, PlusOutlined, EyeOutlined } from "@ant-design/icons";
 import { TTableResponse } from "@/types/Table";
 import Filter from "./Filter"; // Import Filter component
 
@@ -121,7 +121,7 @@ const TableRender = <RecordType extends object>({
       render: (_: any, record: RecordType) => (
         <Button
           type="link"
-          icon={<EditOutlined style={{ fontSize: "18px" }} />}
+          icon={<EyeOutlined style={{ fontSize: "25px" }} />}
           onClick={() => router.push(`${pathname}/${record[finalRowKey]}`)}
         />
       ),

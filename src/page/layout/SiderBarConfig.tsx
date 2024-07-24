@@ -57,13 +57,13 @@ const SystemAdminSiderBarConfig = [
     icon: <ShopOutlined />,
   },
   {
-    label: <span style={{ fontSize: "16px", fontWeight: "bold" }}>Brands</span>,
+    label: <span style={{ fontSize: "", fontWeight: "bold" }}>Brands</span>,
     key: "sub2",
     icon: <CoffeeOutlined />,
     children: [
       customMenuItem(PATH_ADMINSYSTEM.brands, "Quản Lí"),
       customMenuItem(PATH_ADMINSYSTEM.brandaccount, "Tài Khoản"),
-      customMenuItem(PATH_ADMINSYSTEM.partners, "Partners"),
+      customMenuItem(PATH_ADMINSYSTEM.partners, "Đối Tác"),
     ],
   },
 ];
@@ -84,22 +84,18 @@ const BrandAdminSiderBarConfig = [
     icon: <LineChartOutlined />,
   },
   {
-    label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Tổ Chức</span>
-    ),
+    label: <span style={{ fontSize: "", fontWeight: "bold" }}>Tổ Chức</span>,
     key: "sub1",
     icon: <UserOutlined />,
     children: [
       customMenuItem(PATH_BRAND.organizations, "Quản Lí"),
       customMenuItem(PATH_BRAND.organizationaccounts, "Tài Khoản"),
-      customMenuItem(PATH_BRAND.partners, "Partner"),
+      customMenuItem(PATH_BRAND.partners, "Đối Tác"),
     ],
   },
 
   {
-    label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Hóa Đơn</span>
-    ),
+    label: <span style={{ fontSize: "", fontWeight: "bold" }}>Hóa Đơn</span>,
     key: "sub2",
     icon: <FileOutlined />,
     children: [customMenuItem(PATH_BRAND.invoices, "Quản Lí")],
