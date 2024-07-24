@@ -116,6 +116,7 @@ const OrganizationSiderBarConfig = [
     ),
     key: PATH_BRAND.reportInvoices,
     icon: <LineChartOutlined />,
+>>>>>>>>> Temporary merge branch 2
   },
   {
     label: (
