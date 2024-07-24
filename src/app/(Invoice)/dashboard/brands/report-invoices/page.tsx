@@ -1,5 +1,5 @@
 import brandApi from "@/actions/brands";
-import { ReportInvoce } from "@/page/organization/report";
+import { ReportInvoce } from "@/page/adminBrands/report";
 import { getFormattedDate } from "@/utils/utils";
 import { cookies } from "next/headers";
 import React from "react";
