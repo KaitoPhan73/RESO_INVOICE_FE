@@ -23,6 +23,7 @@ export function ReportInvoce({ data }: Props) {
     value: item.id,
     label: item.name,
   }));
+
   return (
     <div className="grid grid-cols-12 gap-4">
       <div className="col-span-12 flex flex-col lg:flex-row lg:items-center gap-4">

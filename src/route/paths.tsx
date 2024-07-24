@@ -44,6 +44,7 @@ const PATH_ORGANIZATION = {
   invoices: path(PATH_DASHBOARD.organizations, "/invoices"),
   invoicetemplate: path(PATH_DASHBOARD.organizations, "/templates"),
   template: path(PATH_DASHBOARD.template, "/template"),
+  users: path(PATH_DASHBOARD.organizations, "/users"),
   storeaccounts: path(PATH_DASHBOARD.organizations, "/store-accounts"),
   reportInvoices: path(PATH_DASHBOARD.organizations, "/report-invoices"),
 };

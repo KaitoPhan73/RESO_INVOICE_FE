@@ -33,7 +33,6 @@ type Props = {
   data: TTableResponse<TReportInvoicePaymentInDateSchemaResponse>;
 };
 export function BarChartReport({ data }: Props) {
-  console.log("okkk", data);
   return (
     <Card>
       <CardHeader>

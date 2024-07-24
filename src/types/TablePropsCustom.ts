@@ -1,5 +1,3 @@
-import { DatePickerProps, SelectProps } from "antd";
-
 export type CustomDataIndex<RecordType> =
   | keyof RecordType
   | "index"
@@ -23,6 +21,7 @@ export type CustomColumnType<RecordType> = {
   key: CustomDataIndex<RecordType> | string; // Adjusted to CustomDataIndex type
   fixed?: any;
   width?: string | number;
+  ellipsis?: boolean | { showTitle: boolean };
   render?: (
     value: any,
     record: RecordType,

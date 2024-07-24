@@ -66,21 +66,6 @@ const SystemAdminSiderBarConfig = [
       customMenuItem(PATH_ADMINSYSTEM.partners, "Partners"),
     ],
   },
-  // {
-  //   label: (
-  //     <span style={{ fontSize: "16px", fontWeight: "bold" }}>
-  //       Brands Detail
-  //     </span>
-  //   ),
-  //   key: "sub3",
-  //   icon: <CoffeeOutlined />,
-  //   children: [
-  //     customMenuItem(PATH_ADMINSYSTEM.invoicessystem, "Invoices"),
-  //     customMenuItem(PATH_ADMINSYSTEM.organizationssystem, "Organizations"),
-  //     customMenuItem(PATH_ADMINSYSTEM.brandaccount, "Organization Account"),
-  //     customMenuItem(PATH_ADMINSYSTEM.userssystem, "Users"),
-  //   ],
-  // },
 ];
 
 const BrandAdminSiderBarConfig = [
@@ -138,26 +123,15 @@ const OrganizationSiderBarConfig = [
   },
   {
     label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
-        Quản lí hóa đơn
-      </span>
+      <span style={{ fontSize: "16px", fontWeight: "bold" }}>Quản lí</span>
     ),
     key: "sub1",
     icon: <DesktopOutlined />,
     children: [
-      // customMenuItem(PATH_ORGANIZATION.invoicetemplate, "Mẫu"),
       customMenuItem(PATH_ORGANIZATION.invoices, "Hóa đơn"),
+      customMenuItem(PATH_ORGANIZATION.stores, "Cửa hàng"),
+      // customMenuItem(PATH_ORGANIZATION.users, "Người dùng"),
     ],
-  },
-  {
-    label: (
-      <span style={{ fontSize: "16px", fontWeight: "bold" }}>
-        Quản lí cửa hàng
-      </span>
-    ),
-    key: "sub2",
-    icon: <CoffeeOutlined />,
-    children: [customMenuItem(PATH_ORGANIZATION.stores, "Cửa hàng")],
   },
 ];
 
