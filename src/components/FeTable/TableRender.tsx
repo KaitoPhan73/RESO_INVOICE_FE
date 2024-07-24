@@ -126,7 +126,7 @@ const TableRender = <RecordType extends object>({
           icon={<EyeOutlined style={{ fontSize: "25px" }} />}
           onClick={() => router.push(`${pathname}/${record[finalRowKey]}`)}
         >
-          Chỉnh sửa
+          Xem chi tiết
         </Button>
       ),
     });

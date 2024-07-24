@@ -89,11 +89,11 @@ const BrandAdminSiderBarConfig = [
     key: "logo",
     icon: null,
   },
-  {
-    label: customMenuItem(PATH_BRAND.reportInvoices, "Báo cáo").label,
-    key: customMenuItem(PATH_BRAND.reportInvoices, "Báo cáo").key,
-    icon: <LineChartOutlined />,
-  },
+  // {
+  //   label: customMenuItem(PATH_BRAND.reportInvoices, "Báo cáo").label,
+  //   key: customMenuItem(PATH_BRAND.reportInvoices, "Báo cáo").key,
+  //   icon: <LineChartOutlined />,
+  // },
   {
     label: (
       <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
@@ -126,13 +126,11 @@ const BrandAdminSiderBarConfig = [
   },
 
   {
-    label: (
-      <span style={{ fontSize: "", fontWeight: "bold" }}>Doanh Thu</span>
-    ),
-    key: "sub3",
+    label: customMenuItem(PATH_BRAND.reportInvoices, "Doanh Thu").label,
     icon: <LineChartOutlined />,
-    children: [customMenuItem(PATH_ORGANIZATION.reportInvoices, "Báo Cáo")],
+    children: [customMenuItem(PATH_BRAND.reportInvoices, "Báo Cáo")],
   },
+
 ];
 
 const OrganizationSiderBarConfig = [
