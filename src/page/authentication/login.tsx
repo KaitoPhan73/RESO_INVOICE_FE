@@ -1,15 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Grid,
-  Paper,
-  Button,
-  Box,
-  Typography,
-  IconButton,
-  InputAdornment,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import { FormProvider, useForm, Controller } from "react-hook-form";
 import {
   VisibilityOff,
@@ -18,7 +10,6 @@ import {
   Lock,
 } from "@mui/icons-material";
 import { useSnackbar } from "notistack";
-// import "@dotlottie/player-component/dist/dotlottie-player.mjs"; // Import player-component
 import InputField from "@/components/form/InputField";
 import authApi from "@/actions/auth";
 import { LoginBody, TLoginBody } from "@/schemaValidations/auth.schema";
@@ -28,6 +19,8 @@ import PATHS from "@/route/paths";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   postData: any;
@@ -54,7 +47,6 @@ export default function LoginPage() {
     },
   });
   const { handleSubmit, control } = methods;
-  console.log("userOKKK", user);
   const onSubmit = async (values: TLoginBody) => {
     if (loading) return;
     setLoading(true);
@@ -85,184 +77,53 @@ export default function LoginPage() {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        width: "100%",
-        margin: "10px auto",
-        position: "relative",
-      }}
-    >
-      <div
-        className="top"
-        style={{
-          background: "#131be1",
-          height: "300px",
-          position: "relative",
-          backgroundImage: `url("/images/logo-deercoffee.jpg")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div
-          className="logo"
-          style={{
-            position: "absolute",
-            maxWidth: "100px",
-            top: "28%",
-            left: "50%",
-            transform: "translateX(-50%)",
-            WebkitTransform: "translateX(-50%)",
-          }}
-        ></div>
-      </div>
-      <div
-        className="bottom"
-        style={{
-          background: "#eee",
-          borderRadius: "20px",
-          marginTop: "10px",
-        }}
-      >
-        <FormProvider {...methods}>
-          <Grid container justifyContent="center">
-            <Grid item xs={12} sm={12}>
-              <Paper
-                className="form"
-                sx={{
-                  padding: "40px",
-                  maxWidth: "500px",
-                  margin: "auto",
-                  borderRadius: "20px",
-                  boxShadow: "30px 20px 20px rgba(0, 0, 0, 0.1)",
-                  color: "#333",
-                  border: "1px solid #333",
-                }}
-              >
-                <Typography
-                  variant="subtitle2"
-                  sx={{ textAlign: "center", marginTop: "16px" }}
-                >
-                  {/* <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                    }}
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="container relative h-screen items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+          <div className="hidden h-full w-full bg-muted lg:block relative">
+            <Image
+              src="/images/invoice-background.jpg"
+              alt="Image"
+              layout="fill"
+              objectFit="cover"
+              className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+            />
+          </div>
+          <div className="flex items-center justify-center py-12">
+            <div className="mx-auto grid w-[350px] gap-6">
+              <div className="flex flex-col space-y-2 text-center">
+                <h1 className="text-2xl font-semibold tracking-tight">
+                  Đăng nhập
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                  CHÀO MỪNG ĐẾN VỚI DEER COFFEE
+                </p>
+              </div>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <InputField name="username" label="Username" fullWidth />
+                </Grid>
+                <Grid item xs={12}>
+                  <InputField
+                    name="password"
+                    label="Password"
+                    type="password"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    type="submit"
+                    className="w-full bg-black text-white hover:bg-gray-200 hover:text-black transition duration-300"
                   >
-                    <Box
-                      sx={{ width: "100%", height: "1px", bgcolor: "grey.500" }}
-                    />
-                    <Box sx={{ px: 1, fontWeight: "bold" }}>OR</Box>
-                    <Box
-                      sx={{ width: "100%", height: "1px", bgcolor: "grey.500" }}
-                    />
-                  </Box> */}
-                </Typography>
-
-                <Controller
-                  name="username"
-                  control={control}
-                  render={({ field }) => (
-                    <InputField
-                      {...field}
-                      label="Username"
-                      placeholder="Username"
-                      fullWidth
-                      sx={{ width: "100%", mb: 2 }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <AccountCircle />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  )}
-                />
-
-                <Controller
-                  name="password"
-                  control={control}
-                  render={({ field }) => (
-                    <InputField
-                      {...field}
-                      label="Password"
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Password"
-                      fullWidth
-                      sx={{ width: "100%", mb: 2 }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <Lock />
-                          </InputAdornment>
-                        ),
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <IconButton
-                              onClick={togglePasswordVisibility}
-                              edge="end"
-                            >
-                              {showPassword ? (
-                                <VisibilityOff />
-                              ) : (
-                                <Visibility />
-                              )}
-                            </IconButton>
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  )}
-                />
-
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  onClick={handleSubmit(onSubmit)}
-                  sx={{
-                    marginTop: "10px",
-                    marginBottom: "10px",
-                    borderRadius: "30px",
-                    background: "#f8c407",
-                    borderColor: "#f8c407",
-                    cursor: "pointer",
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    color: "#fff",
-                    transition: "background-color 0.3s ease",
-                  }}
-                >
-                  {loading ? "Happy Code ..." : "Login"}
-                </Button>
-
-                {/* Hiển thị animation khi đang loading */}
-                {loading && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                    }}
-                  >
-                    {/* <dotlottie-player
-                      src="https://lottie.host/d4dd4311-b564-4771-83e3-06141e29eeb4/tQqrViPvvP.json"
-                      background="transparent"
-                      speed="1"
-                      style={{ width: 150, height: 150 }}
-                      loop
-                      autoplay
-                    ></dotlottie-player> */}
-                  </div>
-                )}
-              </Paper>
-            </Grid>
-          </Grid>
-        </FormProvider>
-      </div>
-    </div>
+                    Sign In
+                  </Button>
+                </Grid>
+              </Grid>
+            </div>
+          </div>
+        </div>
+      </form>
+    </FormProvider>
   );
 }

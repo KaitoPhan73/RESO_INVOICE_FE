@@ -1,17 +1,15 @@
 import { httpInvoice } from "@/lib/http";
-import { TStoresBase } from "@/types/Strore";
+import { TStore } from "@/schemaValidations/store.schema";
+
 import { TTableResponse } from "@/types/Table";
 
-const getStores = async (sessionToken: string, params?: any) => {
-  "use server";
-  return httpInvoice.get<TTableResponse<TStoresBase>>("stores", {
-    params,
-    headers: { Authorization: `Bearer ${sessionToken}` },
-  });
-};
-
 const StoresApi = {
-  getStores,
+  getStores: (sessionToken: string, params?: any) => {
+    return httpInvoice.get<TTableResponse<TStore>>("stores", {
+      params,
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
+  },
 };
 
 export default StoresApi;

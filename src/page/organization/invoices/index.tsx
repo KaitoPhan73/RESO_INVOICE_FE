@@ -3,7 +3,7 @@ import TableRender from "@/components/FeTable/TableRender";
 import { TInvoice } from "@/schemaValidations/invoice.schema";
 import { CustomColumnType } from "@/types/TablePropsCustom";
 import { formatDate, formatPriceVND } from "@/utils/formater";
-import { Tag } from "antd";
+import { Tag, Tooltip } from "antd";
 import React from "react";
 import { invoiceStatusOptions } from "./config";
 interface Props {
@@ -20,6 +20,14 @@ export default function OrganizationsInvoicePage({ props, data }: Props) {
       title: "Mã hóa đơn",
       dataIndex: "invoiceCode",
       key: "invoiceCode",
+      ellipsis: {
+        showTitle: false,
+      },
+      render: (value) => (
+        <Tooltip placement="topLeft" title={value}>
+          {value}
+        </Tooltip>
+      ),
     },
 
     {

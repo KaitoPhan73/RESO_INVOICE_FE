@@ -1,15 +1,7 @@
 "use client";
 
 import { TrendingUp } from "lucide-react";
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  Line,
-  LineChart,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import {
   Card,
@@ -25,18 +17,22 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { chartConfig } from "./config";
 import { TTableResponse } from "@/types/Table";
 import { TReportInvoicePaymentInDateSchemaResponse } from "@/schemaValidations/invoice.schema";
-import { formatPriceVND, formattedDate } from "@/utils/formater";
-import { chartConfig } from "./config";
-
+import { formattedDate } from "@/utils/formater";
+const chartData = [
+  { month: "January", desktop: 186, mobile: 80 },
+  { month: "February", desktop: 305, mobile: 200 },
+  { month: "March", desktop: 237, mobile: 120 },
+  { month: "April", desktop: 73, mobile: 190 },
+  { month: "May", desktop: 209, mobile: 130 },
+  { month: "June", desktop: 214, mobile: 140 },
+];
 type Props = {
   data: TTableResponse<TReportInvoicePaymentInDateSchemaResponse>;
 };
-
-export function LineChartReport({ data }: Props) {
-  const formatTooltip = (value: any) => formatPriceVND(value);
-
+export function BarChartReport({ data }: Props) {
   return (
     <Card>
       <CardHeader>
@@ -44,11 +40,7 @@ export function LineChartReport({ data }: Props) {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="max-h-80 w-full">
-          <LineChart
-            accessibilityLayer
-            data={data.items}
-            margin={{ left: 12, right: 12 }}
-          >
+          <BarChart accessibilityLayer data={data.items}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="date"
@@ -65,36 +57,21 @@ export function LineChartReport({ data }: Props) {
             />
             <ChartTooltip
               cursor={false}
-              content={
-                <ChartTooltipContent
-                  // formatter={formatTooltip}
-                  labelFormatter={(label) => formattedDate(label)}
-                />
-              }
+              content={<ChartTooltipContent indicator="dashed" />}
             />
-
             {(Object.keys(chartConfig) as Array<keyof typeof chartConfig>).map(
               (key) => (
-                <Line
+                <Bar
                   key={key}
                   dataKey={key}
-                  type="monotone"
                   fill={chartConfig[key].color}
-                  fillOpacity={0.4}
-                  stroke={chartConfig[key].color}
-                  dot={false}
+                  radius={4}
                 />
               )
             )}
-          </LineChart>
+          </BarChart>
         </ChartContainer>
       </CardContent>
-      {/* <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-          </div>
-        </div>
-      </CardFooter> */}
     </Card>
   );
 }

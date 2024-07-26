@@ -67,7 +67,7 @@ export default function OrganizationsStorePage({ props, data }: Props) {
       data={data}
       onDelete={() => {}}
       onEdit
-      onCreate
+      // onCreate
     />
   );
 }
