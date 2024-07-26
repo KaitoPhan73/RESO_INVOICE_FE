@@ -109,7 +109,7 @@ export default function InvoiceInBrandPage({ props, data }: Props) {
       propsUrl={props}
       onDelete={() => {}}
       onEdit
-      onCreate
+      // onCreate
     />
   );
 }

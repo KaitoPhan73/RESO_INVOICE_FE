@@ -48,11 +48,11 @@ export default function BrandPage({ props, data }: Props) {
           </Tag>
         ),
     },
-    {
-      title: "Mã bí mật",
-      dataIndex: "secretKey",
-      key: "secretKey",
-    },
+    // {
+    //   title: "Mã bí mật",
+    //   dataIndex: "secretKey",
+    //   key: "secretKey",
+    // },
   ];
 
   return (

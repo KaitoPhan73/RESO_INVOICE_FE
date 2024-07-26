@@ -70,7 +70,7 @@ export default function OrganizationAccountsPage({ props, data }: Props) {
       propsUrl={props}
       onDelete={() => {}}
       onEdit
-      onCreate
+      // onCreate
     />
   );
 }
