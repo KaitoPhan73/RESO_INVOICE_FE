@@ -47,6 +47,7 @@ const PATH_ORGANIZATION = {
   users: path(PATH_DASHBOARD.organizations, "/users"),
   storeaccounts: path(PATH_DASHBOARD.organizations, "/store-accounts"),
   reportInvoices: path(PATH_DASHBOARD.organizations, "/report-invoices"),
+  templates: path(PATH_DASHBOARD.organizations, "/templates"),
 };
 
 const PATH_BRAND = {

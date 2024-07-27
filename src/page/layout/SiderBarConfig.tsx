@@ -126,6 +126,8 @@ const OrganizationSiderBarConfig = [
     children: [
       customMenuItem(PATH_ORGANIZATION.invoices, "Hóa đơn"),
       customMenuItem(PATH_ORGANIZATION.stores, "Cửa hàng"),
+      customMenuItem(PATH_ORGANIZATION.templates, "Mẫu"),
+
       // customMenuItem(PATH_ORGANIZATION.users, "Người dùng"),
     ],
   },

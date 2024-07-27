@@ -1,55 +1,22 @@
-"use client";
-import TableRender from "@/components/FeTable/TableRender";
-import { TInvoiceTemplateBody } from "@/schemaValidations/invoiceTemplate.schema";
-import { CustomColumnType } from "@/types/TablePropsCustom";
-import { TableColumnsType } from "antd";
-import React from "react";
-interface Props {
-  data: any;
-}
-export default function OrganizationsInvoiceTemplatePage({
-  data,
-}: Props) {
-  const columns: CustomColumnType<TInvoiceTemplateBody>[] = [
-    {
-      title: "Organization Name",
-      dataIndex: "organizationName",
-      key: "organizationName",
-    },
-    {
-      title: "Template Name",
-      dataIndex: "templateName",
-      key: "templateName",
-    },
-    {
-      title: "Template Type",
-      dataIndex: "templateType",
-      key: "templateType",
-    },
-    {
-      title: "Invoice Series",
-      dataIndex: "invSeries",
-      key: "invSeries",
-    },
-    {
-      title: "Invoice Type",
-      dataIndex: "invoiceType",
-      key: "invoiceType",
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-    },
-  ];
-  return (
-    <TableRender
-      columns={columns}
-      propsUrl={() => {}}
-      data={data}
-      onDelete={() => {}}
-      onEdit
-      onCreate
-    />
-  );
-}
+"use client"; 
+
+import React from 'react';
+import Invoice from "./Invoice";
+import dynamic from "next/dynamic";
+
+const PDFViewer = dynamic(
+  () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+  {
+    ssr: false,
+    loading: () => <p>Loading...</p>,
+  },
+);
+const PDFViewerComponent: React.FC = () => (
+  <div style={{ height: '100vh', width: '100%' }}>
+    <PDFViewer width="100%" height="100%">
+      <Invoice />
+    </PDFViewer>
+  </div>
+);
+
+export default PDFViewerComponent;
