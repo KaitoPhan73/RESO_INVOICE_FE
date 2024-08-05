@@ -1,7 +1,7 @@
-"use client"; 
+"use client";
 
 import React from 'react';
-import { Page, Document } from '@react-pdf/renderer';
+import { Page, Document, Image, View } from '@react-pdf/renderer';
 import InvoiceTitle from './InvoiceTitle';
 import Address from './Address';
 import UserAddress from './UserAddress';
@@ -26,16 +26,14 @@ const receiptData = {
 const Invoice: React.FC = () => (
   <Document>
     <Page size="A4" style={styles.page}>
-      <InvoiceTitle />
-
-      <Address/>
-
-      <UserAddress/>
-
-      <TableInvoice />
-
-      <SignatureSection />
-
+      <View style={styles.content}>
+      <Image src="/images/SDSD.jpg" style={styles.pageBackground} />
+        <InvoiceTitle />
+        <Address />
+        <UserAddress />
+        <TableInvoice />
+        <SignatureSection />
+      </View>
     </Page>
   </Document>
 );

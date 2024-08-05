@@ -1,9 +1,7 @@
-// src/components/TableInvoice.tsx
 import React, { Fragment } from 'react';
 import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import styles from './styles';
 
-// Function to format number as Vietnamese Dong
 const formatCurrency = (amount: number): string => {
   return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 };
