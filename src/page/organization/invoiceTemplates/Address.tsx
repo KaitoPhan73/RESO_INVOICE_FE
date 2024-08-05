@@ -8,26 +8,47 @@ const styless = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 12,
   },
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: "12px",
+
+  },
+  leftColumn: {
+    alignItems: 'center',
+    textAlign: 'center',
+    marginLeft: "100px",
+    paddingLeft: "50px",
+  },
+  rightColumn: {
+    fontSize: 10,
+    marginLeft: "40px",
+    width: '30%',
+    textAlign: 'left',
+  },
 });
 
 const Address: React.FC = () => (
-  // <View style={styless.text}>
-    <View style={styles.titleSecond}>
-      <View style={styles.lineSecond}>
-        <View style={styles.spaceBetween}>
-          <View style={styles.centeredContent}>
-            <Text style={styles.invoiceTitle}>HOA DON</Text>
-            <Text style={styles.invoiceTitle}>GIA TRI GIA TANG</Text>
-            <Text style={styles.invoice}>(Ban the hien cua hoa don dien tu)</Text>
-            <Text style={styles.invoice}>Ngay(date) 26 thang(month) 07 nam(year) 2024</Text>
-            <Text style={styles.invoiceBold}>Ma tra cuu: 3URHFWRFB1</Text>
-            <Text style={styles.invoiceBold}>Ma cua CQT:</Text>
-          </View>
-        </View>
+  <View style={styless.text}>
+    <View style={styless.container}>
+      {/* Left Column */}
+      <View style={styless.leftColumn}>
+        <Text style={styles.invoiceTitle}>HÓA ĐƠN</Text>
+        <Text style={styles.invoiceTitle}>GIÁ TRỊ GIA TĂNG</Text>
+        <Text style={styles.invoice}>(Bản thể hiện của hóa đơn điện tử)</Text>
+        <Text style={styles.invoice}>Ngày (date) 26 tháng (month) 07 năm (year) 2024</Text>
+        <Text style={styles.invoiceBold}>Mã tra cứu: 3URHFWRFB1</Text>
+        <Text style={styles.invoiceBold}>Mã của CQT:</Text>
+      </View>
+
+      {/* Right Column */}
+      <View style={styless.rightColumn}>
+        <Text style={styles.invoiceTitleLeft}>INVOICE (VAT)</Text>
+        <Text style={styles.invoiceLeft}>Ký hiệu (Serial No): 1C24TDT</Text>
+        <Text style={styles.invoiceLeft}>Số (No): 4</Text>
       </View>
     </View>
-  // </View>
-
+  </View>
 );
 
 export default Address;

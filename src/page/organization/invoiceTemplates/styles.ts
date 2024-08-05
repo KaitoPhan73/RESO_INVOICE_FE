@@ -5,13 +5,26 @@ Font.register({ family: 'Roboto', src: '/fonts/Roboto-Regular.ttf' });
 Font.register({ family: 'Roboto-Bold', src: '/fonts/Roboto-Bold.ttf' });
 
 const styles = StyleSheet.create({
+  pageBackground: {
+    position: 'absolute',
+    top: -20,
+    left: -60,
+    width: '123%',
+    height: 'calc(120% + 500px)',
+    zIndex: -1,
+  },
   page: {
-    fontSize: 10,
+    fontSize: 7,
     paddingTop: 20,
     paddingLeft: 40,
     paddingRight: 40,
     lineHeight: 1.5,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    position: 'relative',
+  },
+  content: {
+    position: 'relative',
+    zIndex: 1,
   },
   spaceBetween: {
     flex: 1,
@@ -27,17 +40,18 @@ const styles = StyleSheet.create({
   },
   titleSecond: {
     flexDirection: 'column',
-    marginTop: 64,
     width: '100%',
-    marginBottom: 20,
-    paddingBottom: 4,
+    marginTop: 1,
+    borderTopWidth: 1.5,
+    borderTopColor: 'green',
+    paddingTop: 4,
 
   },
-  lineSecond: {
-    marginBottom: 20,
-    paddingBottom: 4,
+  // lineSecond: {
+  //   marginBottom: 20,
+  //   paddingBottom: 4,
 
-  },
+  // },
   headerContainer: {
     flexDirection: 'row',
     width: '100%',
@@ -91,11 +105,38 @@ const styles = StyleSheet.create({
   centeredContent: {
     alignItems: 'center',
     textAlign: 'center',
-
+    marginLeft: "100px",
+    paddingLeft: "50px",
   },
-  invoiceTitle: { fontWeight: 'bold', fontSize: 14, color: "red" },
-  invoice: { fontSize: 10, fontStyle: 'italic' },
-  invoiceBold: { fontWeight: 'extrabold', fontSize: 10 },
+  invoiceTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: "red",
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  invoiceTitleLeft: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    alignItems: 'flex-start',
+    textAlign: 'left',
+  },
+  invoiceLeft: {
+    fontSize: 10,
+    alignItems: 'flex-start',
+    textAlign: 'left'
+  },
+  invoice: {
+    fontSize: 10,
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  invoiceBold: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
   companyContainer: {
     flexDirection: 'row',
     marginTop: 4,
@@ -110,12 +151,12 @@ const styles = StyleSheet.create({
   addressTitle: {
     fontSize: 10,
     fontWeight: 'bold',
-    width: '40%', // Adjust width to fit the label
+    width: '40%', 
     textAlign: 'left',
   },
   address: {
     fontSize: 10,
-    width: '60%', // Adjust width to fit the value
+    width: '60%', 
     textAlign: 'left',
   },
   invoiceNumber: { fontSize: 11, fontWeight: 'bold' },
@@ -144,7 +185,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 1,
     borderRightWidth: 1,
-    borderBottomWidth: 1,    justifyContent: 'center',
+    borderBottomWidth: 1, justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
   },
@@ -171,10 +212,10 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 1,
     borderRightWidth: 1,
-    borderBottomWidth: 1,    
-    justifyContent: 'space-between', 
-    alignItems: 'center', 
-    textAlign: 'center', 
+    borderBottomWidth: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    textAlign: 'center',
     flexDirection: 'row',
   },
   final: {
@@ -184,7 +225,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 1,
     borderRightWidth: 1,
-    borderBottomWidth: 1,    justifyContent: 'flex-start',
+    borderBottomWidth: 1, justifyContent: 'flex-start',
     alignItems: 'flex-start',
     textAlign: 'left',
   },

@@ -23,7 +23,7 @@ const InvoiceTitle: React.FC = () => (
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.label}>Địa chỉ (Address):</Text>
-            <Text style={styles.value}>22 Láng Hạ - Đống Đa - Hà Nộ</Text>
+            <Text style={styles.value}>22 Láng Hạ - Đống Đa - Hà Nội</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.label}>Điện thoại (Tel):</Text>
