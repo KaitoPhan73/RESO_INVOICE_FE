@@ -20,6 +20,7 @@ import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { invoiceStatusOptions } from "./config";
 import { Tag } from "antd";
 import OrganizationsInvoiceTemplatePage from "../invoiceTemplates";
+import PDFViewerComponent from "../invoiceTemplates";
 type Props = {
   data: TInvoice;
 };
@@ -86,6 +87,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
   return (
     <FormProvider {...methods}>
       <Grid container spacing={2}>
+        <PDFViewerComponent data={data} />
         <Grid container spacing={3}>
           <Grid item xs={12} md={11} className="text-right">
             <Button
@@ -96,7 +98,6 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
             >
               Gửi
             </Button>
-            <OrganizationsInvoiceTemplatePage data={data} />
           </Grid>
         </Grid>
 
