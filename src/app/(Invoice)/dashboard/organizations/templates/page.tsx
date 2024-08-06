@@ -8,14 +8,13 @@ export default async function Templates({
 }: {
   params: { slug: string };
 }) {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get("accessToken")?.value;
-  const data = await OrganizationsApi.getTemplatesByOrganizationById(params.slug, accessToken);
-  
+  // const cookieStore = cookies();
+  // const accessToken = cookieStore.get("accessToken")?.value;
+  // const data = await OrganizationsApi.getTemplatesByOrganizationById(params.slug, accessToken);
 
   return (
     <>
-      <OrganizationsInvoiceTemplatePage data={data.payload} />
+      <OrganizationsInvoiceTemplatePage />
     </>
   );
 }

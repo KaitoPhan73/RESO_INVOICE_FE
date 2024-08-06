@@ -6,7 +6,11 @@ import {
   InvoiceDetailSchema,
   TInvoice,
 } from "@/schemaValidations/invoice.schema";
-import { formatDate, formatPriceVND, formattedDateTime } from "@/utils/formater";
+import {
+  formatDate,
+  formatPriceVND,
+  formattedDateTime,
+} from "@/utils/formater";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Card, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -15,6 +19,7 @@ import React from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { invoiceStatusOptions } from "./config";
 import { Tag } from "antd";
+import OrganizationsInvoiceTemplatePage from "../invoiceTemplates";
 type Props = {
   data: TInvoice;
 };
@@ -91,6 +96,7 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
             >
               Gửi
             </Button>
+            <OrganizationsInvoiceTemplatePage data={data} />
           </Grid>
         </Grid>
 
@@ -526,7 +532,6 @@ export default function OrganizationsInvoiceDetailPage({ data }: Props) {
             </Page>
           </Card>
         </Grid>
-
       </Grid>
     </FormProvider>
   );
