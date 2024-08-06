@@ -21,25 +21,24 @@ const InvoiceDetail = async ({ params }: { params: { slug: string } }) => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
       {response.payload.status === 1 ? (
         <div className="col-span-3 md:col-span-3 p-4 mb-8">
-          <OrganizationsPartnerInvoiceHistoryPage data={reponsePartner!.payload} />
+          <OrganizationsPartnerInvoiceHistoryPage
+            data={reponsePartner!.payload}
+          />
         </div>
       ) : (
-        <div className="col-span-3 md:col-span-3 p-4 mb-8">
-          <ResponsePartnerPage data={response.payload.responsePartNer} />
-        </div>
+        response.payload.responsePartNer !== null && (
+          <div className="col-span-3 md:col-span-3 p-4 mb-8">
+            <ResponsePartnerPage data={response.payload.responsePartNer} />
+          </div>
+        )
       )}
 
       <div className="col-span-3 md:col-span-3 p-4 mb-8">
         <OrganizationsInvoiceDetailPage data={response.payload} />
       </div>
 
-
       <div className="col-span-3 md:col-span-3 p-4 mb-8"></div>
     </div>
   );
 };
 export default InvoiceDetail;
-
-
-
-
