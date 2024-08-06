@@ -13,11 +13,11 @@ interface Props {
 export default function OrganizationsInBrandPage({ props, data }: Props) {
   console.log("dataaaa>:", data);
   const columns: CustomColumnType<TOrganization>[] = [
-    {
-      title: "Tên tổ chức",
-      dataIndex: "id",
-      key: "id",
-    },
+    // {
+    //   title: "Tên tổ chức",
+    //   dataIndex: "id",
+    //   key: "id",
+    // },
     {
       title: "Tên tổ chức",
       dataIndex: "name",
@@ -44,11 +44,11 @@ export default function OrganizationsInBrandPage({ props, data }: Props) {
       dataIndex: "brandName",
       key: "brandName",
     },
-    {
-      title: "Mã code",
-      dataIndex: "code",
-      key: "code",
-    },
+    // {
+    //   title: "Mã code",
+    //   dataIndex: "code",
+    //   key: "code",
+    // },
   ];
 
   return (
